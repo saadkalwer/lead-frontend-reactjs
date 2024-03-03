@@ -11,8 +11,8 @@ export const Detailstyled = styled.div`
     display: flex;
     justify-content: center;
     background-color: white;
-    height: 1130px;
-    width: 93%;
+    height: 1300px;
+    width: 95%;
     margin-top: 30px;
     border-radius: 5px;
   }
@@ -34,7 +34,7 @@ export const Detailstyled = styled.div`
   }
 
   .NameBox {
-    width: 490px;
+    width: 375px;
     height: 37px;
     font-size: 17px;
     border: none;
@@ -43,7 +43,7 @@ export const Detailstyled = styled.div`
     color: black;
   }
   .NameBox-Select {
-    width: 490px;
+    width: 600px;
     height: 37px;
     font-size: 18px;
     font-weight: 500;
@@ -57,7 +57,7 @@ export const Detailstyled = styled.div`
     padding: 4px;
     border-radius: 9px;
     cursor: pointer;
-    width: 500px;
+    width: 390px;
   }
   .FormIcon {
     width: 25px;
@@ -74,8 +74,8 @@ export const Detailstyled = styled.div`
     gap: 10px;
   }
   .NameBox-Top {
-    width: 1050px;
-    height: 39px;
+    width: 1250px;
+    height: 38px;
     font-size: 15px;
     border: none;
     outline: none;
@@ -89,7 +89,7 @@ export const Detailstyled = styled.div`
     border-radius: 9px;
     cursor: pointer;
     display: flex;
-    height: 43px;
+    height: 44px;
     background-color: white;
     align-items: center;
   }
@@ -107,6 +107,12 @@ export const Detailstyled = styled.div`
     font-weight: 500;
     margin-bottom: 10px;
   }
+  .Form-Box-Title-Main {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    margin-top: 30px;
+  }
   .Form-Box-Text-Bottom {
     display: flex;
     flex-direction: column;
@@ -118,6 +124,35 @@ export const Detailstyled = styled.div`
     gap: 10px;
     align-items: center;
   }
+  .City-Form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .Names-Form-Bottom-Section {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+  .FormBox-Bottom {
+    border: 2px #e6ebf2 solid;
+    padding: 4px;
+    border-radius: 9px;
+    cursor: pointer;
+    width: 610px;
+  }
+  .NameBox-Center {
+    width: 568px;
+    height: 37px;
+    font-size: 18px;
+    font-weight: 500;
+    border: none;
+    padding-left: 10px;
+    outline: none;
+    color: black;
+  }
+
   .Contact-Title {
     font-size: 22px;
     font-weight: 500;
@@ -140,7 +175,7 @@ export const Detailstyled = styled.div`
     padding-bottom: 100px;
   }
   .Add-Button {
-    width: 71px;
+    width: 145px;
     height: 43px;
     background: #34437a;
     border: none;
@@ -149,14 +184,37 @@ export const Detailstyled = styled.div`
     font-size: 16px;
   }
   .Cancel-Button {
-    width: 93px;
-    height: 43px;
+    width: 98px;
+    height: 45px;
     background: #f3f3f9;
     border-radius: 4px;
-    border: none;
+    border: 1px solid #f3f3f9;
     color: black;
     font-size: 17px;
     font-weight: 500;
+  }
+  .Check-Box-Section {
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .FormBox-Bottom-House {
+    border: 2px #e6ebf2 solid;
+    padding: 4px;
+    border-radius: 9px;
+    cursor: pointer;
+    width: 390px;
+  }
+  .NameBox-Select-House {
+    width: 375px;
+    height: 37px;
+    font-size: 17px;
+    border: none;
+    padding-left: 10px;
+    outline: none;
+    color: black;
   }
   .Business-Main-Section {
     width: 100%;
@@ -200,6 +258,7 @@ export const Detailstyled = styled.div`
     border: none;
     outline: none;
     color: black;
+
     background-color: #edeaf4;
   }
   .kyc-search-box {
@@ -271,6 +330,9 @@ export const Detailstyled = styled.div`
     padding-left: 20px;
     padding-top: 10px;
   }
+  .File-Div {
+    padding-top: 30px;
+  }
   input[type="number"]::-webkit-inner-spin-button,
   input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -279,55 +341,5 @@ export const Detailstyled = styled.div`
 
   input[type="number"] {
     -moz-appearance: textfield;
-  }
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .modal-content {
-    background: #f3f3f9;
-    padding: 20px;
-    width: 500px;
-    height: 350px;
-    border-radius: 5px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-  }
-
-  .close {
-    position: absolute;
-    top: 0px;
-    right: 10px;
-    cursor: pointer;
-    font-size: 40px;
-  }
-  .Title {
-    font-size: 27px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
-  .Selecting-Box {
-    display: flex;
-    justify-content: center;
-    border: 2px black solid;
-    padding: 4px;
-    border-radius: 6px;
-    cursor: pointer;
-    width: 450px;
-
-    margin-top: 40px;
-    height: 33px;
   }
 `;

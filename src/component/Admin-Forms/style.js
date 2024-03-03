@@ -12,7 +12,7 @@ export const Detailstyled = styled.div`
     justify-content: center;
     background-color: white;
     height: 1300px;
-    width: 93%;
+    width: 95%;
     margin-top: 30px;
     border-radius: 5px;
   }
@@ -258,6 +258,7 @@ export const Detailstyled = styled.div`
     border: none;
     outline: none;
     color: black;
+
     background-color: #edeaf4;
   }
   .kyc-search-box {
@@ -266,6 +267,7 @@ export const Detailstyled = styled.div`
     background-color: #edeaf4;
     padding: 4px;
     border-radius: 4px;
+    margin-left: 20px;
     cursor: pointer;
   }
   .kyc-icon {
@@ -327,5 +329,17 @@ export const Detailstyled = styled.div`
     background-color: #ffffff;
     padding-left: 20px;
     padding-top: 10px;
+  }
+  .File-Div {
+    padding-top: 30px;
+  }
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
   }
 `;

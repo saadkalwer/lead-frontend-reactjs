@@ -1,109 +1,72 @@
-import React from "react";
-import { VscListFlat } from "react-icons/vsc";
-
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Avatar from "../../image/User.png";
 import { FiBell } from "react-icons/fi";
 import Sidebar from "../Sidebar/SideBar";
 import { Partnerstyled } from "./style";
 import { FiFilter } from "react-icons/fi";
 import { IoMdSearch } from "react-icons/io";
+import { API } from "../../api/api";
+import { toast } from "react-toastify";
 
 function BusinessLoan() {
-  const data = [
-    {
-      clientName: "Lorem Ipsum",
-      mobileNumber: "Lorem Ipsum",
-      city: "Lorem Ipsum",
-      callType: "Lorem Ipsum",
-      productRequested: "Lorem Ipsum",
-      requestedOn: "₹1,20,000",
-    },
+  const navigate = useNavigate();
+  const [companies, setCompanies] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
-    {
-      clientName: "Lorem Ipsum",
-      mobileNumber: "Lorem Ipsum",
-      city: "Lorem Ipsum",
-      callType: "Lorem Ipsum",
-      productRequested: "Lorem Ipsum",
-      requestedOn: "₹1,20,000",
-    },
+  function formatDate(dateString) {
+    // Create a new Date object from the dateString
+    const date = new Date(dateString);
 
-    {
-      clientName: "Lorem Ipsum",
-      mobileNumber: "Lorem Ipsum",
-      city: "Lorem Ipsum",
-      callType: "Lorem Ipsum",
-      productRequested: "Lorem Ipsum",
-      requestedOn: "₹1,20,000",
-    },
+    // Format the date as per your requirements
+    const formattedDate = date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+      hour12: true, // If you want 12-hour format
+    });
 
-    {
-      clientName: "Lorem Ipsum",
-      mobileNumber: "Lorem Ipsum",
-      city: "Lorem Ipsum",
-      callType: "Lorem Ipsum",
-      productRequested: "Lorem Ipsum",
-      requestedOn: "₹1,20,000",
-    },
+    return formattedDate;
+  }
 
-    {
-      clientName: "Lorem Ipsum",
-      mobileNumber: "Lorem Ipsum",
-      city: "Lorem Ipsum",
-      callType: "Lorem Ipsum",
-      productRequested: "Lorem Ipsum",
-      requestedOn: "₹1,20,000",
-    },
-    {
-      clientName: "Lorem Ipsum",
-      mobileNumber: "Lorem Ipsum",
-      city: "Lorem Ipsum",
-      callType: "Lorem Ipsum",
-      productRequested: "Lorem Ipsum",
-      requestedOn: "₹1,20,000",
-    },
-    {
-      clientName: "Lorem Ipsum",
-      mobileNumber: "Lorem Ipsum",
-      city: "Lorem Ipsum",
-      callType: "Lorem Ipsum",
-      productRequested: "Lorem Ipsum",
-      requestedOn: "₹1,20,000",
-    },
-    {
-      clientName: "Lorem Ipsum",
-      mobileNumber: "Lorem Ipsum",
-      city: "Lorem Ipsum",
-      callType: "Lorem Ipsum",
-      productRequested: "Lorem Ipsum",
-      requestedOn: "₹1,20,000",
-    },
+  useEffect(() => {
+    getAllCompanies(currentPage);
+  }, [currentPage]);
 
-    {
-      clientName: "Lorem Ipsum",
-      mobileNumber: "Lorem Ipsum",
-      city: "Lorem Ipsum",
-      callType: "Lorem Ipsum",
-      productRequested: "Lorem Ipsum",
-      requestedOn: "₹1,20,000",
-    },
-    {
-      clientName: "Lorem Ipsum",
-      mobileNumber: "Lorem Ipsum",
-      city: "Lorem Ipsum",
-      callType: "Lorem Ipsum",
-      productRequested: "Lorem Ipsum",
-      requestedOn: "₹1,20,000",
-    },
-    {
-      clientName: "Lorem Ipsum",
-      mobileNumber: "Lorem Ipsum",
-      city: "Lorem Ipsum",
-      callType: "Lorem Ipsum",
-      productRequested: "Lorem Ipsum",
-      requestedOn: "₹1,20,000",
-    },
-  ];
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    getAllCompanies(page);
+  };
+
+  const getAllCompanies = async () => {
+    try {
+      console.log(currentPage);
+      const response = await API.getAllCompanies({
+        page: currentPage,
+      });
+      const responseData = response.data;
+
+      if (responseData && responseData.success) {
+        setCompanies(responseData.data);
+        // Handle pagination details if available in response
+        toast.success(responseData.message);
+      } else {
+        toast.error("Failed to fetch companies");
+      }
+    } catch (error) {
+      toast.error("Error fetching companies: " + error.message);
+    }
+  };
+
+  // Use useEffect to fetch initial data
+  useEffect(() => {
+    getAllCompanies({ page: currentPage });
+  }, [currentPage]);
+
+  const userData = JSON.parse(localStorage.getItem("user"));
 
   return (
     <>
@@ -114,7 +77,6 @@ function BusinessLoan() {
               <div className="Sidebar-Header-Content">
                 <div className="Sidebar-Header-Section">
                   <div className="Sidebar-Search-Box-Section">
-                    <VscListFlat className="Listing-Icon" />
                     <div className="kyc-search-box">
                       <IoMdSearch className="kyc-icon" />
                       <input
@@ -131,7 +93,9 @@ function BusinessLoan() {
                     <div className="Avatar-Main-Section">
                       <img className="Manager-Avatar" src={Avatar} alt="" />
                       <div className="Avatar-Text-Section">
-                        <span className="Avatar-Title">Anna Adame</span>
+                        <span className="Avatar-Title">
+                          {userData.userName}
+                        </span>
                         <span className="Avatar-Text">Founder</span>
                       </div>
                     </div>
@@ -149,8 +113,6 @@ function BusinessLoan() {
                     </div>
                     <div className="Header-Button-Section">
                       <FiFilter className="Header-icon" />
-                      <button className="Header-Button2">View</button>
-                      <button className="Header-Button">Add New Company</button>
                     </div>
                   </div>
                   <div className="Name-Filter-Box1">
@@ -171,22 +133,21 @@ function BusinessLoan() {
                           <th>Company Name</th>
                           <th>Owner Name</th>
                           <th>Contact Info</th>
-                          <th>Company Products</th>
+                          <th>Location</th>
                           <th>Apply Date</th>
-                          <th>Loan Amount</th>
+                          <th>City</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {data.map((item, index) => (
+                        {companies?.users?.map((item, index) => (
                           <tr key={index}>
                             <td>{index + 1}</td>
-                            <td className="Client-Color">{item.clientName}</td>
-                            <td>{item.mobileNumber}</td>
-
+                            <td className="Client-Color">{item.userName}</td>
+                            <td>{item.firstName}</td>
+                            <td>{item.mobileNo1}</td>
+                            <td>{item.street}</td>
+                            <td>{formatDate(item.createdAt)}</td>
                             <td>{item.city}</td>
-                            <td>{item.callType}</td>
-                            <td>{item.productRequested}</td>
-                            <td>{item.requestedOn}</td>
                           </tr>
                         ))}
                       </tbody>
@@ -194,15 +155,45 @@ function BusinessLoan() {
                   </div>
                   <div className="pagination-container">
                     <span className="pagination-text">
-                      Showing 1 to 5 of 10 results
+                      Showing{" "}
+                      {(currentPage - 1) * companies?.pagination?.pageSize + 1}{" "}
+                      to{" "}
+                      {Math.min(
+                        currentPage * companies?.pagination?.pageSize,
+                        companies?.pagination?.totalItems
+                      )}{" "}
+                      of {companies?.pagination?.totalItems} results
                     </span>
                     <div className="pagination-buttons">
-                      <button className="page-button">Previous</button>
-
-                      <button className="page-button1">1</button>
-                      <button className="page-button2">2</button>
-
-                      <button className="page-button3">Next</button>
+                      <button
+                        className="page-button"
+                        onClick={() => setCurrentPage(currentPage - 1)}
+                        disabled={currentPage === 1}
+                      >
+                        Previous
+                      </button>
+                      {Array.from(
+                        Array(companies?.pagination?.totalPages).keys()
+                      ).map((pageNumber) => (
+                        <button
+                          key={pageNumber}
+                          className={`page-button${
+                            currentPage === pageNumber + 1 ? " active" : ""
+                          }`}
+                          onClick={() => setCurrentPage(pageNumber + 1)}
+                        >
+                          {pageNumber + 1}
+                        </button>
+                      ))}
+                      <button
+                        className="page-button"
+                        onClick={() => setCurrentPage(currentPage + 1)}
+                        disabled={
+                          currentPage === companies?.pagination?.totalPages
+                        }
+                      >
+                        Next
+                      </button>
                     </div>
                   </div>
                 </div>

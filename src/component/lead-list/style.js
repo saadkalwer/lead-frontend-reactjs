@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Partnerstyled = styled.div`
   background-color: #f3f3f9;
-  width: 100%;
+  flex: 1;
   display: flex;
   height: 100vh;
 
@@ -276,7 +276,7 @@ export const Partnerstyled = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 285px;
+    width: 215px;
     background: #ffffff;
     border-right: 1px solid #d4d9df;
     height: 70px;
@@ -365,6 +365,7 @@ export const Partnerstyled = styled.div`
     align-items: center;
     background-color: #edeaf4;
     padding: 4px;
+    margin-left: 20px;
     border-radius: 4px;
     cursor: pointer;
   }
@@ -427,5 +428,83 @@ export const Partnerstyled = styled.div`
     background-color: #ffffff;
     padding-left: 20px;
     padding-top: 10px;
+  }
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-content {
+    background: #f3f3f9;
+    padding: 20px;
+    width: 500px;
+    height: 350px;
+    border-radius: 5px;
+    position: relative;
+  }
+
+  .close {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 40px;
+  }
+  .Title {
+    font-size: 27px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .Selecting-Box {
+    display: flex;
+    justify-content: center;
+    border: 2px black solid;
+    padding: 4px;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 450px;
+
+    margin-top: 40px;
+    height: 33px;
+  }
+  .Add-Button {
+    width: 450px;
+    margin-top: 90px;
+    border-radius: 8px;
+    margin-left: 3px;
+    height: 33px;
+    background-color: #34437a;
+    font-size: 15px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    color: white;
+  }
+  @media all and (max-width: 1400px) {
+    .dashboard-container {
+      display: flex;
+      margin-top: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  }
+  @media all and (max-width: 1600px) {
+    .dashboard-container {
+      display: flex;
+      margin-top: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
   }
 `;

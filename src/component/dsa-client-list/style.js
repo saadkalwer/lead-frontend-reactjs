@@ -289,6 +289,7 @@ export const Partnerstyled = styled.div`
     background-color: #edeaf4;
     padding: 4px;
     border-radius: 4px;
+    margin-left: 20px;
     cursor: pointer;
   }
   .kyc-icon {

@@ -258,6 +258,7 @@ export const Partnerstyled = styled.div`
     align-items: center;
     background-color: #edeaf4;
     padding: 4px;
+    margin-left: 20px;
     border-radius: 4px;
     cursor: pointer;
   }

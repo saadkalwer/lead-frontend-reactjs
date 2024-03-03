@@ -4,8 +4,9 @@ export const Partnerstyled = styled.div`
   background-color: #f3f3f9;
   width: 100%;
   display: flex;
-
-  justify-content: center;
+  height: 100vh;
+  flex-direction: column;
+  /* justify-content: center; */
 
   .Parter-Main-Section {
     background-color: white;
@@ -14,13 +15,15 @@ export const Partnerstyled = styled.div`
     display: flex;
     margin-top: 60px;
     justify-content: center;
-    height: 100vh;
+    height: 380px;
+    margin-left: 30px;
   }
   .Partner-Container {
     display: flex;
-    height: 850px;
     flex-direction: column;
+    margin-top: 50px;
     width: 95%;
+    align-items: center;
   }
   .Partner-Form-Header {
     display: flex;
@@ -28,7 +31,7 @@ export const Partnerstyled = styled.div`
     width: 95%;
     margin-top: 10px;
     padding: 10px;
-    border-bottom: 1px solid #34437a;
+    border-bottom: 1px solid #efefef;
   }
   .Header-Text {
     font-size: 20px;
@@ -49,19 +52,19 @@ export const Partnerstyled = styled.div`
     border-radius: 5px;
   }
   .Header-Button {
-    width: 190px;
-    height: 46px;
-    gap: 10px;
-    cursor: pointer;
+    width: 150px;
+    height: 43px;
+    margin-top: 50px;
+    margin-left: 150px;
+    gap: 1px;
     background-color: #34437a;
     color: #ffffff;
     border: none;
-    border-radius: 8px;
+    border-radius: 4px;
     font-size: 16px;
   }
   .kyc-search1 {
-    width: 230px;
-
+    width: 200px;
     height: 15px;
     font-size: 14px;
     border: none;
@@ -71,25 +74,23 @@ export const Partnerstyled = styled.div`
   }
   .kyc-search-box1 {
     display: flex;
-    margin-top: 10px;
-    margin-bottom: 10px;
     align-items: center;
     background-color: white;
     border: 1px solid #ced4da;
     padding: 4px;
     border-radius: 4px;
-    width: 240px;
     cursor: pointer;
+    width: 210px;
   }
-  .kyc-icon1 {
+  .kyc-icon {
     width: 20px;
     height: 18px;
     color: #878a99;
   }
-  .Name-Filter-Box {
+  .Name-Filter-Box1 {
     display: flex;
     align-items: center;
-    width: 200px;
+    width: 210px;
     margin-top: 15px;
     margin-bottom: 15px;
   }
@@ -215,15 +216,47 @@ export const Partnerstyled = styled.div`
     background-color: white;
     border: 1px solid #ced4da;
   }
-  .Header-Button2 {
-    width: 64px;
-    height: 40px;
-    border-radius: 4px;
+  .Client-Company-Tags {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .Client-Tag {
+    display: flex;
+    width: 50%;
+    height: 30px;
+    justify-content: center;
+    font-size: 17px;
     font-weight: 500;
-    font-size: 16px;
-    background-color: #ebecf2;
-    border: 1px solid #7882a7;
-    color: #3f4e81;
+    color: #405189;
+    align-items: center;
+    background-color: #4051891a;
+  }
+  .Company-Tag {
+    display: flex;
+    width: 50%;
+    height: 30px;
+    justify-content: center;
+    font-size: 17px;
+    font-weight: 500;
+    color: white;
+    align-items: center;
+    background-color: #34437a;
+  }
+  .Business-Main-Section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    height: 100vh;
+    overflow: auto;
+  }
+  .Business-Container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   .Sidebar-Header-Section {
     display: flex;
@@ -259,8 +292,8 @@ export const Partnerstyled = styled.div`
     align-items: center;
     background-color: #edeaf4;
     padding: 4px;
-    border-radius: 4px;
     margin-left: 20px;
+    border-radius: 4px;
     cursor: pointer;
   }
   .kyc-icon {
@@ -323,22 +356,85 @@ export const Partnerstyled = styled.div`
     padding-left: 20px;
     padding-top: 10px;
   }
-  .Business-Main-Section {
-    width: 100%;
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
-    flex-direction: column;
-
-    height: 100vh;
-    overflow: auto;
-  }
-  .Business-Container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+  }
+
+  .modal-content {
+    background: #f3f3f9;
+    padding: 20px;
+    width: 550px;
+    height: 430px;
+    border-radius: 5px;
+    position: relative;
+  }
+
+  .close {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 40px;
+  }
+  .Title {
+    font-size: 27px;
+    width: 100%;
+    display: flex;
     justify-content: center;
   }
-  .call-center {
-    margin-left: 30px;
+
+  .Selecting-Box {
+    display: flex;
+    justify-content: center;
+    border: 2px black solid;
+    padding: 4px;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 450px;
+
+    margin-top: 40px;
+    height: 33px;
+  }
+
+  .FormBox {
+    border: 2px #e6ebf2 solid;
+    padding: 4px;
+    border-radius: 9px;
+    cursor: pointer;
+    width: 500px;
+  }
+  .NameBox {
+    width: 490px;
+    height: 37px;
+    font-size: 17px;
+    border: none;
+    padding-left: 10px;
+    outline: none;
+    color: black;
+  }
+  .Form-Box-Text-Bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 25px;
+  }
+
+  .Sign-Form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .Form-Box-Text {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
   }
 `;

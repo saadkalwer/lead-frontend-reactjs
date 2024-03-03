@@ -1,54 +1,50 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "../Sidebar/SideBar";
 import { Partnerstyled } from "./style";
 import { FiFilter } from "react-icons/fi";
 import { IoMdSearch } from "react-icons/io";
-import { VscListFlat } from "react-icons/vsc";
+import { useNavigate } from "react-router-dom";
 import Avatar from "../../image/User.png";
 import { FiBell } from "react-icons/fi";
+import { API } from "../../api/api";
+import { toast } from "react-toastify";
 function DsaListing() {
-  const data = [
-    {
-      code: "12454",
-      clientName: "abc",
-      mobileNumber: "+91 85274 74185",
-      city: "Pune",
-      callType: "₹20,00,000",
-      productRequested: "01/11/2023 11:30 AM",
-      requestedOn: "active",
-    },
-  ];
-  const Table = [
-    {
-      code: "12454",
-      clientName: "abc",
-      mobileNumber: "+91 85274 74185",
-      city: "Pune",
-      callType: "₹20,00,000",
-      productRequested: "01/11/2023 11:30 AM",
-      requestedOn: "Unactive",
-    },
-    {
-      code: "12454",
-      clientName: "abc",
-      mobileNumber: "+91 85274 74185",
-      city: "Pune",
-      callType: "₹20,00,000",
-      productRequested: "01/11/2023 11:30 AM",
-      requestedOn: "Unactive",
-    },
-  ];
-  const data2 = [
-    {
-      code: "12454",
-      clientName: "abc",
-      mobileNumber: "+91 85274 74185",
-      city: "Pune",
-      callType: "₹20,00,000",
-      productRequested: "01/11/2023 11:30 AM",
-      requestedOn: "active",
-    },
-  ];
+  const navigate = useNavigate();
+
+  const [companies, setCompanies] = useState([]);
+
+  function formatDate(dateString) {
+    // Create a new Date object from the dateString
+    const date = new Date(dateString);
+
+    // Format the date as per your requirements
+    const formattedDate = date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+      hour12: true, // If you want 12-hour format
+    });
+
+    return formattedDate;
+  }
+  const userData = JSON.parse(localStorage.getItem("user"));
+  useEffect(() => {
+    getAllCompanies();
+  }, []);
+  const getAllCompanies = async () => {
+    await API.getAllCompanies()
+      .then((resp) => {
+        if (resp.status == 200) {
+          setCompanies(resp.data.data);
+          toast.success(resp.data.message);
+        }
+      })
+      .catch((e) => toast.error(e.response.data.message));
+  };
+
   return (
     <>
       <Sidebar>
@@ -58,7 +54,6 @@ function DsaListing() {
               <div className="Sidebar-Header-Content">
                 <div className="Sidebar-Header-Section">
                   <div className="Sidebar-Search-Box-Section">
-                    <VscListFlat className="Listing-Icon" />
                     <div className="kyc-search-box">
                       <IoMdSearch className="kyc-icon" />
                       <input
@@ -75,7 +70,10 @@ function DsaListing() {
                     <div className="Avatar-Main-Section">
                       <img className="Manager-Avatar" src={Avatar} alt="" />
                       <div className="Avatar-Text-Section">
-                        <span className="Avatar-Title">Anna Adame</span>
+                        <span className="Avatar-Title">
+                          {" "}
+                          {userData.userName}
+                        </span>
                         <span className="Avatar-Text">Founder</span>
                       </div>
                     </div>
@@ -93,11 +91,21 @@ function DsaListing() {
                     </div>
                     <div className="Header-Button-Section">
                       <FiFilter className="Header-icon" />
-                      <button className="Header-Button">+ Assign</button>
+                      <button
+                        className="Header-Button"
+                        onClick={() => navigate("/company-details")}
+                      >
+                        + Assign
+                      </button>
                     </div>
                   </div>
                   <div className="Client-Company-Tags">
-                    <div className="Client-Tag">Client</div>
+                    <div
+                      className="Client-Tag"
+                      onClick={() => navigate("/dsa-client-list")}
+                    >
+                      Client
+                    </div>
                     <div className="Company-Tag">Company</div>
                   </div>
                   <div className="Name-Filter-Box1">
@@ -119,52 +127,21 @@ function DsaListing() {
                           <th>Client Name</th>
                           <th>Mobile Number</th>
                           <th>Location</th>
-                          <th>Industry,Category</th>
-                          <th>Total Clients Assgined</th>
-                          <th>Status</th>
+                          <th>Industry</th>
+                          <th>Requested on</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {data.map((item, index) => (
+                        {companies.map((item, index) => (
                           <tr key={index}>
                             <td>{index + 1}</td>
-                            <td>{item.code}</td>
-                            <td className="Client-Color">{item.clientName}</td>
-                            <td>{item.mobileNumber}</td>
-                            <td>{item.city}</td>
-                            <td>{item.callType}</td>
-                            <td>{item.productRequested}</td>
-                            <td className="Status-Color">{item.requestedOn}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                      <tbody>
-                        {Table.map((item, index) => (
-                          <tr key={index}>
-                            <td>{index + 1}</td>
-                            <td>{item.code}</td>
-                            <td className="Client-Color">{item.clientName}</td>
-                            <td>{item.mobileNumber}</td>
-                            <td>{item.city}</td>
-                            <td>{item.callType}</td>
-                            <td>{item.productRequested}</td>
-                            <td className="Status-Color1">
-                              {item.requestedOn}
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                      <tbody>
-                        {data2.map((item, index) => (
-                          <tr key={index}>
-                            <td>{index + 1}</td>
-                            <td>{item.code}</td>
-                            <td className="Client-Color">{item.clientName}</td>
-                            <td>{item.mobileNumber}</td>
-                            <td>{item.city}</td>
-                            <td>{item.callType}</td>
-                            <td>{item.productRequested}</td>
-                            <td className="Status-Color">{item.requestedOn}</td>
+                            <td className="Client-Color">{item.zip}</td>
+                            <td>{item.firstName}</td>
+
+                            <td>{item.mobileNo1}</td>
+                            <td>{item.street}</td>
+                            <td>{item.role}</td>
+                            <td>{formatDate(item.createdAt)}</td>
                           </tr>
                         ))}
                       </tbody>

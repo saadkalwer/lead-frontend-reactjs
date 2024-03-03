@@ -1,21 +1,153 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Detailstyled } from "./style";
 import Sidebar from "../Sidebar/SideBar";
+import Avatar from "../../image/User.png";
+import { FiBell } from "react-icons/fi";
+import { IoMdSearch } from "react-icons/io";
+import { API } from "../../api/api";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function Companydetails() {
+  const navigate = useNavigate();
   const [city, setCity] = useState("");
-  const [employment, setemployment] = useState("");
-  const [income, setincome] = useState("");
+  const [role, setRole] = useState("");
+  const [assignedClient, setAssignedClient] = useState("");
+  const [userName, setUserName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [mobileNo1, setMobileNo1] = useState("");
+  const [mobileNo2, setMobileNo2] = useState("");
+  const [email, setEmail] = useState("");
+  const [street, setStreet] = useState("");
+  const [zip, setZip] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const [userPassword, setUserPassword] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [leads, setLeads] = useState([]);
 
+  const handleClose = () => {
+    setIsModalOpen(false);
+    navigate("/businessloan");
+  };
+
+  useEffect(() => {
+    getAllLeads();
+  }, []);
+
+  const getAllLeads = async () => {
+    await API.getAllLeadsForAdmin()
+      .then((resp) => {
+        if (resp.status == 200) {
+          setLeads(resp.data.data);
+          // toast.success(resp.data.message);
+        }
+      })
+      .catch((e) => toast.error(e.response.data.message));
+  };
+  const Modal = () => {
+    return (
+      <div className="modal-overlay" onClick={() => handleClose()}>
+        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+          <span className="close" onClick={() => handleClose()}>
+            &times;
+          </span>
+          <p className="Title">{userEmail}</p>
+          <p className="Title">{userPassword}</p>
+        </div>
+      </div>
+    );
+  };
+  const handleFirstNameChange = (event) => {
+    setFirstName(event.target.value);
+  };
+  const handleLastNameChange = (event) => {
+    setLastName(event.target.value);
+  };
+  const handleUserNameChange = (e) => {
+    setUserName(e.target.value);
+  };
+  const handleMobileNo1Change = (e) => {
+    setMobileNo1(e.target.value);
+  };
+  const handleMobileNo2Change = (e) => {
+    setMobileNo2(e.target.value);
+  };
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+  const handleStreetChange = (e) => {
+    setStreet(e.target.value);
+  };
+  const handleZipChange = (e) => {
+    setZip(e.target.value);
+  };
   const handleCityChange = (event) => {
     setCity(event.target.value);
   };
-  const handleEmploymentChange = (event) => {
-    setemployment(event.target.value);
+
+  const handleRoleChange = (event) => {
+    setRole(event.target.value);
   };
-  const handleIncomeChange = (event) => {
-    setincome(event.target.value);
+  const handleAssignedClientChange = (event) => {
+    setAssignedClient(event.target.value);
   };
+
+  const oncreateCompany = async (e) => {
+    e.preventDefault();
+
+    if (!userName) {
+      return toast.error("Please Enter Your Customer Name");
+    }
+    if (!firstName) {
+      return toast.error("Please Enter Your First Name");
+    }
+    if (!lastName) {
+      return toast.error("Please Enter Your Last Name");
+    }
+
+    if (!mobileNo1) {
+      return toast.error("Please Enter Your 1st Number");
+    }
+    // if (!mobileNo2) {
+    //   return toast.error("Please Enter Your 2nd Number");
+    // }
+    if (!email) {
+      return toast.error("Please Enter Your Email");
+    }
+
+    if (!street) {
+      return toast.error("Please Enter Your Street Address");
+    }
+
+    const createCompanyData = {
+      firstName,
+      lastName,
+      userName,
+      email,
+      mobileNo1,
+      mobileNo2,
+      street,
+      zip,
+      city,
+      role,
+      assignedClient,
+    };
+
+    await API.createCompany(createCompanyData)
+      .then((resp) => {
+        if (resp.status == 200) {
+          setUserEmail(resp.data.data.email);
+          setUserPassword(resp.data.data.randomPassword);
+          toast.success(resp.data.message);
+          setIsModalOpen(true);
+          // navigate("/businessloan");
+        }
+      })
+      .catch((e) => toast.error(e.response.data.message));
+  };
+
+  const userData = JSON.parse(localStorage.getItem("user"));
   return (
     <Sidebar>
       <Detailstyled>
@@ -24,7 +156,6 @@ function Companydetails() {
             <div className="Sidebar-Header-Content">
               <div className="Sidebar-Header-Section">
                 <div className="Sidebar-Search-Box-Section">
-                  <VscListFlat className="Listing-Icon" />
                   <div className="kyc-search-box">
                     <IoMdSearch className="kyc-icon" />
                     <input
@@ -41,14 +172,14 @@ function Companydetails() {
                   <div className="Avatar-Main-Section">
                     <img className="Manager-Avatar" src={Avatar} alt="" />
                     <div className="Avatar-Text-Section">
-                      <span className="Avatar-Title">Anna Adame</span>
+                      <span className="Avatar-Title">{userData.userName}</span>
                       <span className="Avatar-Text">Founder</span>
                     </div>
                   </div>
                 </div>
               </div>
               <div className="Call-Center-Title">
-                <span className="call-center">Call Center</span>
+                <span className="call-center">Company</span>
               </div>
             </div>
             <div className="Company-Detail-Box">
@@ -63,6 +194,8 @@ function Companydetails() {
                           className="NameBox-Top"
                           type="Name"
                           placeholder="Enter company Name"
+                          value={userName}
+                          onChange={handleUserNameChange}
                         />
                       </div>
                     </div>
@@ -75,6 +208,8 @@ function Companydetails() {
                           className="NameBox"
                           type="Name"
                           placeholder="Enter First Name"
+                          value={firstName}
+                          onChange={handleFirstNameChange}
                         />
                       </div>
                     </div>
@@ -85,6 +220,8 @@ function Companydetails() {
                           className="NameBox"
                           type="Name"
                           placeholder="Enter Last Name"
+                          value={lastName}
+                          onChange={handleLastNameChange}
                         />
                       </div>
                     </div>
@@ -97,6 +234,8 @@ function Companydetails() {
                           className="NameBox"
                           type="Name"
                           placeholder="+91 | 90000 00000"
+                          value={mobileNo1}
+                          onChange={handleMobileNo1Change}
                         />
                       </div>
                     </div>
@@ -105,8 +244,10 @@ function Companydetails() {
                       <div className="FormBox">
                         <input
                           className="NameBox"
-                          type="Name"
+                          type="Email"
                           placeholder="Enter Email Id"
+                          value={email}
+                          onChange={handleEmailChange}
                         />
                       </div>
                     </div>
@@ -117,8 +258,10 @@ function Companydetails() {
                       <div className="FormBox">
                         <input
                           className="NameBox"
-                          type="Name"
+                          type="Number"
                           placeholder="+91 | 90000 00000"
+                          value={mobileNo2}
+                          onChange={handleMobileNo2Change}
                         />
                       </div>
                     </div>
@@ -130,8 +273,10 @@ function Companydetails() {
                       <div className="FormBox">
                         <input
                           className="NameBox"
-                          type="Name"
+                          type="Street"
                           placeholder="Enter Street"
+                          value={street}
+                          onChange={handleStreetChange}
                         />
                       </div>
                     </div>
@@ -140,8 +285,10 @@ function Companydetails() {
                       <div className="FormBox">
                         <input
                           className="NameBox"
-                          type="Name"
+                          type="code"
                           placeholder="Zip Code"
+                          value={zip}
+                          onChange={handleZipChange}
                         />
                       </div>
                     </div>
@@ -149,17 +296,13 @@ function Companydetails() {
                   <div className="Form-Box-Text-Bottom">
                     <span className="Form-Box-Title">City</span>
                     <div className="FormBox">
-                      <select
-                        className="NameBox-Select"
+                      <input
+                        className="NameBox"
+                        type="city"
+                        placeholder="Enter Your City"
                         value={city}
                         onChange={handleCityChange}
-                      >
-                        <option value="">Select a City</option>
-                        <option value="city1">France</option>
-                        <option value="city2">Pakistan</option>
-                        <option value="city3">India</option>
-                        <option value="city4">Bangladesh</option>
-                      </select>
+                      />
                     </div>
                   </div>
                   <span className="Contact-Title1">Category</span>
@@ -169,13 +312,13 @@ function Companydetails() {
                       <div className="FormBox">
                         <select
                           className="NameBox-Select"
-                          value={employment}
-                          onChange={handleEmploymentChange}
+                          value={role}
+                          onChange={handleRoleChange}
                         >
-                          <option value="">Select Employment Type</option>
-                          <option value="city1">Option1</option>
-                          <option value="city2">Option2</option>
-                          <option value="city3">Option3</option>
+                          <option value="">Select Role</option>
+                          <option>Company</option>
+                          <option>Super Admin</option>
+                          <option>Call Center</option>
                         </select>
                       </div>
                     </div>
@@ -184,27 +327,40 @@ function Companydetails() {
                       <div className="FormBox">
                         <select
                           className="NameBox-Select"
-                          value={income}
-                          onChange={handleIncomeChange}
+                          value={assignedClient}
+                          onChange={handleAssignedClientChange}
                         >
-                          <option value="">Select Income Mode</option>
-                          <option value="city1">€12000</option>
-                          <option value="city2">€14000</option>
-                          <option value="city3">€18000</option>
-                          <option value="city4">€20000</option>
+                          <option value="">Select Assigned</option>
+                          {leads.map((item) => (
+                            <option key={item._id} value={item._id}>
+                              {item.customerName}
+                            </option>
+                          ))}
                         </select>
                       </div>
                     </div>
                   </div>
                   <div className="Form-Add-Button">
-                    <button className="Add-Button">Add</button>
-                    <button className="Cancel-Button">Cancel</button>
+                    <button
+                      className="Add-Button"
+                      onClick={(e) => oncreateCompany(e)}
+                    >
+                      Add
+                    </button>
+                    <button
+                      className="Cancel-Button"
+                      onClick={() => navigate("/dsa-company-list")}
+                    >
+                      Cancel
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
+        {isModalOpen && <Modal />}
       </Detailstyled>
     </Sidebar>
   );

@@ -1,59 +1,55 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/SideBar";
 import { Partnerstyled } from "./style";
 import { FiFilter } from "react-icons/fi";
 import { IoMdSearch } from "react-icons/io";
-import { VscListFlat } from "react-icons/vsc";
+import { useNavigate } from "react-router-dom";
 import Avatar from "../../image/User.png";
 import { FiBell } from "react-icons/fi";
+import { API } from "../../api/api";
+import { toast } from "react-toastify";
 
 function Partner() {
-  const data = [
-    {
-      code: "12454",
-      clientName: "abc",
-      mobileNumber: "+91 85274 74185",
-      city: "Pune",
-      callType: "3",
-      productRequested: "₹20,00,000",
-      requestedOn: "01/11/2023 11:30 AM",
-      status: "Successful",
-    },
-  ];
-  const Table = [
-    {
-      code: "12454",
-      clientName: "abc",
-      mobileNumber: "+91 85274 74185",
-      city: "Pune",
-      callType: "3",
-      productRequested: "₹20,00,000",
-      requestedOn: "01/11/2023 11:30 AM",
-      status1: "pending",
-    },
-  ];
-  const data2 = [
-    {
-      code: "12454",
-      clientName: "abc",
-      mobileNumber: "+91 85274 74185",
-      city: "Pune",
-      callType: "3",
-      productRequested: "₹20,00,000",
-      requestedOn: "01/11/2023 11:30 AM",
-      status: "Successful",
-    },
-    {
-      code: "12454",
-      clientName: "abc",
-      mobileNumber: "+91 85274 74185",
-      city: "Pune",
-      callType: "3",
-      productRequested: "₹20,00,000",
-      requestedOn: "01/11/2023 11:30 AM",
-      status: "Successful",
-    },
-  ];
+  const navigate = useNavigate();
+  const [leads, setLeads] = useState([]);
+
+  function formatDate(dateString) {
+    // Create a new Date object from the dateString
+    const date = new Date(dateString);
+
+    // Format the date as per your requirements
+    const formattedDate = date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+      hour12: true, // If you want 12-hour format
+    });
+
+    return formattedDate;
+  }
+
+  const userData = JSON.parse(localStorage.getItem("user"));
+
+  useEffect(() => {
+    getAllLeads();
+  }, []);
+  const getAllLeads = async () => {
+    // console.log("api check");
+    await API.getAllLeads()
+      .then((resp) => {
+        // console.log(resp);
+        if (resp.status == 200) {
+          setLeads(resp.data.data);
+          toast.success(resp.data.message);
+          // console.log(resp.data.data);
+        }
+      })
+      .catch((e) => toast.error(e.response.data.message));
+  };
+
   return (
     <>
       <Sidebar>
@@ -63,7 +59,6 @@ function Partner() {
               <div className="Sidebar-Header-Content">
                 <div className="Sidebar-Header-Section">
                   <div className="Sidebar-Search-Box-Section">
-                    <VscListFlat className="Listing-Icon" />
                     <div className="kyc-search-box">
                       <IoMdSearch className="kyc-icon" />
                       <input
@@ -80,8 +75,12 @@ function Partner() {
                     <div className="Avatar-Main-Section">
                       <img className="Manager-Avatar" src={Avatar} alt="" />
                       <div className="Avatar-Text-Section">
-                        <span className="Avatar-Title">Anna Adame</span>
-                        <span className="Avatar-Text">Founder</span>
+                        <span className="Avatar-Title">
+                          {userData.userName}
+                        </span>
+                        <span className="Avatar-Text">
+                          {userData.role == "callCenter" ? "Call Center" : ""}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -98,7 +97,12 @@ function Partner() {
                     </div>
                     <div className="Header-Button-Section">
                       <FiFilter className="Header-icon" />
-                      <button className="Header-Button">+ Add new lead</button>
+                      <button
+                        className="Header-Button"
+                        onClick={() => navigate("/admin-form")}
+                      >
+                        + Add new lead
+                      </button>
                     </div>
                   </div>
                   <div className="Name-Filter-Box1">
@@ -119,54 +123,27 @@ function Partner() {
                           <th>Code</th>
                           <th>Client Name</th>
                           <th>Mobile Number</th>
-                          <th>City</th>
-                          <th>Call Type</th>
-                          <th>Product Requested</th>
+                          <th>Country</th>
+                          <th>Gender</th>
+                          <th>Amount Requested</th>
                           <th>Requested on</th>
                           <th>Status</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {data.map((item, index) => (
+                        {leads.map((item, index) => (
                           <tr key={index}>
                             <td>{index + 1}</td>
-                            <td>{item.code}</td>
-                            <td className="Client-Color">{item.clientName}</td>
-                            <td>{item.mobileNumber}</td>
+                            <td>{item.zip}</td>
+                            <td className="Client-Color">
+                              {item.customerName}
+                            </td>
+                            <td>{item.mobileNumber1}</td>
                             <td>{item.city}</td>
-                            <td>{item.callType}</td>
-                            <td>{item.productRequested}</td>
-                            <td>{item.requestedOn}</td>
-                            <td className="Status-Color">{item.status}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                      <tbody>
-                        {Table.map((item, index) => (
-                          <tr key={index}>
-                            <td>{index + 1}</td>
-                            <td>{item.code}</td>
-                            <td className="Client-Color">{item.clientName}</td>
-                            <td>{item.mobileNumber}</td>
-                            <td>{item.city}</td>
-                            <td>{item.callType}</td>
-                            <td>{item.productRequested}</td>
-                            <td>{item.requestedOn}</td>
-                            <td className="Status-Color1">{item.status1}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                      <tbody>
-                        {data2.map((item, index) => (
-                          <tr key={index}>
-                            <td>{index + 1}</td>
-                            <td>{item.code}</td>
-                            <td className="Client-Color">{item.clientName}</td>
-                            <td>{item.mobileNumber}</td>
-                            <td>{item.city}</td>
-                            <td>{item.callType}</td>
-                            <td>{item.productRequested}</td>
-                            <td>{item.requestedOn}</td>
+                            <td>{item.gender}</td>
+                            <td>{item.annualIncome}</td>
+                            <td>{formatDate(item.createdAt)}</td>
+
                             <td className="Status-Color">{item.status}</td>
                           </tr>
                         ))}

@@ -188,7 +188,7 @@ export const Detailstyled = styled.div`
     border-radius: 9px;
     cursor: pointer;
     display: flex;
-    height: 100px;
+    height: 50px;
     background-color: white;
   }
   .NameBox-Address {
@@ -257,6 +257,7 @@ export const Detailstyled = styled.div`
     padding: 4px;
     border-radius: 4px;
     cursor: pointer;
+    margin-left: 20px;
   }
   .kyc-icon {
     width: 20px;
@@ -317,5 +318,14 @@ export const Detailstyled = styled.div`
     background-color: #ffffff;
     padding-left: 20px;
     padding-top: 10px;
+  }
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
   }
 `;

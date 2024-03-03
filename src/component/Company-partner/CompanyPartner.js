@@ -1,59 +1,50 @@
-import React from "react";
 import Sidebar from "../Sidebar/SideBar";
+import React, { useState, useEffect } from "react";
 import { Partnerstyled } from "./style";
 import { FiFilter } from "react-icons/fi";
 import { IoMdSearch } from "react-icons/io";
-import { VscListFlat } from "react-icons/vsc";
 import Avatar from "../../image/User.png";
+import { useNavigate } from "react-router-dom";
+import { API } from "../../api/api";
+import { toast } from "react-toastify";
 import { FiBell } from "react-icons/fi";
 
 function CompanyPartner() {
-  const data = [
-    {
-      code: "12454",
-      clientName: "abc",
-      mobileNumber: "+91 85274 74185",
-      city: "Pune",
-      callType: "3",
-      productRequested: "₹20,00,000",
-      requestedOn: "01/11/2023 11:30 AM",
-      status: "Successful",
-    },
-  ];
-  const Table = [
-    {
-      code: "12454",
-      clientName: "abc",
-      mobileNumber: "+91 85274 74185",
-      city: "Pune",
-      callType: "3",
-      productRequested: "₹20,00,000",
-      requestedOn: "01/11/2023 11:30 AM",
-      status1: "pending",
-    },
-  ];
-  const data2 = [
-    {
-      code: "12454",
-      clientName: "abc",
-      mobileNumber: "+91 85274 74185",
-      city: "Pune",
-      callType: "3",
-      productRequested: "₹20,00,000",
-      requestedOn: "01/11/2023 11:30 AM",
-      status: "Successful",
-    },
-    {
-      code: "12454",
-      clientName: "abc",
-      mobileNumber: "+91 85274 74185",
-      city: "Pune",
-      callType: "3",
-      productRequested: "₹20,00,000",
-      requestedOn: "01/11/2023 11:30 AM",
-      status: "Successful",
-    },
-  ];
+  const navigate = useNavigate();
+
+  const userData = JSON.parse(localStorage.getItem("user"));
+  const [allEmployees, setAllEmployees] = useState([]);
+
+  function formatDate(dateString) {
+    // Create a new Date object from the dateString
+    const date = new Date(dateString);
+
+    // Format the date as per your requirements
+    const formattedDate = date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+      hour12: true, // If you want 12-hour format
+    });
+
+    return formattedDate;
+  }
+  useEffect(() => {
+    getAllEmployees();
+  }, []);
+  const getAllEmployees = async () => {
+    await API.getCompanyLeads()
+      .then((resp) => {
+        if (resp.status == 200) {
+          setAllEmployees(resp.data.data);
+          toast.success(resp.data.message);
+        }
+      })
+      .catch((e) => toast.error(e.response.data.message));
+  };
   return (
     <>
       <Sidebar>
@@ -63,7 +54,6 @@ function CompanyPartner() {
               <div className="Sidebar-Header-Content">
                 <div className="Sidebar-Header-Section">
                   <div className="Sidebar-Search-Box-Section">
-                    <VscListFlat className="Listing-Icon" />
                     <div className="kyc-search-box">
                       <IoMdSearch className="kyc-icon" />
                       <input
@@ -80,7 +70,9 @@ function CompanyPartner() {
                     <div className="Avatar-Main-Section">
                       <img className="Manager-Avatar" src={Avatar} alt="" />
                       <div className="Avatar-Text-Section">
-                        <span className="Avatar-Title">Anna Adame</span>
+                        <span className="Avatar-Title">
+                          {userData.userName}
+                        </span>
                         <span className="Avatar-Text">Founder</span>
                       </div>
                     </div>
@@ -119,53 +111,26 @@ function CompanyPartner() {
                           <th>Client Name</th>
                           <th>Mobile Number</th>
                           <th>City</th>
-                          <th>Call Type</th>
+                          <th>Amount Requested</th>
                           <th>Product Requested</th>
-                          <th>Requested on</th>
                           <th>Status</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {data.map((item, index) => (
-                          <tr key={index}>
+                        {allEmployees.map((item, index) => (
+                          <tr
+                            onClick={() => navigate(`/customer/${item._id}`)}
+                            key={index}
+                          >
                             <td>{index + 1}</td>
-                            <td>{item.code}</td>
-                            <td className="Client-Color">{item.clientName}</td>
-                            <td>{item.mobileNumber}</td>
+                            <td>{item.fiscalNumber}</td>
+                            <td className="Client-Color">
+                              {item.customerName}
+                            </td>
+                            <td>{item.mobileNumber1}</td>
                             <td>{item.city}</td>
-                            <td>{item.callType}</td>
-                            <td>{item.productRequested}</td>
-                            <td>{item.requestedOn}</td>
-                            <td className="Status-Color">{item.status}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                      <tbody>
-                        {Table.map((item, index) => (
-                          <tr key={index}>
-                            <td>{index + 1}</td>
-                            <td>{item.code}</td>
-                            <td className="Client-Color">{item.clientName}</td>
-                            <td>{item.mobileNumber}</td>
-                            <td>{item.city}</td>
-                            <td>{item.callType}</td>
-                            <td>{item.productRequested}</td>
-                            <td>{item.requestedOn}</td>
-                            <td className="Status-Color1">{item.status1}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                      <tbody>
-                        {data2.map((item, index) => (
-                          <tr key={index}>
-                            <td>{index + 1}</td>
-                            <td>{item.code}</td>
-                            <td className="Client-Color">{item.clientName}</td>
-                            <td>{item.mobileNumber}</td>
-                            <td>{item.city}</td>
-                            <td>{item.callType}</td>
-                            <td>{item.productRequested}</td>
-                            <td>{item.requestedOn}</td>
+                            <td>{item.annualIncome}</td>
+                            <td>{formatDate(item.createdAt)}</td>
                             <td className="Status-Color">{item.status}</td>
                           </tr>
                         ))}
