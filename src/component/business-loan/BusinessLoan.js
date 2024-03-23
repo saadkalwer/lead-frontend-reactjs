@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Avatar from "../../image/User.png";
-import { FiBell } from "react-icons/fi";
+import { IoPersonSharp } from "react-icons/io5";
 import Sidebar from "../Sidebar/SideBar";
 import { Partnerstyled } from "./style";
-import { FiFilter } from "react-icons/fi";
 import { IoMdSearch } from "react-icons/io";
 import { API } from "../../api/api";
 import { toast } from "react-toastify";
-
+import { MdOutlineDelete } from "react-icons/md";
 function BusinessLoan() {
   const navigate = useNavigate();
   const [companies, setCompanies] = useState([]);
@@ -43,8 +41,7 @@ function BusinessLoan() {
 
   const getAllCompanies = async () => {
     try {
-      console.log(currentPage);
-      const response = await API.getAllCompanies({
+      const response = await API.getAllCallCenter({
         page: currentPage,
       });
       const responseData = response.data;
@@ -61,10 +58,22 @@ function BusinessLoan() {
     }
   };
 
-  // Use useEffect to fetch initial data
-  useEffect(() => {
-    getAllCompanies({ page: currentPage });
-  }, [currentPage]);
+  const handleDelete = async (e, id) => {
+    e.preventDefault();
+    await API.deleteCompany({
+      id: id,
+    })
+      .then((resp) => {
+        // console.log(resp);
+        if (resp.status == 200) {
+          toast.success(resp.data.message);
+          // console.log(resp.data.data);
+          getAllCompanies();
+        }
+      })
+      .catch((e) => toast.error(e.response.data.message));
+  };
+ 
 
   const userData = JSON.parse(localStorage.getItem("user"));
 
@@ -77,21 +86,12 @@ function BusinessLoan() {
               <div className="Sidebar-Header-Content">
                 <div className="Sidebar-Header-Section">
                   <div className="Sidebar-Search-Box-Section">
-                    <div className="kyc-search-box">
-                      <IoMdSearch className="kyc-icon" />
-                      <input
-                        className="kyc-search"
-                        type="text"
-                        placeholder="Search..."
-                      />
-                    </div>
+                
                   </div>
                   <div className="Bell-Main-Section">
-                    <div className="Bell-Section">
-                      <FiBell className="Bell-Icon" />
-                    </div>
+                    
                     <div className="Avatar-Main-Section">
-                      <img className="Manager-Avatar" src={Avatar} alt="" />
+                    <IoPersonSharp className="Manager-Avatar"  />
                       <div className="Avatar-Text-Section">
                         <span className="Avatar-Title">
                           {userData.userName}
@@ -102,17 +102,19 @@ function BusinessLoan() {
                   </div>
                 </div>
                 <div className="Call-Center-Title">
-                  <span className="call-center">Companies</span>
+                  <span className="call-center">
+Liste des centres d'appels</span>
                 </div>
               </div>
               <div className="Parter-Main-Section">
                 <div className="Partner-Container">
                   <div className="Partner-Form-Header">
                     <div className="Header-Text">
-                      <span>Company Lists</span>
+                      <span>
+Liste des centres d'appels</span>
                     </div>
                     <div className="Header-Button-Section">
-                      <FiFilter className="Header-icon" />
+                     
                     </div>
                   </div>
                   <div className="Name-Filter-Box1">
@@ -121,7 +123,8 @@ function BusinessLoan() {
                       <input
                         className="kyc-search1"
                         type="text"
-                        placeholder="Type a keyword..."
+                        placeholder="Taper un mot clé
+                        "
                       />
                     </div>
                   </div>
@@ -129,25 +132,42 @@ function BusinessLoan() {
                     <table>
                       <thead>
                         <tr>
-                          <th>Sl.No</th>
-                          <th>Company Name</th>
-                          <th>Owner Name</th>
-                          <th>Contact Info</th>
-                          <th>Location</th>
-                          <th>Apply Date</th>
-                          <th>City</th>
+                          <th>ID
+</th>
+                          <th> Nom et prénom
+
+</th>
+                          <th>Centre d'appel</th>
+                          <th>Informations de contact
+</th>
+                          <th>Rue
+</th>
+                          <th>Ajouté le 
+</th>
+                          <th>Ville</th>
+                          <th>Code postal
+</th>
+                          <th>Actions</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {companies?.users?.map((item, index) => (
+                        {companies.map((item, index) => (
                           <tr key={index}>
                             <td>{index + 1}</td>
                             <td className="Client-Color">{item.userName}</td>
-                            <td>{item.firstName}</td>
+                            <td>{item.role}</td>
                             <td>{item.mobileNo1}</td>
                             <td>{item.street}</td>
                             <td>{formatDate(item.createdAt)}</td>
                             <td>{item.city}</td>
+                            <td>{item.zip}</td>
+                            <td className="Icons-Gapping">
+                        
+                        <MdOutlineDelete
+                          onClick={(e) => handleDelete(e, item._id)}
+                          className="Table-Icons1"
+                        />
+                      </td>
                           </tr>
                         ))}
                       </tbody>
@@ -155,14 +175,7 @@ function BusinessLoan() {
                   </div>
                   <div className="pagination-container">
                     <span className="pagination-text">
-                      Showing{" "}
-                      {(currentPage - 1) * companies?.pagination?.pageSize + 1}{" "}
-                      to{" "}
-                      {Math.min(
-                        currentPage * companies?.pagination?.pageSize,
-                        companies?.pagination?.totalItems
-                      )}{" "}
-                      of {companies?.pagination?.totalItems} results
+                   
                     </span>
                     <div className="pagination-buttons">
                       <button

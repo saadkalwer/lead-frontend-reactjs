@@ -1,28 +1,26 @@
 import { NavLink } from "react-router-dom";
-
-import { RiAccountCircleLine } from "react-icons/ri";
-
 import { IoSpeedometerSharp } from "react-icons/io5";
 import { RiFileList3Fill } from "react-icons/ri";
-
+import { IoMdSettings } from "react-icons/io";
 import { IoMdPerson } from "react-icons/io";
-
+import { MdLogout } from "react-icons/md";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import SidebarMenu from "./SidebarMenu";
 import { Sidebarstyled } from "./style";
 import Sidebarlogo from "../../image/logo1.png";
+import { RiParentFill } from "react-icons/ri";
 const routes = [
   {
     path: "/list-lead",
-    name: "Dashboard",
+    name: "Tableau de bord",
     icon: <IoSpeedometerSharp />,
   },
 
   {
     path: "/partner",
-    name: "Partner",
-    icon: <IoMdPerson />,
+    name: "partenaire",
+    icon: <RiParentFill />,
     subRoutes: [
       {
         path: "/dsa-company-list",
@@ -46,9 +44,19 @@ const routes = [
   },
   {
     path: "/setting",
-    name: "Setting",
-    icon: <IoSpeedometerSharp />,
+    name: "Parametre",
+    icon: <IoMdSettings/>,
   },
+  {
+    path: "/user",
+    name: "User",
+    icon: <IoMdPerson />,
+  },
+  {
+    path: "/",
+    name: "Deconnexion",
+    icon: <MdLogout />
+  }
 ];
 
 const SideBar = ({ children }) => {

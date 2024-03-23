@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Detailstyled } from "./style";
 import Sidebar from "../Sidebar/SideBar";
 import { useNavigate } from "react-router-dom";
-import Avatar from "../../image/User.png";
+import { IoPersonSharp } from "react-icons/io5";
 import { FiBell } from "react-icons/fi";
 import { IoMdSearch } from "react-icons/io";
 import { API } from "../../api/api";
@@ -27,9 +27,14 @@ function Profile() {
   const [refTaxNotice, setRefTaxNotice] = useState("");
   const [annualIncome, setAnnualIncome] = useState("");
   const [bankName, setBankName] = useState("");
+  const [callCenterComment, setCallCenterComment] = useState("");
 
   const handleCustomerNameChange = (e) => {
     setCustomerName(e.target.value);
+  };
+
+  const handleCallCenterCommentChange = (e) => {
+    setCallCenterComment(e.target.value);
   };
 
   const handleNumber1Change = (e) => {
@@ -91,9 +96,7 @@ function Profile() {
     if (!mobileNumber1) {
       return toast.error("Please Enter Your Number");
     }
-    if (!mobileNumber2) {
-      return toast.error("Please Enter Your 2nd Number");
-    }
+  
     if (!email) {
       return toast.error("Please Enter Your Email");
     }
@@ -142,7 +145,6 @@ function Profile() {
       customerName,
       email,
       mobileNumber1,
-      mobileNumber2,
       gender,
       dob,
       martialStatus,
@@ -155,6 +157,7 @@ function Profile() {
       refTaxNotice,
       annualIncome,
       bankName,
+      callCenterComment,
     };
 
     await API.createLead(createLeadData)
@@ -176,21 +179,14 @@ function Profile() {
             <div className="Sidebar-Header-Content">
               <div className="Sidebar-Header-Section">
                 <div className="Sidebar-Search-Box-Section">
-                  <div className="kyc-search-box">
-                    <IoMdSearch className="kyc-icon" />
-                    <input
-                      className="kyc-search"
-                      type="text"
-                      placeholder="Search..."
-                    />
-                  </div>
+               
                 </div>
                 <div className="Bell-Main-Section">
                   <div className="Bell-Section">
                     <FiBell className="Bell-Icon" />
                   </div>
                   <div className="Avatar-Main-Section">
-                    <img className="Manager-Avatar" src={Avatar} alt="" />
+                  <IoPersonSharp className="Manager-Avatar"  />
                     <div className="Avatar-Text-Section">
                       <span className="Avatar-Title">Anna Adame</span>
                       <span className="Avatar-Text">Founder</span>
@@ -199,21 +195,24 @@ function Profile() {
                 </div>
               </div>
               <div className="Call-Center-Title">
-                <span className="call-center">New Lead</span>
+                <span className="call-center">Nouveau responsable</span>
               </div>
             </div>
             <div className="Company-Detail-Box">
               <div className="Company-Details-Container">
                 <div className="All-Form-Section">
-                  <span className="Contact-Title">Personal Details</span>
+                  <span className="Contact-Title">Details du profile
+</span>
                   <form className="Sign-Form">
                     <div className="Form-Box-Text">
-                      <span className="Form-Box-Title">Customer Name</span>
+                      <span className="Form-Box-Title">
+Nom du client</span>
                       <div className="FormBox-Top">
                         <input
                           className="NameBox-Top"
                           type="Name"
-                          placeholder="Enter company Name"
+                          placeholder="
+                          Entrez le nom de l'entreprise"
                           value={customerName}
                           onChange={handleCustomerNameChange}
                         />
@@ -222,43 +221,46 @@ function Profile() {
                   </form>
                   <div className="Names-Form">
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Mobile Number 1</span>
+                      <span className="Form-Box-Title">Téléphone 1
+</span>
                       <div className="FormBox">
                         <input
                           className="NameBox"
                           type="Number"
-                          placeholder="+91 | 90000 00000"
+                          placeholder="+91|90000 00000"
                           value={mobileNumber1}
                           onChange={handleNumber1Change}
                         />
                       </div>
                     </div>
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Mobile Number 2</span>
+                      <span className="Form-Box-Title">Telephone 2
+</span>
                       <div className="FormBox">
                         <input
                           className="NameBox"
                           type="Number"
-                          placeholder="+91 | 90000 00000"
+                          placeholder="+91|9000000000"
                           value={mobileNumber2}
                           onChange={handleNumber2Change}
                         />
                       </div>
                     </div>
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Email ID</span>
+                      <span className="Form-Box-Title">Email ID
+</span>
                       <div className="FormBox">
                         <input
                           className="NameBox"
                           type="Email"
-                          placeholder="Enter Email Id"
+                          placeholder="Entrez l'identifiant de messagerie"
                           value={email}
                           onChange={handleEmailChange}
                         />
                       </div>
                     </div>
                   </div>
-                  <span className="Form-Box-Title-Main">Gender</span>
+                  <span className="Form-Box-Title-Main">Genre</span>
                   <div className="Check-Box-Section">
                     <label>
                       <input
@@ -279,28 +281,30 @@ function Profile() {
                   </div>
                   <div className="Names-Form-Bottom-Section">
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Date of Birth</span>
+                      <span className="Form-Box-Title">Date de naissance</span>
                       <div className="FormBox-Bottom">
                         <input
                           className="NameBox-Center"
                           type="date"
                           id="birthday"
                           name="birthday"
-                          placeholder="Enter Date of Birth"
+                          placeholder="Entrer date de naissance"
                           value={dob}
                           onChange={handleDobChange}
                         />
                       </div>
                     </div>
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Marital status</span>
+                      <span className="Form-Box-Title">
+État civil</span>
                       <div className="FormBox-Bottom">
                         <select
                           className="NameBox-Select"
                           value={martialStatus}
                           onChange={handleMaritalChange}
                         >
-                          <option value="">Marital status</option>
+                          <option value="">
+État civil</option>
                           <option>Single</option>
                           <option>Married</option>
                           <option>divorced</option>
@@ -309,41 +313,48 @@ function Profile() {
                       </div>
                     </div>
                   </div>
-                  <span className="Form-Box-Title-Main">Address Details</span>
+                  <span className="Form-Box-Title-Main">
+Détails de l'adresse</span>
                   <div className="Names-Form">
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Street</span>
+                      <span className="Form-Box-Title">Rue</span>
                       <div className="FormBox">
                         <input
                           className="NameBox"
                           type="Adress"
-                          placeholder="Enter Street"
+                          placeholder="
+                          Entrez la rue"
                           value={street}
                           onChange={handleStreetChange}
                         />
                       </div>
                     </div>
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Housing Type</span>
+                      <span className="Form-Box-Title">
+Type de logement</span>
                       <div className="FormBox-Bottom-House">
                         <select
                           className="NameBox-Select-House"
                           value={housingType}
                           onChange={handleHousingTypeChange}
                         >
-                          <option value="">Enter Housing Type</option>
+                          <option value="">Entrez le type de logement</option>
                           <option>House</option>
                           <option>Flat</option>
                         </select>
                       </div>
                     </div>
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Zip code</span>
+                      <span className="Form-Box-Title">Code postal
+</span>
                       <div className="FormBox">
                         <input
                           className="NameBox"
                           type="code"
-                          placeholder="Enter Zip code"
+                          placeholder="
+
+                          Entrez le code postal
+                          "
                           value={zip}
                           onChange={handleZipChange}
                         />
@@ -352,40 +363,39 @@ function Profile() {
                   </div>
                   <div className="City-Form">
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Accommodation</span>
+                      <span className="Form-Box-Title">Hébergement</span>
                       <div className="FormBox-Bottom">
                         <select
                           className="NameBox-Select"
                           value={accommodation}
                           onChange={handleAccommodationChange}
                         >
-                          <option value="">Accommodation</option>
+                          <option value="">Hébergement</option>
                           <option>Owner</option>
                           <option>Tenant</option>
                         </select>
                       </div>
                     </div>
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">City</span>
+                      <span className="Form-Box-Title">Ville
+</span>
                       <div className="FormBox-Bottom">
-                        <select
+                        <input
                           className="NameBox-Select"
+                          type="city"
+                          placeholder="Entrez votre ville"
                           value={city}
                           onChange={handleCityChange}
-                        >
-                          <option value="">Select a City</option>
-                          <option>France</option>
-                          <option>Pakistan</option>
-                          <option>India</option>
-                          <option>Bangladesh</option>
-                        </select>
+                        />
+                    
+                        
                       </div>
                     </div>
                   </div>
-                  <span className="Form-Box-Title-Main">Status Customer</span>
+                  <span className="Form-Box-Title-Main">Statut Client</span>
                   <div className="Names-Form">
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Fiscal Number</span>
+                      <span className="Form-Box-Title">Numéro fiscal</span>
                       <div className="FormBox-Bottom">
                         <input
                           className="NameBox-Select"
@@ -397,7 +407,8 @@ function Profile() {
                       </div>
                     </div>
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Ref. Tax Notice</span>
+                      <span className="Form-Box-Title">
+Réf. Avis d'impôt</span>
                       <div className="FormBox-Bottom">
                         <input
                           className="NameBox-Select"
@@ -412,49 +423,82 @@ function Profile() {
 
                   <div className="Names-Form">
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Annual Income</span>
+                      <span className="Form-Box-Title">
+Revenu annuel</span>
                       <div className="FormBox-Bottom">
                         <input
                           className="NameBox-Select"
                           type="Number"
-                          placeholder="Enter Annual Income"
+                          placeholder="
+                          Entrez le revenu annuel"
                           value={annualIncome}
                           onChange={handleAnnualIncomeChange}
                         />
                       </div>
                     </div>
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Bank</span>
+                      <span className="Form-Box-Title">
+Mode de chauffage</span>
                       <div className="FormBox-Bottom">
-                        <input
+                  
+                             <select
                           className="NameBox-Select"
-                          type="Name"
-                          placeholder="Enter Bank Name"
                           value={bankName}
                           onChange={handleBankNameChange}
-                        />
+                        >
+                          <option value="">
+Sélectionnez votre mode de chauffage</option>
+                          <option>Gas</option>
+                          <option>Fuel oil</option>
+                          <option>Electric</option>
+                          <option>Heat pump
+</option>
+                          <option>Drink
+</option>
+                          <option>Reversible air conditioning
+</option>
+<option>Other
+</option>
+                        </select>
                       </div>
                     </div>
+                    
                   </div>
-                  {showAttechment && (
+                  <div className="Form-Box-Text-Bottom">
+                      <span className="Form-Box-Title">
+Commentaire</span>
+                      <div className="FormBox-Comment">
+                    
+                    <textarea
+    className="NameBox-Comment"
+    placeholder="
+    Ajouter un commentaire"
+    value={callCenterComment}
+    onChange={handleCallCenterCommentChange}
+    rows={5} 
+></textarea>
+                        
+                      </div>
+                    </div>
+                  {/* {showAttechment && (
                     <div className="File-Div">
                       <input type="file" />
                     </div>
-                  )}
+                  )} */}
                   <div className="Form-Add-Button">
-                    <button
+                    {/* <button
                       className="Add-Button"
                       onClick={() => setShowAttechment(!showAttechment)}
                     >
                       Upload Document
-                    </button>
+                    </button> */}
                     <button
                       className="Add-Button"
                       onClick={(e) => oncreateLead(e)}
                     >
-                      Add New Lead
+                    Ajouter un nouveau prospect
                     </button>
-                    <button className="Cancel-Button">Cancel</button>
+                    <button className="Cancel-Button"  onClick={() => navigate("/partner")}>Annuler</button>
                   </div>
                 </div>
               </div>

@@ -20,6 +20,7 @@ import { ProtectedRoute } from "./protectroute";
 import { SuperAdminRoute } from "./SuperAdminRoute";
 import { CallCenterRoute } from "./CallCenterRoute";
 import { CompanyRoute } from "./CompanyRoute";
+import User from "./component/User/User";
 
 function App() {
   return (
@@ -48,11 +49,9 @@ function App() {
         <Route
           path="/customer/:id"
           element={
-            <ProtectedRoute>
-              <CompanyRoute>
-                <Customer />{" "}
-              </CompanyRoute>
-            </ProtectedRoute>
+       
+                <Customer />
+       
           }
         />
         <Route
@@ -129,13 +128,7 @@ function App() {
         <Route path="/forget" element={<Forget />} />
         <Route
           path="/admin-form"
-          element={
-            <ProtectedRoute>
-              <SuperAdminRoute>
-                <Profile />
-              </SuperAdminRoute>
-            </ProtectedRoute>
-          }
+          element={ <Profile /> }
         />
         <Route
           path="/update-form/:id"
@@ -152,6 +145,14 @@ function App() {
           element={
             <ProtectedRoute>
               <Setting />
+            </ProtectedRoute>
+          }
+        />
+          <Route
+          path="/user"
+          element={
+            <ProtectedRoute>
+              <User />
             </ProtectedRoute>
           }
         />

@@ -9,12 +9,34 @@ export const Partnerstyled = styled.div`
 
   .Parter-Main-Section {
     background-color: white;
-    width: 90%;
+    width: 98%;
     font-size: 17px;
     display: flex;
     margin-top: 60px;
     justify-content: center;
     height: 100vh;
+  }
+  .Table-Icons {
+    width: 28px;
+    height: 24px;
+    background-color: #eaf5fb;
+    border: 1px solid #3577f1;
+    color: #3577f1;
+    border-radius: 5px;
+  }
+  .Table-Icons1 {
+    width: 28px;
+    height: 24px;
+    background-color: #fcefec;
+    border: 1px solid #f06548;
+    color: #f06548;
+    border-radius: 5px;
+  }
+  .Icons-Gapping {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
   }
   .Partner-Container {
     display: flex;
@@ -297,6 +319,7 @@ export const Partnerstyled = styled.div`
   }
   .Manager-Avatar {
     height: 35px;
+    width: 24px;
   }
   .Avatar-Text-Section {
     display: flex;
@@ -337,6 +360,18 @@ export const Partnerstyled = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+  .page-button:hover {
+    background-color: #34437A;
+    color: white;
+  }
+  .page-button2:hover {
+    background-color: #34437a;
+    color: white;
+  }
+  .page-button3:hover {
+    background-color: #34437a;
+    color: white;
   }
   .call-center {
     margin-left: 30px;

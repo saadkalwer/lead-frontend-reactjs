@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Partnerstyled } from "./style";
 import { FiFilter } from "react-icons/fi";
 import { IoMdSearch } from "react-icons/io";
-import Avatar from "../../image/User.png";
+import { IoPersonSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { API } from "../../api/api";
 import { toast } from "react-toastify";
@@ -39,7 +39,7 @@ function CompanyPartner() {
     await API.getCompanyLeads()
       .then((resp) => {
         if (resp.status == 200) {
-          setAllEmployees(resp.data.data);
+          setAllEmployees(resp.data.data.leads);
           toast.success(resp.data.message);
         }
       })
@@ -54,21 +54,14 @@ function CompanyPartner() {
               <div className="Sidebar-Header-Content">
                 <div className="Sidebar-Header-Section">
                   <div className="Sidebar-Search-Box-Section">
-                    <div className="kyc-search-box">
-                      <IoMdSearch className="kyc-icon" />
-                      <input
-                        className="kyc-search"
-                        type="text"
-                        placeholder="Search..."
-                      />
-                    </div>
+                  
                   </div>
                   <div className="Bell-Main-Section">
                     <div className="Bell-Section">
-                      <FiBell className="Bell-Icon" />
+                    
                     </div>
                     <div className="Avatar-Main-Section">
-                      <img className="Manager-Avatar" src={Avatar} alt="" />
+                    <IoPersonSharp className="Manager-Avatar"  />
                       <div className="Avatar-Text-Section">
                         <span className="Avatar-Title">
                           {userData.userName}
@@ -79,41 +72,41 @@ function CompanyPartner() {
                   </div>
                 </div>
                 <div className="Call-Center-Title">
-                  <span className="call-center">Call Center</span>
+                  <span className="call-center">Company</span>
                 </div>
               </div>
               <div className="Parter-Main-Section">
                 <div className="Partner-Container">
                   <div className="Partner-Form-Header">
                     <div className="Header-Text">
-                      <span>Leads list</span>
+                      <span>Liste des leads
+</span>
                     </div>
                     <div className="Header-Button-Section">
-                      <FiFilter className="Header-icon" />
+                     
                     </div>
                   </div>
                   <div className="Name-Filter-Box">
-                    <div className="kyc-search-box">
-                      <IoMdSearch className="kyc-icon" />
-                      <input
-                        className="kyc-search"
-                        type="text"
-                        placeholder="Type a keyword..."
-                      />
-                    </div>
+              
                   </div>
                   <div className="Table-Section">
                     <table>
                       <thead>
                         <tr>
-                          <th>Sl.No</th>
-                          <th>Code</th>
-                          <th>Client Name</th>
-                          <th>Mobile Number</th>
-                          <th>City</th>
-                          <th>Amount Requested</th>
-                          <th>Product Requested</th>
-                          <th>Status</th>
+                          <th> ID
+</th>
+                          <th>Code postal
+</th>
+                          <th>Nom et prénom
+</th>
+                          <th>Téléphone 1
+</th>
+                          <th>Ville
+</th>
+                          <th>Revenue annuel
+</th>
+                          <th>Ajouté le</th>
+                          <th>Statut</th>
                         </tr>
                       </thead>
                       <tbody>

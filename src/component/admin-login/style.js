@@ -37,6 +37,7 @@ export const Adminstyled = styled.div`
   .Welcome-Text {
     color: #878a99;
     font-size: 17px;
+    margin-bottom: 10px;
   }
 
   .Sign-Form {

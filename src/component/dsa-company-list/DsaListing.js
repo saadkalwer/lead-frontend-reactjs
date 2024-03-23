@@ -4,13 +4,13 @@ import { Partnerstyled } from "./style";
 import { FiFilter } from "react-icons/fi";
 import { IoMdSearch } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-import Avatar from "../../image/User.png";
-import { FiBell } from "react-icons/fi";
+import { IoPersonSharp } from "react-icons/io5";
+import { MdOutlineDelete } from "react-icons/md";
 import { API } from "../../api/api";
 import { toast } from "react-toastify";
 function DsaListing() {
   const navigate = useNavigate();
-
+  const [currentPage, setCurrentPage] = useState(1);
   const [companies, setCompanies] = useState([]);
 
   function formatDate(dateString) {
@@ -32,14 +32,43 @@ function DsaListing() {
   }
   const userData = JSON.parse(localStorage.getItem("user"));
   useEffect(() => {
-    getAllCompanies();
-  }, []);
+    getAllCompanies(currentPage);
+  }, [currentPage]);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    getAllCompanies(page);
+  };
+
   const getAllCompanies = async () => {
-    await API.getAllCompanies()
+    try {
+      const response = await API.getAllCompanies({
+        page: currentPage,
+      });
+      const responseData = response.data;
+
+      if (responseData && responseData.success) {
+        setCompanies(responseData.data.users);
+        // Handle pagination details if available in response
+        toast.success(responseData.message);
+      } else {
+        toast.error("Failed to fetch companies");
+      }
+    } catch (error) {
+      toast.error("Error fetching companies: " + error.message);
+    }
+  };
+  const handleDelete = async (e, id) => {
+    e.preventDefault();
+    await API.deleteCompany({
+      id: id,
+    })
       .then((resp) => {
+        // console.log(resp);
         if (resp.status == 200) {
-          setCompanies(resp.data.data);
           toast.success(resp.data.message);
+          // console.log(resp.data.data);
+          getAllCompanies();
         }
       })
       .catch((e) => toast.error(e.response.data.message));
@@ -54,21 +83,12 @@ function DsaListing() {
               <div className="Sidebar-Header-Content">
                 <div className="Sidebar-Header-Section">
                   <div className="Sidebar-Search-Box-Section">
-                    <div className="kyc-search-box">
-                      <IoMdSearch className="kyc-icon" />
-                      <input
-                        className="kyc-search"
-                        type="text"
-                        placeholder="Search..."
-                      />
-                    </div>
+                 
                   </div>
                   <div className="Bell-Main-Section">
-                    <div className="Bell-Section">
-                      <FiBell className="Bell-Icon" />
-                    </div>
+
                     <div className="Avatar-Main-Section">
-                      <img className="Manager-Avatar" src={Avatar} alt="" />
+                    <IoPersonSharp className="Manager-Avatar"  />
                       <div className="Avatar-Text-Section">
                         <span className="Avatar-Title">
                           {" "}
@@ -90,12 +110,13 @@ function DsaListing() {
                       <span>DSA List</span>
                     </div>
                     <div className="Header-Button-Section">
-                      <FiFilter className="Header-icon" />
+
                       <button
                         className="Header-Button"
                         onClick={() => navigate("/company-details")}
                       >
-                        + Assign
+                       
++ Attribuer
                       </button>
                     </div>
                   </div>
@@ -114,7 +135,8 @@ function DsaListing() {
                       <input
                         className="kyc-search1"
                         type="text"
-                        placeholder="Type a keyword..."
+                        placeholder="Taper un mot clé
+                        "
                       />
                     </div>
                   </div>
@@ -122,13 +144,19 @@ function DsaListing() {
                     <table>
                       <thead>
                         <tr>
-                          <th>Sl.No</th>
-                          <th>Code</th>
-                          <th>Client Name</th>
-                          <th>Mobile Number</th>
-                          <th>Location</th>
-                          <th>Industry</th>
-                          <th>Requested on</th>
+                          <th>ID
+</th>
+                          <th>Code postal
+</th>
+                          <th>Nom et prénom
+</th>
+                          <th>Téléphone 1
+</th>
+                          <th>Rue
+</th>
+                          <th>Industrie</th>
+                          <th>Ajouté le </th>
+                          <th>Actions</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -142,22 +170,55 @@ function DsaListing() {
                             <td>{item.street}</td>
                             <td>{item.role}</td>
                             <td>{formatDate(item.createdAt)}</td>
+                            <td className="Icons-Gapping">
+                        
+                              <MdOutlineDelete
+                               onClick={(e) => handleDelete(e, item._id)}
+                                className="Table-Icons1"
+                              />
+                            </td>
                           </tr>
                         ))}
                       </tbody>
                     </table>
                   </div>
                   <div className="pagination-container">
-                    <span className="pagination-text">
-                      Showing 1 to 5 of 10 results
-                    </span>
+                  <div>
+    <span className="pagination-text">
+
+    </span>
+   
+  </div>
+
                     <div className="pagination-buttons">
-                      <button className="page-button">Previous</button>
-
-                      <button className="page-button1">1</button>
-                      <button className="page-button2">2</button>
-
-                      <button className="page-button3">Next</button>
+                      <button
+                        className="page-button"
+                        onClick={() => setCurrentPage(currentPage - 1)}
+                        disabled={currentPage === 1}
+                      >
+                        Previous
+                      </button>
+                      {Array.from(
+                        Array(companies?.pagination?.totalPages).keys()
+                      ).map((pageNumber) => (
+                        <button
+                          key={pageNumber}
+                          className={`page-button${currentPage === pageNumber + 1 ? " active" : ""
+                            }`}
+                          onClick={() => setCurrentPage(pageNumber + 1)}
+                        >
+                          {pageNumber + 1}
+                        </button>
+                      ))}
+                      <button
+                        className="page-button"
+                        onClick={() => setCurrentPage(currentPage + 1)}
+                        disabled={
+                          currentPage === companies?.pagination?.totalPages
+                        }
+                      >
+                        Next
+                      </button>
                     </div>
                   </div>
                 </div>

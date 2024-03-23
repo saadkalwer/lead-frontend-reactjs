@@ -13,7 +13,8 @@ export const Partnerstyled = styled.div`
     display: flex;
     margin-top: 60px;
     justify-content: center;
-    height: 500px;
+    height: 100%;
+    margin-bottom: 30px;
   }
   .Partner-Container {
     display: flex;
@@ -171,6 +172,7 @@ export const Partnerstyled = styled.div`
     display: flex;
     align-items: center;
     gap: 10px;
+    margin-bottom: 30px;
   }
   .page-button {
     width: 88px;
@@ -181,6 +183,19 @@ export const Partnerstyled = styled.div`
     font-size: 15px;
     font-weight: 500;
     color: #878a99;
+    
+  }
+  .page-button:hover {
+    background-color: #34437A;
+    color: white;
+  }
+  .page-button2:hover {
+    background-color: #34437a;
+    color: white;
+  }
+  .page-button3:hover {
+    background-color: #34437a;
+    color: white;
   }
   .page-button1 {
     width: 35px;
@@ -296,6 +311,7 @@ export const Partnerstyled = styled.div`
   }
   .Manager-Avatar {
     height: 35px;
+    width: 27px;
   }
   .Avatar-Text-Section {
     display: flex;

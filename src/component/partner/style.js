@@ -8,12 +8,13 @@ export const Partnerstyled = styled.div`
   justify-content: center;
   .Parter-Main-Section {
     background-color: white;
-    width: 90%;
+    width: 98%;
     font-size: 17px;
     display: flex;
     margin-top: 60px;
     justify-content: center;
-    height: 500px;
+    height: 100%;
+    margin-bottom: 10px;
   }
   .Partner-Container {
     display: flex;
@@ -48,7 +49,7 @@ export const Partnerstyled = styled.div`
     border-radius: 5px;
   }
   .Header-Button {
-    width: 150px;
+    width: 228px;
     height: 43px;
     gap: 10px;
     background-color: #34437a;
@@ -57,6 +58,7 @@ export const Partnerstyled = styled.div`
     border-radius: 4px;
     font-size: 16px;
   }
+  
   .kyc-search1 {
     width: 220px;
     height: 15px;
@@ -174,6 +176,7 @@ export const Partnerstyled = styled.div`
     display: flex;
     align-items: center;
     gap: 10px;
+    margin-bottom: 30px;
   }
   .page-button {
     width: 88px;
@@ -299,6 +302,7 @@ export const Partnerstyled = styled.div`
   }
   .Manager-Avatar {
     height: 35px;
+    width: 24px;
   }
   .Avatar-Text-Section {
     display: flex;
@@ -311,6 +315,18 @@ export const Partnerstyled = styled.div`
     align-items: center;
 
     gap: 10px;
+  }
+  .page-button:hover {
+    background-color: #34437A;
+    color: white;
+  }
+  .page-button2:hover {
+    background-color: #34437a;
+    color: white;
+  }
+  .page-button3:hover {
+    background-color: #34437a;
+    color: white;
   }
   .Bell-Icon {
     color: #495057;

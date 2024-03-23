@@ -4,13 +4,16 @@ import { Partnerstyled } from "./style";
 import { FiFilter } from "react-icons/fi";
 import { IoMdSearch } from "react-icons/io";
 import { AiOutlineUpload } from "react-icons/ai";
+import { IoPersonSharp } from "react-icons/io5";
 import { API } from "../../api/api";
 import { toast } from "react-toastify";
 import { TbEdit } from "react-icons/tb";
 import { VscEye } from "react-icons/vsc";
 import { MdOutlineDelete } from "react-icons/md";
-import Avatar from "../../image/User.png";
-import { FiBell } from "react-icons/fi";
+
+import * as XLSX from 'xlsx';
+
+
 import { useNavigate } from "react-router-dom";
 
 function Leadlist() {
@@ -20,15 +23,24 @@ function Leadlist() {
   const [companies, setCompanies] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [leadId, setLeadId] = useState("");
+    const [currentPage, setCurrentPage] = useState(1);
   const [companyId, setcompanyId] = useState("");
   // Define options here
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    getAllLeads(page);
+  };
   const options = [
     { label: "Option 1" },
     { label: "Option 2" },
     { label: "Option 3" },
   ];
-  console.log(leadId, companyId);
-
+  const exportToExcel = () => {
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.json_to_sheet(leads);
+    XLSX.utils.book_append_sheet(wb, ws, "Leads");
+    XLSX.writeFile(wb, "leads.xlsx");
+  };
   const toggleModal = (_id) => {
     setIsModalOpen(!isModalOpen);
     setLeadId(_id);
@@ -40,8 +52,9 @@ function Leadlist() {
     if (!leadId) {
       return toast.error("lead not found");
     }
-
+console.log(leadId, companyId)
     await API.assignLead({
+      
       leadId: leadId,
       companyId: companyId,
     })
@@ -64,19 +77,20 @@ function Leadlist() {
           <span className="close" onClick={closeModal}>
             &times;
           </span>
-          <p className="Title">Select Companies To Assign</p>
+          <p className="Title">Sélectionnez les entreprises à attribuer</p>
           <select
             className="Selecting-Box"
             onChange={(e) => setcompanyId(e.target.value)}
           >
             {companies.map((item) => (
-              <option key={item._id} value={item._id}>
-                {item.companyName}
+              <option key={item._id} value={item.userName}>
+                {item.userName}
               </option>
             ))}
           </select>
           <button className="Add-Button" onClick={(e) => handleAssign(e)}>
-            Assign{" "}
+          
+Attribuer
           </button>
         </div>
       </div>
@@ -106,15 +120,25 @@ function Leadlist() {
   }, []);
 
   const getAllLeads = async () => {
-    await API.getAllLeadsForAdmin()
-      .then((resp) => {
-        if (resp.status == 200) {
-          setLeads(resp.data.data);
-          // toast.success(resp.data.message);
-        }
-      })
-      .catch((e) => toast.error(e.response.data.message));
+    try {
+     
+      const response = await API.getAllLeadsForAdmin({
+        page: currentPage, 
+      });
+  
+      const responseData = response.data;
+  
+      if (responseData && responseData.success) {
+        setLeads(responseData.data.leads);
+        toast.success(responseData.message);
+      } else {
+        toast.error("Failed to fetch employees");
+      }
+    } catch (error) {
+      toast.error("Error fetching employees: " + error.message);
+    }
   };
+   
   const getStats = async () => {
     // console.log("api check");
     await API.getStats()
@@ -146,7 +170,7 @@ function Leadlist() {
   };
   const getAllCompanies = async () => {
     // console.log("api check");
-    await API.getAllCompanies()
+    await API.getAllCompaniesForAdmin()
       .then((resp) => {
         // console.log(resp);
         if (resp.status == 200) {
@@ -166,21 +190,12 @@ function Leadlist() {
               <div className="Sidebar-Header-Content">
                 <div className="Sidebar-Header-Section">
                   <div className="Sidebar-Search-Box-Section">
-                    <div className="kyc-search-box">
-                      <IoMdSearch className="kyc-icon" />
-                      <input
-                        className="kyc-search"
-                        type="text"
-                        placeholder="Search..."
-                      />
-                    </div>
+                
                   </div>
                   <div className="Bell-Main-Section">
-                    <div className="Bell-Section">
-                      <FiBell className="Bell-Icon" />
-                    </div>
+                  
                     <div className="Avatar-Main-Section">
-                      <img className="Manager-Avatar" src={Avatar} alt="" />
+                    <IoPersonSharp className="Manager-Avatar"  />
                       <div className="Avatar-Text-Section">
                         <span className="Avatar-Title">
                           {" "}
@@ -192,17 +207,20 @@ function Leadlist() {
                   </div>
                 </div>
                 <div className="Call-Center-Title">
-                  <span className="call-center">Leads</span>
+                  <span className="call-center">Liste des leads
+
+</span>
                 </div>
               </div>
               <div className="dashboard">
                 <div className="dashboard-container">
                   <div className="dashboard-item">
-                    <div className="label">Total Leads</div>
+                    <div className="label">Totale leads
+</div>
                     <div className="value">{stats.totalLeads}</div>
                   </div>
                   <div className="dashboard-item">
-                    <div className="label">Company</div>
+                    <div className="label">Société</div>
                     <div className="value1">{stats.companies}</div>
                   </div>
                   <div className="dashboard-item">
@@ -210,11 +228,11 @@ function Leadlist() {
                     <div className="value2">{stats.clients}</div>
                   </div>
                   <div className="dashboard-item">
-                    <div className="label">Booking</div>
+                    <div className="label">Reservation</div>
                     <div className="value3">{stats.booking}</div>
                   </div>
                   <div className="dashboard-item">
-                    <div className="label">Expired</div>
+                    <div className="label">Expiré</div>
                     <div className="value4">{stats.expired}</div>
                   </div>
                 </div>
@@ -223,14 +241,16 @@ function Leadlist() {
                 <div className="Partner-Container">
                   <div className="Partner-Form-Header">
                     <div className="Header-Text">
-                      <span>Leads list</span>
+                      <span>Liste des leads
+
+</span>
                     </div>
                     <div className="Header-Button-Section">
-                      <FiFilter className="Header-icon" />
-                      <button className="Header-Button">
-                        <AiOutlineUpload className="Upload-button" /> Export
-                        file
-                      </button>
+                     
+                    <button className="Header-Button" onClick={exportToExcel}>
+                    <AiOutlineUpload className="Upload-button" /> Exporter vers excel
+
+                  </button>
                     </div>
                   </div>
                   <div className="Name-Filter-Box1">
@@ -239,7 +259,8 @@ function Leadlist() {
                       <input
                         className="kyc-search1"
                         type="text"
-                        placeholder="Type a keyword..."
+                        placeholder="Taper un mot clé
+                        "
                       />
                     </div>
                   </div>
@@ -247,16 +268,25 @@ function Leadlist() {
                     <table>
                       <thead>
                         <tr className="Tr-Font-Color">
-                          <th>Sl.No</th>
-                          <th>Lead No</th>
-                          <th>Customer Name</th>
-                          <th>Mobile Number</th>
-                          <th>Country</th>
-                          <th>Bank Name</th>
-                          <th>Status</th>
-                          <th>Requested on</th>
+                          <th>ID
+</th>
+                          <th>Code postal
+</th>
+                          <th>Call Center</th>
+                          <th>Nom et prénom
+</th>
+                          <th>Téléphone 1
+</th>
+                          <th>Ville
+</th>
+                          <th>
+Mode de chauffage</th>
+                          <th>statut</th>
+                          <th>Ajouté le 
+</th>
                           <th>Action</th>
-                          <th>Assign Companies</th>
+                          <th>Attribuer des sociétés
+</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -266,6 +296,7 @@ function Leadlist() {
                             <td className="Client-Color">
                               {item.fiscalNumber}
                             </td>
+                            <td>{item?.userId?.userName}</td>
                             <td>{item.customerName}</td>
                             <td>{item.mobileNumber1}</td>
                             <td>{item.city}</td>
@@ -282,7 +313,9 @@ function Leadlist() {
                                 key={index}
                               />
 
-                              <VscEye className="Table-Icons" />
+                              <VscEye className="Table-Icons"    onClick={() =>
+                                  navigate(`/customer/${item._id}`)
+                                } />
                               <MdOutlineDelete
                                 onClick={(e) => handleDelete(e, item._id)}
                                 className="Table-Icons1"
@@ -293,7 +326,7 @@ function Leadlist() {
                                 className="Assign-Button"
                                 onClick={() => toggleModal(item._id)}
                               >
-                                Assign Company
+                              Attribuer une entreprise
                               </button>
                               <Modal
                                 isOpen={isModalOpen}
@@ -311,18 +344,42 @@ function Leadlist() {
                     />
                   </div>
                   <div className="pagination-container">
-                    <span className="pagination-text">
-                      Showing 1 to 5 of 10 results
-                    </span>
-                    <div className="pagination-buttons">
-                      <button className="page-button">Previous</button>
+  <span className="pagination-text">
+  
+  </span>
+  <div className="pagination-buttons">
+    <button
+      className="page-button"
+      onClick={() => setCurrentPage(currentPage - 1)}
+      disabled={currentPage === 1}
+    >
+      Previous
+    </button>
+    {Array.from(
+      Array(leads?.pagination?.totalPages).keys()
+    ).map((pageNumber) => (
+      <button
+        key={pageNumber}
+        className={`page-button${
+          currentPage === pageNumber + 1 ? " active" : ""
+        }`}
+        onClick={() => setCurrentPage(pageNumber + 1)}
+      >
+        {pageNumber + 1}
+      </button>
+    ))}
+    <button
+      className="page-button"
+      onClick={() => setCurrentPage(currentPage + 1)}
+      disabled={
+        currentPage === leads?.pagination?.totalPages
+      }
+    >
+      Next
+    </button>
+  </div>
+</div>
 
-                      <button className="page-button1">1</button>
-                      <button className="page-button2">2</button>
-
-                      <button className="page-button3">Next</button>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>

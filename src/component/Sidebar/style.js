@@ -7,6 +7,11 @@ export const Sidebarstyled = styled.div`
 
     box-sizing: border-box;
   }
+  .icon{
+    
+   font-size: 17px;
+
+  }
   .Sidebar-Logo {
     width: 250px;
     margin-top: 10px;
@@ -61,6 +66,7 @@ export const Sidebarstyled = styled.div`
     gap: 10px;
     padding: 5px 23px;
     height: 40px;
+    align-items: center;
     text-decoration: none;
   }
   .link:hover {
@@ -88,6 +94,7 @@ export const Sidebarstyled = styled.div`
   .menu_item {
     display: flex;
     gap: 10px;
+    align-items: center;
   }
   .menu:hover {
     background: #8adfff;

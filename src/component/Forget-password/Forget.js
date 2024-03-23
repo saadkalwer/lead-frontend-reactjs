@@ -39,10 +39,11 @@ function Forget() {
           <div className="Admin-Main-Section">
             <div className="Admin-Main-Container">
               <div className="Admin-Welcome-Text">
-                <span className="Welcome-Title">Reset your password</span>
+                <span className="Welcome-Title">
+réinitialisez votre mot de passe</span>
                 <span className="Welcome-Text">
-                  Enter the email address associated with your account and we
-                  will send you a link to reset your password.
+                Entrez l'adresse email associée à votre compte et nous
+vous enverra un lien pour réinitialiser votre mot de passe.
                 </span>
               </div>
 
@@ -54,7 +55,7 @@ function Forget() {
                       <input
                         className="NameBox"
                         type="Email"
-                        placeholder="Enter username "
+                        placeholder="Saisissez votre nom d'utilisateur "
                         value={email}
                         onChange={handleEmailChange}
                       />
@@ -64,15 +65,18 @@ function Forget() {
               </div>
               <div className="Sign-in-Button-Section">
                 <button className="Sign-In-Button" onClick={(e) => onforget(e)}>
-                  Continue
+                 
+Continuer
                 </button>
               </div>
 
               <div className="Forget-Text-Section">
                 <span className="Character-Text">
-                  Don’t have an account?
+          
+Vous n'avez pas de compte ?
                   <span className="Sign-Text" onClick={() => navigate("/")}>
-                    Sign Up
+                 
+S'inscrire
                   </span>
                 </span>
               </div>

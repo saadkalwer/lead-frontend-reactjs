@@ -70,21 +70,23 @@ function Adminlogin() {
           <div className="Admin-Main-Section">
             <div className="Admin-Main-Container">
               <div className="Admin-Welcome-Text">
-                <span className="Welcome-Title">Welcome Back !</span>
+                <span className="Welcome-Title">Content de te revoir !</span>
                 <span className="Welcome-Text">
-                  Sign in to continue to Portal.
+             
+Connectez-vous pour continuer sur le portail.
                 </span>
               </div>
 
               <div className="Sign-Form-Section">
                 <form className="Sign-Form">
                   <div className="Form-Box-Text">
-                    <span className="Form-Box-Title">Username</span>
+                    <span className="Form-Box-Title">
+Nom d'utilisateur</span>
                     <div className="FormBox">
                       <input
                         className="NameBox"
                         type="Email"
-                        placeholder="Enter username "
+                        placeholder="Saisissez votre nom d'utilisateur"
                         value={userName}
                         onChange={handleuserNameChange}
                       />
@@ -92,12 +94,14 @@ function Adminlogin() {
                   </div>
                   <div className="Form-Box-Text">
                     <div className="Password-Text-Section">
-                      <span className="Password-Text">Password</span>
+                      <span className="Password-Text">
+Mot de passe</span>
                       <span
                         className="Forget-Text"
                         onClick={() => navigate("/forget")}
                       >
-                        Forgot password?
+                      
+Mot de passe oublié?
                       </span>
                     </div>
 
@@ -107,7 +111,8 @@ function Adminlogin() {
                         type="Password"
                         value={password}
                         onChange={handlePasswordChange}
-                        placeholder="Enter password"
+                        placeholder="
+                        Entrer le mot de passe"
                       />
                       <IoEyeOutline className="FormIcon" />
                     </div>
@@ -118,14 +123,16 @@ function Adminlogin() {
                       checked={isChecked}
                       onChange={handleCheckboxChange}
                     />
-                    <span className="Character-Text">Remember me</span>
+                    <span className="Character-Text">
+Souviens-toi de moi</span>
                   </div>
                   <div className="Sign-in-Button-Section">
                     <button
                       onClick={(e) => onLogin(e)}
                       className="Sign-In-Button"
                     >
-                      Sign In
+                      
+Se connecter
                     </button>
                   </div>
                 </form>

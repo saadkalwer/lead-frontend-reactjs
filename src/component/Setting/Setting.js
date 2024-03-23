@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/SideBar";
 import { Partnerstyled } from "./style";
-import Avatar from "../../image/User.png";
-import { FiBell } from "react-icons/fi";
+import { IoPersonSharp } from "react-icons/io5";
 import { IoMdSearch } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { API } from "../../api/api";
@@ -52,21 +51,14 @@ function Setting() {
           <div className="Sidebar-Header-Content">
             <div className="Sidebar-Header-Section">
               <div className="Sidebar-Search-Box-Section">
-                <div className="kyc-search-box">
-                  <IoMdSearch className="kyc-icon" />
-                  <input
-                    className="kyc-search"
-                    type="text"
-                    placeholder="Search..."
-                  />
-                </div>
+           
               </div>
               <div className="Bell-Main-Section">
                 <div className="Bell-Section">
-                  <FiBell className="Bell-Icon" />
+                 
                 </div>
                 <div className="Avatar-Main-Section">
-                  <img className="Manager-Avatar" src={Avatar} alt="" />
+                <IoPersonSharp className="Manager-Avatar"  />
                   <div className="Avatar-Text-Section">
                     <span className="Avatar-Title"> {userData.userName}</span>
                     <span className="Avatar-Text">Founder</span>
@@ -75,7 +67,7 @@ function Setting() {
               </div>
             </div>
             <div className="Call-Center-Title">
-              <span className="call-center">Settings</span>
+              <span className="call-center">Parametre</span>
             </div>
           </div>
           <div className="Parter-Main-Section">
@@ -84,25 +76,26 @@ function Setting() {
                 <div className="Sign-Form-Section">
                   <form className="Sign-Form">
                     <div className="Form-Box-Text">
-                      <span className="Form-Box-Title">Current Password</span>
+                      <span className="Form-Box-Title">
+Mot de passe actuel</span>
                       <div className="FormBox">
                         <input
                           className="NameBox"
                           type="Password"
                           value={oldPassword}
                           onChange={handleOldPasswordChange}
-                          placeholder="Enter Current password"
+                          placeholder="Entrer le mot de passe actuel"
                         />
                       </div>
                     </div>
                     <div className="Form-Box-Text">
-                      <span className="Form-Box-Title">New Password</span>
+                      <span className="Form-Box-Title">Nouveau mot de passe</span>
                       <div className="FormBox">
                         <input
                           className="NameBox"
                           type="Password"
                           value={newPassword}
-                          placeholder="Enter New password"
+                          placeholder="Entrez un nouveau mot de passe"
                           onChange={handleNewPasswordChange}
                         />
                       </div>
@@ -113,7 +106,8 @@ function Setting() {
                   className="Header-Button"
                   onClick={() => getNewPasword()}
                 >
-                  Change Password{" "}
+                  
+Changer le mot de passe{" "}
                 </button>
               </div>
             </div>

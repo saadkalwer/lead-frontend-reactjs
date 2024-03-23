@@ -1,10 +1,10 @@
 import Sidebar from "../Sidebar/SideBar";
 import { Partnerstyled } from "./style";
-import { FiFilter } from "react-icons/fi";
+
 import { IoMdSearch } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-import Avatar from "../../image/User.png";
-import { FiBell } from "react-icons/fi";
+import { IoPersonSharp } from "react-icons/io5";
+
 import React, { useEffect, useState } from "react";
 import { API } from "../../api/api";
 import { toast } from "react-toastify";
@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 function DsaClient() {
   const navigate = useNavigate();
   const [allEmployees, setAllEmployees] = useState([]);
-
+  const [currentPage, setCurrentPage] = useState(1);
   function formatDate(dateString) {
     // Create a new Date object from the dateString
     const date = new Date(dateString);
@@ -30,20 +30,35 @@ function DsaClient() {
 
     return formattedDate;
   }
-  useEffect(() => {
-    getAllEmployees();
-  }, []);
-  const getAllEmployees = async () => {
-    console.log("api check");
-    await API.getAllLeadsForAdmin()
-      .then((resp) => {
-        if (resp.status == 200) {
-          setAllEmployees(resp.data.data);
-          toast.success(resp.data.message);
-        }
-      })
-      .catch((e) => toast.error(e.response.data.message));
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    getAllEmployees(page);
   };
+  // useEffect(() => {
+  //   getAllEmployees();
+  // }, );
+  const getAllEmployees = async () => {
+    try {
+      const response = await API.getAllLeadsForAdmin({
+        page: currentPage, // Assuming currentPage is defined elsewhere
+      });
+      const responseData = response.data;
+      
+      if (responseData && responseData.success) {
+        setAllEmployees(responseData.data.leads);
+        toast.success(responseData.message);
+      } else {
+        toast.error("Failed to fetch employees");
+      }
+    } catch (error) {
+      toast.error("Error fetching employees: " + error.message);
+    }
+  };
+    // Use useEffect to fetch initial data
+    useEffect(() => {
+      getAllEmployees(currentPage);
+    }, [currentPage]);
+  
   const userData = JSON.parse(localStorage.getItem("user"));
   return (
     <>
@@ -54,21 +69,12 @@ function DsaClient() {
               <div className="Sidebar-Header-Content">
                 <div className="Sidebar-Header-Section">
                   <div className="Sidebar-Search-Box-Section">
-                    <div className="kyc-search-box">
-                      <IoMdSearch className="kyc-icon" />
-                      <input
-                        className="kyc-search"
-                        type="text"
-                        placeholder="Search..."
-                      />
-                    </div>
+                 
                   </div>
                   <div className="Bell-Main-Section">
-                    <div className="Bell-Section">
-                      <FiBell className="Bell-Icon" />
-                    </div>
+                  
                     <div className="Avatar-Main-Section">
-                      <img className="Manager-Avatar" src={Avatar} alt="" />
+                    <IoPersonSharp className="Manager-Avatar"  />
                       <div className="Avatar-Text-Section">
                         <span className="Avatar-Title">
                           {" "}
@@ -90,7 +96,7 @@ function DsaClient() {
                       <span>DSA List</span>
                     </div>
                     <div className="Header-Button-Section">
-                      <FiFilter className="Header-icon" />
+                    
                     </div>
                   </div>
                   <div className="Client-Company-Tags">
@@ -108,7 +114,8 @@ function DsaClient() {
                       <input
                         className="kyc-search1"
                         type="text"
-                        placeholder="Type a keyword..."
+                        placeholder="Taper un mot clé
+                        "
                       />
                     </div>
                   </div>
@@ -116,14 +123,21 @@ function DsaClient() {
                     <table>
                       <thead>
                         <tr>
-                          <th>Sl.No</th>
-                          <th>Code</th>
-                          <th>Client Name</th>
-                          <th>Mobile Number</th>
-                          <th>Location</th>
-                          <th>Product Requested</th>
-                          <th>Requested on</th>
-                          <th>Status</th>
+                          <th> ID</th>
+                          <th>Revenue annuel
+</th>
+                          <th>Nom et prénom
+</th>
+                          <th>Téléphone 1
+</th>
+                          <th> Ville
+
+</th>
+                          <th>Revenue annuel
+</th>
+                          <th>Ajouté le 
+</th>
+                          <th>statut</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -145,18 +159,43 @@ function DsaClient() {
                     </table>
                   </div>
                   <div className="pagination-container">
-                    <span className="pagination-text">
-                      Showing 1 to 5 of 10 results
-                    </span>
-                    <div className="pagination-buttons">
-                      <button className="page-button">Previous</button>
+  <span className="pagination-text">
+  
+  </span>
+  <div className="pagination-buttons">
+    <button
+      className="page-button"
+      onClick={() => setCurrentPage(currentPage - 1)}
+      disabled={currentPage === 1}
+    >
+      Previous
+    </button>
+    {Array.from(
+      Array(allEmployees?.pagination?.totalPages).keys()
+    ).map((pageNumber) => (
+      <button
+        key={pageNumber}
+        className={`page-button${
+          currentPage === pageNumber + 1 ? " active" : ""
+        }`}
+        onClick={() => setCurrentPage(pageNumber + 1)}
+      >
+        {pageNumber + 1}
+      </button>
+    ))}
+    <button
+      className="page-button"
+      onClick={() => setCurrentPage(currentPage + 1)}
+      disabled={
+        currentPage === allEmployees?.pagination?.totalPages
+      }
+    >
+      Next
+    </button>
+  </div>
+</div>
 
-                      <button className="page-button1">1</button>
-                      <button className="page-button2">2</button>
 
-                      <button className="page-button3">Next</button>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>

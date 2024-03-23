@@ -10,13 +10,14 @@ export const Partnerstyled = styled.div`
   align-items: center;
   .Parter-Main-Section {
     background-color: white;
-    width: 90%;
+    width: 98%;
     font-size: 17px;
     display: flex;
     margin-top: 60px;
 
     justify-content: center;
-    height: 500px;
+    height: 100%;
+    margin-bottom: 20px;
   }
   .Partner-Container {
     display: flex;
@@ -51,9 +52,9 @@ export const Partnerstyled = styled.div`
     border-radius: 5px;
   }
   .Header-Button {
-    width: 150px;
+    width: 160px;
     height: 43px;
-    gap: 10px;
+    gap: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -61,7 +62,7 @@ export const Partnerstyled = styled.div`
     color: #34437a;
     border: 1px solid #34437a;
     border-radius: 4px;
-    font-size: 16px;
+    font-size: 14px;
   }
   .kyc-search1 {
     width: 180px;
@@ -113,7 +114,7 @@ export const Partnerstyled = styled.div`
 
   th,
   td {
-    padding: 12px 15px;
+    padding: 10px 12px;
     border: 1px solid #ddd;
   }
 
@@ -177,6 +178,19 @@ export const Partnerstyled = styled.div`
     display: flex;
     align-items: center;
     gap: 10px;
+    margin-bottom: 30px;
+  }
+  .page-button:hover {
+    background-color: #34437A;
+    color: white;
+  }
+  .page-button2:hover {
+    background-color: #34437a;
+    color: white;
+  }
+  .page-button3:hover {
+    background-color: #34437a;
+    color: white;
   }
   .page-button {
     width: 88px;
@@ -220,10 +234,10 @@ export const Partnerstyled = styled.div`
     flex-direction: column;
   }
   .Assign-Button {
-    width: 150px;
-    height: 33px;
+    width: 143px;
+    height: 35px;
     background-color: #34437a;
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 500;
     display: flex;
     align-items: center;
@@ -238,10 +252,10 @@ export const Partnerstyled = styled.div`
   .Status-Color2 {
     color: yellow;
   }
-  .Upload-button {
-    width: 25px;
-    height: 24px;
-  }
+   .Upload-button {
+    width: 17px;
+    height: 22px;
+}
   .Table-Icons {
     width: 28px;
     height: 24px;
@@ -276,7 +290,7 @@ export const Partnerstyled = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 215px;
+    width: 200px;
     background: #ffffff;
     border-right: 1px solid #d4d9df;
     height: 70px;
@@ -403,6 +417,7 @@ export const Partnerstyled = styled.div`
   }
   .Manager-Avatar {
     height: 35px;
+    width: 24px;
   }
   .Avatar-Text-Section {
     display: flex;
@@ -458,7 +473,7 @@ export const Partnerstyled = styled.div`
     font-size: 40px;
   }
   .Title {
-    font-size: 27px;
+    font-size: 25px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -491,6 +506,7 @@ export const Partnerstyled = styled.div`
     gap: 5px;
     color: white;
   }
+ 
   @media all and (max-width: 1400px) {
     .dashboard-container {
       display: flex;

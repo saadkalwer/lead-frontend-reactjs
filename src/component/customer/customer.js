@@ -3,10 +3,7 @@ import { API } from "../../api/api";
 import { toast } from "react-toastify";
 import Sidebar from "../Sidebar/SideBar";
 import { Customerstyled } from "./style";
-import Profile from "../../image/Profile.png";
-import Avatar from "../../image/User.png";
-import { FiBell } from "react-icons/fi";
-import { IoMdSearch } from "react-icons/io";
+import { IoPersonSharp } from "react-icons/io5";
 import { useParams } from "react-router-dom";
 
 function Customer() {
@@ -18,18 +15,19 @@ function Customer() {
   function formatDate(dateString) {
     // Create a new Date object from the dateString
     const date = new Date(dateString);
-
-    // Format the date as per your requirements
+  
+    // Format the date as per your requirements, forcing UTC timezone
     const formattedDate = date.toLocaleDateString("en-US", {
       year: "numeric",
       month: "short",
       day: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-      second: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
       hour12: true, // If you want 12-hour format
+      timeZone: "UTC" // Force UTC timezone
     });
-
+  
     return formattedDate;
   }
 
@@ -73,21 +71,14 @@ function Customer() {
                 <div className="Sidebar-Header-Content">
                   <div className="Sidebar-Header-Section">
                     <div className="Sidebar-Search-Box-Section">
-                      <div className="kyc-search-box">
-                        <IoMdSearch className="kyc-icon" />
-                        <input
-                          className="kyc-search"
-                          type="text"
-                          placeholder="Search..."
-                        />
-                      </div>
+                  
                     </div>
                     <div className="Bell-Main-Section">
                       <div className="Bell-Section">
-                        <FiBell className="Bell-Icon" />
+                      
                       </div>
                       <div className="Avatar-Main-Section">
-                        <img className="Manager-Avatar" src={Avatar} alt="" />
+                      
                         <div className="Avatar-Text-Section">
                           <span className="Avatar-Title">
                             {user.partnerName}
@@ -105,7 +96,8 @@ function Customer() {
                   <div className="Customer-Container">
                     <div className="Profile-Main-Section">
                       <div className="Profile-Container">
-                        <img className="Profile-Img" src={Profile} alt="" />
+                      
+                        <IoPersonSharp className="Profile-Img"  />
                         <span className="Profile-Text">
                           {" "}
                           {userData.userName}
@@ -170,6 +162,38 @@ function Customer() {
                           <span className="Name-Title">Housing Type</span>
                           <span className="Name-Text">{user.housingType}</span>
                         </div>
+                        <div className="Name-Box-Section">
+                          <span className="Name-Title">Accommodation</span>
+                          <span className="Name-Text">{user.accommodation}</span>
+                        </div>
+                        <div className="Name-Box-Section">
+                          <span className="Name-Title">Fiscal Number</span>
+                          <span className="Name-Text">{user.fiscalNumber}</span>
+                        </div>
+                        <div className="Name-Box-Section">
+                          <span className="Name-Title">refTaxNotice</span>
+                          <span className="Name-Text">{user.annualIncome}</span>
+                        </div>
+                      </div>
+                      <div className="Details-Box-Section">
+                    
+                        <div className="Name-Box-Section">
+                          <span className="Name-Title">Gender </span>
+                          <span className="Name-Text">{user.gender}</span>
+                        </div>
+                        <div className="Name-Box-Section">
+                          <span className="Name-Title">Date of Birth</span>
+                          <span className="Name-Text">{user.dob}</span>
+                        </div>
+                        <div className="Name-Box-Section">
+                          <span className="Name-Title">Martial Status</span>
+                          <span className="Name-Text">{user.martialStatus}</span>
+                        </div>
+                        <div className="Name-Box-Section">
+                          <span className="Name-Title">Bank Name</span>
+                          <span className="Name-Text">{user.bankName}</span>
+                        </div>
+                    
                       </div>
                     </div>
                   </div>

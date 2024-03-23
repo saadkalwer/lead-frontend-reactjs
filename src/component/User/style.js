@@ -52,7 +52,7 @@ export const Partnerstyled = styled.div`
     border-radius: 5px;
   }
   .Header-Button {
-    width: 185px;
+    width: 221px;
     height: 43px;
     margin-top: 50px;
     margin-left: 150px;

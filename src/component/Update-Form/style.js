@@ -11,8 +11,8 @@ export const Detailstyled = styled.div`
     display: flex;
     justify-content: center;
     background-color: white;
-    height: 1300px;
-    width: 95%;
+    height: 1700px;
+    width: 98%;
     margin-top: 30px;
     border-radius: 5px;
   }
@@ -22,7 +22,7 @@ export const Detailstyled = styled.div`
   }
   .All-Form-Section {
     display: flex;
-
+width: 940px;
     flex-direction: column;
   }
   .Sign-Form {
@@ -32,9 +32,12 @@ export const Detailstyled = styled.div`
 
     margin-top: 15px;
   }
-
+  .Cancel-Button:hover{
+    color: white;
+    background-color: #34437a;
+  }
   .NameBox {
-    width: 375px;
+    width: 273px;
     height: 37px;
     font-size: 17px;
     border: none;
@@ -43,7 +46,7 @@ export const Detailstyled = styled.div`
     color: black;
   }
   .NameBox-Select {
-    width: 600px;
+    width: 450px;
     height: 37px;
     font-size: 18px;
     font-weight: 500;
@@ -57,7 +60,7 @@ export const Detailstyled = styled.div`
     padding: 4px;
     border-radius: 9px;
     cursor: pointer;
-    width: 390px;
+    width: 286x;
   }
   .FormIcon {
     width: 25px;
@@ -74,7 +77,7 @@ export const Detailstyled = styled.div`
     gap: 10px;
   }
   .NameBox-Top {
-    width: 1250px;
+    width: 700px;
     height: 38px;
     font-size: 15px;
     border: none;
@@ -84,7 +87,7 @@ export const Detailstyled = styled.div`
   }
   .FormBox-Top {
     border: 2px #e6e9ec solid;
-
+    width: 666px;
     padding: 4px;
     border-radius: 9px;
     cursor: pointer;
@@ -140,10 +143,10 @@ export const Detailstyled = styled.div`
     padding: 4px;
     border-radius: 9px;
     cursor: pointer;
-    width: 610px;
+    width: 470px;
   }
   .NameBox-Center {
-    width: 568px;
+    width: 450px;
     height: 37px;
     font-size: 18px;
     font-weight: 500;
@@ -175,7 +178,7 @@ export const Detailstyled = styled.div`
     padding-bottom: 100px;
   }
   .Add-Button {
-    width: 145px;
+    width: 170px;
     height: 43px;
     background: #34437a;
     border: none;
@@ -205,12 +208,43 @@ export const Detailstyled = styled.div`
     padding: 4px;
     border-radius: 9px;
     cursor: pointer;
-    width: 390px;
+    width: 313px;
   }
   .NameBox-Select-House {
-    width: 375px;
+    width: 304px;
     height: 37px;
     font-size: 17px;
+    border: none;
+    padding-left: 10px;
+    outline: none;
+    color: black;
+  }
+   .Form-Box-Text-Status {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 51px;
+    gap: 10px;
+   
+}
+ .Names-Form-Comment {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    gap: 131px;
+}
+  .FormBox-Comment {
+    border: 2px #e6ebf2 solid;
+    padding: 4px;
+    border-radius: 9px;
+    cursor: pointer;
+    width: 350px;
+    height: 141px;
+}
+  .NameBox-Comment {
+    width: 330px;
+   
+    font-size: 17px;
+    height: 121px;
     border: none;
     padding-left: 10px;
     outline: none;
@@ -304,6 +338,7 @@ export const Detailstyled = styled.div`
   }
   .Manager-Avatar {
     height: 35px;
+    width: 24px;
   }
   .Avatar-Text-Section {
     display: flex;

@@ -43,6 +43,7 @@ export const Customerstyled = styled.div`
   }
   .Profile-Img {
     width: 120px;
+    height: 80px;
   }
   .Profile-Text {
     font-size: 18px;
@@ -100,13 +101,15 @@ export const Customerstyled = styled.div`
     gap: 3px;
   }
   .Name-Title {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 500;
+    white-space: nowrap;
     color: #a4a7ab;
   }
   .Name-Text {
-    font-size: 17px;
+    font-size: 14px;
     font-weight: 500;
+   
   }
   .Profile-Button {
     width: 150px;
@@ -184,9 +187,7 @@ export const Customerstyled = styled.div`
   }
   .Avatar-Main-Section {
     display: flex;
-    background-color: #f3f3f9;
-    width: 165px;
-    height: 64px;
+
     margin-right: 30px;
     justify-content: center;
     align-items: center;

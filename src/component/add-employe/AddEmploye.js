@@ -3,7 +3,7 @@ import { Detailstyled } from "./style";
 import Sidebar from "../Sidebar/SideBar";
 import { RiUploadCloud2Fill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
-import Avatar from "../../image/User.png";
+import { IoPersonSharp } from "react-icons/io5";
 import { FiBell } from "react-icons/fi";
 import { IoMdSearch } from "react-icons/io";
 import { API } from "../../api/api";
@@ -130,7 +130,7 @@ function AddEmploye() {
                     <FiBell className="Bell-Icon" />
                   </div>
                   <div className="Avatar-Main-Section">
-                    <img className="Manager-Avatar" src={Avatar} alt="" />
+                  <IoPersonSharp className="Manager-Avatar"  />
                     <div className="Avatar-Text-Section">
                       <span className="Avatar-Title">{userData.userName}</span>
                       <span className="Avatar-Text">Founder</span>

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Detailstyled } from "./style";
 import Sidebar from "../Sidebar/SideBar";
-import Avatar from "../../image/User.png";
-import { FiBell } from "react-icons/fi";
+import { IoPersonSharp } from "react-icons/io5";
 import { IoMdSearch } from "react-icons/io";
 import { API } from "../../api/api";
 import { toast } from "react-toastify";
@@ -39,7 +38,7 @@ function Companydetails() {
     await API.getAllLeadsForAdmin()
       .then((resp) => {
         if (resp.status == 200) {
-          setLeads(resp.data.data);
+          setLeads(resp.data.data.leads);
           // toast.success(resp.data.message);
         }
       })
@@ -155,22 +154,11 @@ function Companydetails() {
           <div className="Business-Container">
             <div className="Sidebar-Header-Content">
               <div className="Sidebar-Header-Section">
-                <div className="Sidebar-Search-Box-Section">
-                  <div className="kyc-search-box">
-                    <IoMdSearch className="kyc-icon" />
-                    <input
-                      className="kyc-search"
-                      type="text"
-                      placeholder="Search..."
-                    />
-                  </div>
-                </div>
+           <div></div>
                 <div className="Bell-Main-Section">
-                  <div className="Bell-Section">
-                    <FiBell className="Bell-Icon" />
-                  </div>
+               
                   <div className="Avatar-Main-Section">
-                    <img className="Manager-Avatar" src={Avatar} alt="" />
+                    <IoPersonSharp className="Manager-Avatar"  />
                     <div className="Avatar-Text-Section">
                       <span className="Avatar-Title">{userData.userName}</span>
                       <span className="Avatar-Text">Founder</span>
@@ -188,12 +176,13 @@ function Companydetails() {
                   <span className="Contact-Title">Company Details</span>
                   <form className="Sign-Form">
                     <div className="Form-Box-Text">
-                      <span className="Form-Box-Title">Customer Name</span>
+                      <span className="Form-Box-Title">Nom du client</span>
                       <div className="FormBox-Top">
                         <input
                           className="NameBox-Top"
                           type="Name"
-                          placeholder="Enter company Name"
+                          placeholder="
+                          Entrez le nom de l'entreprise"
                           value={userName}
                           onChange={handleUserNameChange}
                         />
@@ -202,24 +191,29 @@ function Companydetails() {
                   </form>
                   <div className="Names-Form">
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">First Name</span>
+                      <span className="Form-Box-Title">
+Prénom</span>
                       <div className="FormBox">
                         <input
                           className="NameBox"
                           type="Name"
-                          placeholder="Enter First Name"
+                          placeholder="
+                          Entrez votre prénom"
                           value={firstName}
                           onChange={handleFirstNameChange}
                         />
                       </div>
                     </div>
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Last Name</span>
+                      <span className="Form-Box-Title">
+
+Nom de famille</span>
                       <div className="FormBox">
                         <input
                           className="NameBox"
                           type="Name"
-                          placeholder="Enter Last Name"
+                          placeholder="
+                          Entrer le nom de famille"
                           value={lastName}
                           onChange={handleLastNameChange}
                         />
@@ -228,7 +222,8 @@ function Companydetails() {
                   </div>
                   <div className="Names-Form">
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Mobile Number 1</span>
+                      <span className="Form-Box-Title">Téléphone 1
+</span>
                       <div className="FormBox">
                         <input
                           className="NameBox"
@@ -245,7 +240,8 @@ function Companydetails() {
                         <input
                           className="NameBox"
                           type="Email"
-                          placeholder="Enter Email Id"
+                          placeholder="
+                          Entrez l'identifiant de messagerie"
                           value={email}
                           onChange={handleEmailChange}
                         />
@@ -254,7 +250,8 @@ function Companydetails() {
                   </div>
                   <form className="Sign-Form">
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Mobile Number 2</span>
+                      <span className="Form-Box-Title">Telephone 2
+</span>
                       <div className="FormBox">
                         <input
                           className="NameBox"
@@ -266,27 +263,34 @@ function Companydetails() {
                       </div>
                     </div>
                   </form>
-                  <span className="Contact-Title1">Address Details</span>
+                  <span className="Contact-Title1">
+Détails de l'adresse</span>
                   <div className="Names-Form">
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Street</span>
+                      <span className="Form-Box-Title">
+
+Rue</span>
                       <div className="FormBox">
                         <input
                           className="NameBox"
                           type="Street"
-                          placeholder="Enter Street"
+                          placeholder="
+
+                          Entrez la rue"
                           value={street}
                           onChange={handleStreetChange}
                         />
                       </div>
                     </div>
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Zip Code</span>
+                      <span className="Form-Box-Title">Code postal
+</span>
                       <div className="FormBox">
                         <input
                           className="NameBox"
                           type="code"
-                          placeholder="Zip Code"
+                          placeholder="Code postal
+                          "
                           value={zip}
                           onChange={handleZipChange}
                         />
@@ -294,28 +298,30 @@ function Companydetails() {
                     </div>
                   </div>
                   <div className="Form-Box-Text-Bottom">
-                    <span className="Form-Box-Title">City</span>
+                    <span className="Form-Box-Title">Ville
+</span>
                     <div className="FormBox">
                       <input
                         className="NameBox"
                         type="city"
-                        placeholder="Enter Your City"
+                        placeholder="
+                        Entrez votre ville"
                         value={city}
                         onChange={handleCityChange}
                       />
                     </div>
                   </div>
-                  <span className="Contact-Title1">Category</span>
+                  <span className="Contact-Title1">Catégorie</span>
                   <div className="Names-Form">
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Product</span>
+                      <span className="Form-Box-Title">Produit</span>
                       <div className="FormBox">
                         <select
                           className="NameBox-Select"
                           value={role}
                           onChange={handleRoleChange}
                         >
-                          <option value="">Select Role</option>
+                          <option value="">Sélectionnez un rôle</option>
                           <option>Company</option>
                           <option>Super Admin</option>
                           <option>Call Center</option>
@@ -323,7 +329,7 @@ function Companydetails() {
                       </div>
                     </div>
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Assigned Client</span>
+                      <span className="Form-Box-Title">Client assigné</span>
                       <div className="FormBox">
                         <select
                           className="NameBox-Select"
@@ -345,13 +351,16 @@ function Companydetails() {
                       className="Add-Button"
                       onClick={(e) => oncreateCompany(e)}
                     >
-                      Add
+                  
+
+Ajouter
                     </button>
                     <button
                       className="Cancel-Button"
                       onClick={() => navigate("/dsa-company-list")}
                     >
-                      Cancel
+                   
+Annuler
                     </button>
                   </div>
                 </div>

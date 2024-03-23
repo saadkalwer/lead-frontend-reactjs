@@ -4,8 +4,7 @@ import { Partnerstyled } from "./style";
 import { FiFilter } from "react-icons/fi";
 import { IoMdSearch } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-import Avatar from "../../image/User.png";
-import { FiBell } from "react-icons/fi";
+import { IoPersonSharp } from "react-icons/io5";
 import { API } from "../../api/api";
 import { toast } from "react-toastify";
 
@@ -42,7 +41,7 @@ function Partner() {
       .then((resp) => {
         // console.log(resp);
         if (resp.status == 200) {
-          setLeads(resp.data.data);
+          setLeads(resp.data.data.leads);
           toast.success(resp.data.message);
           // console.log(resp.data.data);
         }
@@ -59,21 +58,14 @@ function Partner() {
               <div className="Sidebar-Header-Content">
                 <div className="Sidebar-Header-Section">
                   <div className="Sidebar-Search-Box-Section">
-                    <div className="kyc-search-box">
-                      <IoMdSearch className="kyc-icon" />
-                      <input
-                        className="kyc-search"
-                        type="text"
-                        placeholder="Search..."
-                      />
-                    </div>
+              
                   </div>
                   <div className="Bell-Main-Section">
                     <div className="Bell-Section">
-                      <FiBell className="Bell-Icon" />
+                     
                     </div>
                     <div className="Avatar-Main-Section">
-                      <img className="Manager-Avatar" src={Avatar} alt="" />
+                    <IoPersonSharp className="Manager-Avatar"  />
                       <div className="Avatar-Text-Section">
                         <span className="Avatar-Title">
                           {userData.userName}
@@ -86,22 +78,23 @@ function Partner() {
                   </div>
                 </div>
                 <div className="Call-Center-Title">
-                  <span className="call-center">Call Center</span>
+                  <span className="call-center">Centre d'appel</span>
                 </div>
               </div>
               <div className="Parter-Main-Section">
                 <div className="Partner-Container">
                   <div className="Partner-Form-Header">
                     <div className="Header-Text">
-                      <span>Leads list</span>
+                      <span>Totale leads
+</span>
                     </div>
                     <div className="Header-Button-Section">
-                      <FiFilter className="Header-icon" />
+                 
                       <button
                         className="Header-Button"
                         onClick={() => navigate("/admin-form")}
                       >
-                        + Add new lead
+               + Ajouter un nouveau prospect
                       </button>
                     </div>
                   </div>
@@ -111,7 +104,8 @@ function Partner() {
                       <input
                         className="kyc-search1"
                         type="text"
-                        placeholder="Type a keyword..."
+                        placeholder="Taper un mot clé
+                        "
                       />
                     </div>
                   </div>
@@ -119,15 +113,22 @@ function Partner() {
                     <table>
                       <thead>
                         <tr>
-                          <th>Sl.No</th>
-                          <th>Code</th>
-                          <th>Client Name</th>
-                          <th>Mobile Number</th>
-                          <th>Country</th>
-                          <th>Gender</th>
-                          <th>Amount Requested</th>
-                          <th>Requested on</th>
-                          <th>Status</th>
+                          <th> ID
+</th>
+                          <th>Code postal
+</th>
+                          <th>Nom et prénom
+</th>
+                          <th>Téléphone 1
+</th>
+                          <th>Ville
+</th>
+                          <th>Genre</th>
+                          <th>Revenue annuel
+</th>
+                          <th>Ajouté le 
+</th>
+                          <th>Statut</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -135,6 +136,7 @@ function Partner() {
                           <tr key={index}>
                             <td>{index + 1}</td>
                             <td>{item.zip}</td>
+                      
                             <td className="Client-Color">
                               {item.customerName}
                             </td>
@@ -145,6 +147,7 @@ function Partner() {
                             <td>{formatDate(item.createdAt)}</td>
 
                             <td className="Status-Color">{item.status}</td>
+                            
                           </tr>
                         ))}
                       </tbody>
@@ -152,7 +155,7 @@ function Partner() {
                   </div>
                   <div className="pagination-container">
                     <span className="pagination-text">
-                      Showing 1 to 5 of 10 results
+                    
                     </span>
                     <div className="pagination-buttons">
                       <button className="page-button">Previous</button>

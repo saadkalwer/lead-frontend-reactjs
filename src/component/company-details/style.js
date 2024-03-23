@@ -12,7 +12,7 @@ export const Detailstyled = styled.div`
     justify-content: center;
     background-color: white;
     height: 1130px;
-    width: 93%;
+    width: 98%;
     margin-top: 30px;
     border-radius: 5px;
   }
@@ -22,7 +22,7 @@ export const Detailstyled = styled.div`
   }
   .All-Form-Section {
     display: flex;
-
+width: 950px;
     flex-direction: column;
   }
   .Sign-Form {
@@ -34,7 +34,7 @@ export const Detailstyled = styled.div`
   }
 
   .NameBox {
-    width: 490px;
+    width: 370px;
     height: 37px;
     font-size: 17px;
     border: none;
@@ -43,7 +43,7 @@ export const Detailstyled = styled.div`
     color: black;
   }
   .NameBox-Select {
-    width: 490px;
+    width: 370px;
     height: 37px;
     font-size: 18px;
     font-weight: 500;
@@ -57,7 +57,7 @@ export const Detailstyled = styled.div`
     padding: 4px;
     border-radius: 9px;
     cursor: pointer;
-    width: 500px;
+    width: 380px;
   }
   .FormIcon {
     width: 25px;
@@ -74,7 +74,7 @@ export const Detailstyled = styled.div`
     gap: 10px;
   }
   .NameBox-Top {
-    width: 1050px;
+    width: 700px;
     height: 39px;
     font-size: 15px;
     border: none;
@@ -84,7 +84,7 @@ export const Detailstyled = styled.div`
   }
   .FormBox-Top {
     border: 2px #e6e9ec solid;
-
+width: 700px;
     padding: 4px;
     border-radius: 9px;
     cursor: pointer;
@@ -157,6 +157,10 @@ export const Detailstyled = styled.div`
     color: black;
     font-size: 17px;
     font-weight: 500;
+  }
+  .Cancel-Button:hover{
+    color: white;
+    background-color: #34437a;
   }
   .Business-Main-Section {
     width: 100%;
@@ -245,6 +249,7 @@ export const Detailstyled = styled.div`
   }
   .Manager-Avatar {
     height: 35px;
+    width: 24px;
   }
   .Avatar-Text-Section {
     display: flex;

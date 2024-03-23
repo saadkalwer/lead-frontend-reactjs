@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Detailstyled } from "./style";
 import Sidebar from "../Sidebar/SideBar";
 import { useNavigate } from "react-router-dom";
-import Avatar from "../../image/User.png";
+import { IoPersonSharp } from "react-icons/io5";
 import { FiBell } from "react-icons/fi";
 import { IoMdSearch } from "react-icons/io";
 import { API } from "../../api/api";
@@ -24,11 +24,12 @@ function Update() {
   const [dob, setDob] = useState("");
   const [street, setStreet] = useState("");
   const [zip, setZip] = useState("");
-
+const [status, setStatus] = useState("");
   const [fiscalNumber, setFiscal] = useState("");
   const [refTaxNotice, setRefTaxNotice] = useState("");
   const [annualIncome, setAnnualIncome] = useState("");
   const [bankName, setBankName] = useState("");
+  const [adminComment, setAdminComment] = useState("");
   const [lead, setLead] = useState({});
   let { id } = useParams();
 
@@ -56,7 +57,15 @@ function Update() {
   };
 
   const handleDobChange = (e) => {
-    const updatedLead = { ...lead, dob: e.target.value };
+    const updatedLead = { ...lead, adminComment: e.target.value };
+    setLead(updatedLead);
+  };
+  const handleAdminCommentChange = (e) => {
+    const updatedLead = { ...lead, adminComment: e.target.value };
+    setLead(updatedLead);
+  };
+  const handleCallCenterCommentChange = (e) => {
+    const updatedLead = { ...lead, callCenterComment: e.target.value };
     setLead(updatedLead);
   };
   const handleStreetChange = (e) => {
@@ -72,6 +81,10 @@ function Update() {
     setLead(updatedLead);
   };
 
+const handleStatusChange = (e) => {
+  const updatedLead = { ...lead, status: e.target.value };
+  setLead(updatedLead);
+};
   const handleAnnualIncomeChange = (e) => {
     const updatedLead = { ...lead, annualIncome: e.target.value };
     setLead(updatedLead);
@@ -146,21 +159,14 @@ function Update() {
             <div className="Sidebar-Header-Content">
               <div className="Sidebar-Header-Section">
                 <div className="Sidebar-Search-Box-Section">
-                  <div className="kyc-search-box">
-                    <IoMdSearch className="kyc-icon" />
-                    <input
-                      className="kyc-search"
-                      type="text"
-                      placeholder="Search..."
-                    />
-                  </div>
+          
                 </div>
                 <div className="Bell-Main-Section">
                   <div className="Bell-Section">
                     <FiBell className="Bell-Icon" />
                   </div>
                   <div className="Avatar-Main-Section">
-                    <img className="Manager-Avatar" src={Avatar} alt="" />
+                  <IoPersonSharp className="Manager-Avatar"  />
                     <div className="Avatar-Text-Section">
                       <span className="Avatar-Title">Anna Adame</span>
                       <span className="Avatar-Text">Founder</span>
@@ -169,16 +175,18 @@ function Update() {
                 </div>
               </div>
               <div className="Call-Center-Title">
-                <span className="call-center">Update-Lead</span>
+                <span className="call-center">Responsable de la mise à jour</span>
               </div>
             </div>
             <div className="Company-Detail-Box">
               <div className="Company-Details-Container">
                 <div className="All-Form-Section">
-                  <span className="Contact-Title">Personal Details</span>
+                  <span className="Contact-Title">Responsable de la mise à jour</span>
                   <form className="Sign-Form">
                     <div className="Form-Box-Text">
-                      <span className="Form-Box-Title">Customer Name</span>
+                      <span className="Form-Box-Title">
+
+Nom du client</span>
                       <div className="FormBox-Top">
                         <input
                           className="NameBox-Top"
@@ -194,7 +202,8 @@ function Update() {
                   </form>
                   <div className="Names-Form">
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Mobile Number 1</span>
+                      <span className="Form-Box-Title">Téléphone 1
+</span>
                       <div className="FormBox">
                         <input
                           className="NameBox"
@@ -206,7 +215,8 @@ function Update() {
                       </div>
                     </div>
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Mobile Number 2</span>
+                      <span className="Form-Box-Title">Telephone 2
+</span>
                       <div className="FormBox">
                         <input
                           className="NameBox"
@@ -223,14 +233,14 @@ function Update() {
                         <input
                           className="NameBox"
                           type="Email"
-                          placeholder="Enter Email Id"
+                          placeholder="Entrez l'identifiant de messagerie"
                           value={lead.email ? lead.email : ""}
                           onChange={handleEmailChange}
                         />
                       </div>
                     </div>
                   </div>
-                  <span className="Form-Box-Title-Main">Gender</span>
+                  <span className="Form-Box-Title-Main">Genre</span>
                   <div className="Check-Box-Section">
                     <label>
                       <input
@@ -251,28 +261,28 @@ function Update() {
                   </div>
                   <div className="Names-Form-Bottom-Section">
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Date of Birth</span>
+                      <span className="Form-Box-Title">Date de naissance</span>
                       <div className="FormBox-Bottom">
                         <input
                           className="NameBox-Center"
                           type="date"
                           id="birthday"
                           name="birthday"
-                          placeholder="Enter Date of Birth"
+                          placeholder="Entrer date de naissance"
                           value={lead.dob ? lead.dob : ""}
                           onChange={handleDobChange}
                         />
                       </div>
                     </div>
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Marital status</span>
+                      <span className="Form-Box-Title">État civil</span>
                       <div className="FormBox-Bottom">
                         <select
                           className="NameBox-Select"
                           value={lead.martialStatus ? lead.martialStatus : ""}
                           onChange={handleMaritalChange}
                         >
-                          <option value="">Marital status</option>
+                          <option value="">État civil</option>
                           <option>Single</option>
                           <option>Married</option>
                           <option>divorced</option>
@@ -281,41 +291,41 @@ function Update() {
                       </div>
                     </div>
                   </div>
-                  <span className="Form-Box-Title-Main">Address Details</span>
+                  <span className="Form-Box-Title-Main">Détails de l'adresse</span>
                   <div className="Names-Form">
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Street</span>
+                      <span className="Form-Box-Title">Rue</span>
                       <div className="FormBox">
                         <input
                           className="NameBox"
                           type="Adress"
-                          placeholder="Enter Street"
+                          placeholder=" Entrez la rue"
                           value={lead.street ? lead.street : ""}
                           onChange={handleStreetChange}
                         />
                       </div>
                     </div>
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Housing Type</span>
+                      <span className="Form-Box-Title">Type de logement</span>
                       <div className="FormBox-Bottom-House">
                         <select
                           className="NameBox-Select-House"
                           value={lead.housingType ? lead.housingType : ""}
                           onChange={handleHousingTypeChange}
                         >
-                          <option value="">Enter Housing Type</option>
+                          <option value="">Entrez le type de logement</option>
                           <option>House</option>
                           <option>Flat</option>
                         </select>
                       </div>
                     </div>
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Zip code</span>
+                      <span className="Form-Box-Title">Code postal</span>
                       <div className="FormBox">
                         <input
                           className="NameBox"
                           type="code"
-                          placeholder="Enter Zip code"
+                          placeholder="Entrez le code postal"
                           value={lead.zip ? lead.zip : ""}
                           onChange={handleZipChange}
                         />
@@ -324,40 +334,37 @@ function Update() {
                   </div>
                   <div className="City-Form">
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Accommodation</span>
+                      <span className="Form-Box-Title">Hébergement</span>
                       <div className="FormBox-Bottom">
                         <select
                           className="NameBox-Select"
                           value={lead.accommodation ? lead.accommodation : ""}
                           onChange={handleAccommodationChange}
                         >
-                          <option value="">Accommodation</option>
+                          <option value="">Hébergement</option>
                           <option>Owner</option>
                           <option>Tenant</option>
                         </select>
                       </div>
                     </div>
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">City</span>
+                      <span className="Form-Box-Title">Ville</span>
                       <div className="FormBox-Bottom">
-                        <select
+                        <input
+                           type="City"
+                           placeholder="Entrez votre ville"
                           className="NameBox-Select"
                           value={lead.city ? lead.city : ""}
                           onChange={handleCityChange}
-                        >
-                          <option value="">Select a City</option>
-                          <option>France</option>
-                          <option>Pakistan</option>
-                          <option>India</option>
-                          <option>Bangladesh</option>
-                        </select>
+                        />
+                   
                       </div>
                     </div>
                   </div>
-                  <span className="Form-Box-Title-Main">Status Customer</span>
+                  <span className="Form-Box-Title-Main">Statut Client</span>
                   <div className="Names-Form">
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Fiscal Number</span>
+                      <span className="Form-Box-Title">Numéro fiscal</span>
                       <div className="FormBox-Bottom">
                         <input
                           className="NameBox-Select"
@@ -369,7 +376,7 @@ function Update() {
                       </div>
                     </div>
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Ref. Tax Notice</span>
+                      <span className="Form-Box-Title">Réf. Avis d'impôt</span>
                       <div className="FormBox-Bottom">
                         <input
                           className="NameBox-Select"
@@ -384,36 +391,105 @@ function Update() {
 
                   <div className="Names-Form">
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Annual Income</span>
+                      <span className="Form-Box-Title">Revenu annuel</span>
                       <div className="FormBox-Bottom">
                         <input
                           className="NameBox-Select"
                           type="Number"
-                          placeholder="Enter Annual Income"
+                          placeholder="Entrez le revenu annuel"
                           value={lead.annualIncome ? lead.annualIncome : ""}
                           onChange={handleAnnualIncomeChange}
                         />
                       </div>
                     </div>
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Bank</span>
+                      <span className="Form-Box-Title">Mode de chauffage</span>
                       <div className="FormBox-Bottom">
-                        <input
+                  
+                             <select
                           className="NameBox-Select"
-                          type="Name"
-                          placeholder="Enter Bank Name"
                           value={lead.bankName ? lead.bankName : ""}
                           onChange={handleBankNameChange}
-                        />
+                        >
+                          <option value="">
+Sélectionnez votre mode de chauffage</option>
+                          <option>Gas</option>
+                          <option>Fuel oil</option>
+                          <option>Electric</option>
+                          <option>Heat pump
+</option>
+                          <option>Drink
+</option>
+                          <option>Reversible air conditioning
+</option>
+<option>Other
+</option>
+                        </select>
                       </div>
                     </div>
                   </div>
+                  <div className="Names-Form-Comment">
+                  <div className="Form-Box-Text-Bottom">
+                      <span className="Form-Box-Title">
+Commentaire</span>
+                      <div className="FormBox-Comment">
+                    
+                    <textarea
+    className="NameBox-Comment"
+    placeholder="
+    Ajouter un commentaire"
+ 
+    value={lead.callCenterComment ? lead.callCenterComment : ""}
+    onChange={handleCallCenterCommentChange}
+    rows={5} 
+></textarea>
+                        
+                      </div>
+                    </div>
+                  <div className="Form-Box-Text-Status">
+                      <span className="Form-Box-Title">
+Statut</span>
+                      <div className="FormBox-Bottom">
+                        <select
+                          className="NameBox-Select"
+                          value={lead.status ? lead.status : ""}
+                          onChange={handleStatusChange}
+                        >
+                          
+                          <option value="" >New lead</option>
+                          <option>Being processed</option>
+                          <option>Appointment</option>
+                          <option>File Processed</option>
+                          <option>Facility</option>
+                          <option>Installed</option>
+                          <option>Paid</option>
+                        </select>
+                      </div>
+                    </div>
+                    </div>
+                    <div className="Form-Box-Text-Bottom">
+                      <span className="Form-Box-Title">
 
+Commentaire de l'administrateur</span>
+                      <div className="FormBox-Comment">
+                    
+                    <textarea
+    className="NameBox-Comment"
+    placeholder="Add a Comment"
+ 
+     value={lead.adminComment ? lead.adminComment : ""}
+    onChange={handleAdminCommentChange}
+    rows={5} 
+></textarea>
+                        
+                      </div>
+                    </div>
                   <div className="Form-Add-Button">
                     <button onClick={() => updateLead()} className="Add-Button">
-                      Edit Form
+                    Modifier le formulaire
                     </button>
-                    <button className="Cancel-Button">Cancel</button>
+                    <button className="Cancel-Button"     onClick={() => navigate("/list-lead")}>
+Annuler</button>
                   </div>
                 </div>
               </div>

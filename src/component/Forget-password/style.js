@@ -38,6 +38,7 @@ export const Adminstyled = styled.div`
   .Welcome-Text {
     color: #878a99;
     font-size: 17px;
+    width:435px;
     margin-bottom: 30px;
   }
 
