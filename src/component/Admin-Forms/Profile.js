@@ -96,7 +96,7 @@ function Profile() {
     if (!mobileNumber1) {
       return toast.error("Please Enter Your Number");
     }
-  
+
     if (!email) {
       return toast.error("Please Enter Your Email");
     }
@@ -179,14 +179,14 @@ function Profile() {
             <div className="Sidebar-Header-Content">
               <div className="Sidebar-Header-Section">
                 <div className="Sidebar-Search-Box-Section">
-               
+
                 </div>
                 <div className="Bell-Main-Section">
                   <div className="Bell-Section">
                     <FiBell className="Bell-Icon" />
                   </div>
                   <div className="Avatar-Main-Section">
-                  <IoPersonSharp className="Manager-Avatar"  />
+                    <IoPersonSharp className="Manager-Avatar" />
                     <div className="Avatar-Text-Section">
                       <span className="Avatar-Title">Anna Adame</span>
                       <span className="Avatar-Text">Founder</span>
@@ -202,11 +202,11 @@ function Profile() {
               <div className="Company-Details-Container">
                 <div className="All-Form-Section">
                   <span className="Contact-Title">Details du profile
-</span>
+                  </span>
                   <form className="Sign-Form">
                     <div className="Form-Box-Text">
                       <span className="Form-Box-Title">
-Nom du client</span>
+                        Nom du client</span>
                       <div className="FormBox-Top">
                         <input
                           className="NameBox-Top"
@@ -222,7 +222,7 @@ Nom du client</span>
                   <div className="Names-Form">
                     <div className="Form-Box-Text-Bottom">
                       <span className="Form-Box-Title">Téléphone 1
-</span>
+                      </span>
                       <div className="FormBox">
                         <input
                           className="NameBox"
@@ -235,7 +235,7 @@ Nom du client</span>
                     </div>
                     <div className="Form-Box-Text-Bottom">
                       <span className="Form-Box-Title">Telephone 2
-</span>
+                      </span>
                       <div className="FormBox">
                         <input
                           className="NameBox"
@@ -248,7 +248,7 @@ Nom du client</span>
                     </div>
                     <div className="Form-Box-Text-Bottom">
                       <span className="Form-Box-Title">Email ID
-</span>
+                      </span>
                       <div className="FormBox">
                         <input
                           className="NameBox"
@@ -296,7 +296,7 @@ Nom du client</span>
                     </div>
                     <div className="Form-Box-Text-Bottom">
                       <span className="Form-Box-Title">
-État civil</span>
+                        État civil</span>
                       <div className="FormBox-Bottom">
                         <select
                           className="NameBox-Select"
@@ -304,7 +304,7 @@ Nom du client</span>
                           onChange={handleMaritalChange}
                         >
                           <option value="">
-État civil</option>
+                            État civil</option>
                           <option>Single</option>
                           <option>Married</option>
                           <option>divorced</option>
@@ -314,7 +314,7 @@ Nom du client</span>
                     </div>
                   </div>
                   <span className="Form-Box-Title-Main">
-Détails de l'adresse</span>
+                    Détails de l'adresse</span>
                   <div className="Names-Form">
                     <div className="Form-Box-Text-Bottom">
                       <span className="Form-Box-Title">Rue</span>
@@ -331,7 +331,7 @@ Détails de l'adresse</span>
                     </div>
                     <div className="Form-Box-Text-Bottom">
                       <span className="Form-Box-Title">
-Type de logement</span>
+                        Type de logement</span>
                       <div className="FormBox-Bottom-House">
                         <select
                           className="NameBox-Select-House"
@@ -346,7 +346,7 @@ Type de logement</span>
                     </div>
                     <div className="Form-Box-Text-Bottom">
                       <span className="Form-Box-Title">Code postal
-</span>
+                      </span>
                       <div className="FormBox">
                         <input
                           className="NameBox"
@@ -378,7 +378,7 @@ Type de logement</span>
                     </div>
                     <div className="Form-Box-Text-Bottom">
                       <span className="Form-Box-Title">Ville
-</span>
+                      </span>
                       <div className="FormBox-Bottom">
                         <input
                           className="NameBox-Select"
@@ -387,8 +387,8 @@ Type de logement</span>
                           value={city}
                           onChange={handleCityChange}
                         />
-                    
-                        
+
+
                       </div>
                     </div>
                   </div>
@@ -408,7 +408,7 @@ Type de logement</span>
                     </div>
                     <div className="Form-Box-Text-Bottom">
                       <span className="Form-Box-Title">
-Réf. Avis d'impôt</span>
+                        Réf. Avis d'impôt</span>
                       <div className="FormBox-Bottom">
                         <input
                           className="NameBox-Select"
@@ -424,7 +424,7 @@ Réf. Avis d'impôt</span>
                   <div className="Names-Form">
                     <div className="Form-Box-Text-Bottom">
                       <span className="Form-Box-Title">
-Revenu annuel</span>
+                        Revenu annuel</span>
                       <div className="FormBox-Bottom">
                         <input
                           className="NameBox-Select"
@@ -438,48 +438,47 @@ Revenu annuel</span>
                     </div>
                     <div className="Form-Box-Text-Bottom">
                       <span className="Form-Box-Title">
-Mode de chauffage</span>
+                        Mode de chauffage</span>
                       <div className="FormBox-Bottom">
-                  
-                             <select
+
+                        <select
                           className="NameBox-Select"
                           value={bankName}
                           onChange={handleBankNameChange}
                         >
                           <option value="">
-Sélectionnez votre mode de chauffage</option>
+                            Sélectionnez votre mode de chauffage</option>
                           <option>Gas</option>
                           <option>Fuel oil</option>
                           <option>Electric</option>
                           <option>Heat pump
-</option>
+                          </option>
                           <option>Drink
-</option>
+                          </option>
                           <option>Reversible air conditioning
-</option>
-<option>Other
-</option>
+                          </option>
+                          <option>Other
+                          </option>
                         </select>
                       </div>
                     </div>
-                    
+
                   </div>
                   <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">
-Commentaire</span>
-                      <div className="FormBox-Comment">
-                    
-                    <textarea
-    className="NameBox-Comment"
-    placeholder="
-    Ajouter un commentaire"
-    value={callCenterComment}
-    onChange={handleCallCenterCommentChange}
-    rows={5} 
-></textarea>
-                        
-                      </div>
+                    <span className="Form-Box-Title">
+                      Commentaire</span>
+                    <div className="FormBox-Comment">
+
+                      <textarea
+                        className="NameBox-Comment"
+                        placeholder="Ajouter un commentaire"
+                        value={callCenterComment}
+                        onChange={handleCallCenterCommentChange}
+                        rows={5}
+                      ></textarea>
+
                     </div>
+                  </div>
                   {/* {showAttechment && (
                     <div className="File-Div">
                       <input type="file" />
@@ -496,9 +495,9 @@ Commentaire</span>
                       className="Add-Button"
                       onClick={(e) => oncreateLead(e)}
                     >
-                    Ajouter un nouveau prospect
+                      Ajouter un nouveau prospect
                     </button>
-                    <button className="Cancel-Button"  onClick={() => navigate("/partner")}>Annuler</button>
+                    <button className="Cancel-Button" onClick={() => navigate("/partner")}>Annuler</button>
                   </div>
                 </div>
               </div>
