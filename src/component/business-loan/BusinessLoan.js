@@ -11,7 +11,7 @@ function BusinessLoan() {
   const navigate = useNavigate();
   const [companies, setCompanies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-
+  const [searchTerm, setSearchTerm] = useState('');
   function formatDate(dateString) {
     // Create a new Date object from the dateString
     const date = new Date(dateString);
@@ -31,6 +31,27 @@ function BusinessLoan() {
   }
 
   useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      getAllCompanies();
+    }, 500);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [searchTerm, currentPage]);
+
+
+  const handleSearchChange = (e) => {
+    const term = e.target.value;
+    setSearchTerm(term);
+
+    if (term.trim() === '') {
+      getAllCompanies();
+    }
+  };
+
+
+
+
+  useEffect(() => {
     getAllCompanies(currentPage);
   }, [currentPage]);
 
@@ -43,13 +64,14 @@ function BusinessLoan() {
     try {
       const response = await API.getAllCallCenter({
         page: currentPage,
+        searchTerm,
       });
       const responseData = response.data;
 
       if (responseData && responseData.success) {
         setCompanies(responseData.data);
         // Handle pagination details if available in response
-        toast.success(responseData.message);
+        // toast.success(responseData.message);
       } else {
         toast.error("Failed to fetch companies");
       }
@@ -73,7 +95,7 @@ function BusinessLoan() {
       })
       .catch((e) => toast.error(e.response.data.message));
   };
- 
+
 
   const userData = JSON.parse(localStorage.getItem("user"));
 
@@ -86,12 +108,12 @@ function BusinessLoan() {
               <div className="Sidebar-Header-Content">
                 <div className="Sidebar-Header-Section">
                   <div className="Sidebar-Search-Box-Section">
-                
+
                   </div>
                   <div className="Bell-Main-Section">
-                    
+
                     <div className="Avatar-Main-Section">
-                    <IoPersonSharp className="Manager-Avatar"  />
+                      <IoPersonSharp className="Manager-Avatar" />
                       <div className="Avatar-Text-Section">
                         <span className="Avatar-Title">
                           {userData.userName}
@@ -103,7 +125,7 @@ function BusinessLoan() {
                 </div>
                 <div className="Call-Center-Title">
                   <span className="call-center">
-Liste des centres d'appels</span>
+                    Liste des centres d'appels</span>
                 </div>
               </div>
               <div className="Parter-Main-Section">
@@ -111,10 +133,10 @@ Liste des centres d'appels</span>
                   <div className="Partner-Form-Header">
                     <div className="Header-Text">
                       <span>
-Liste des centres d'appels</span>
+                        Liste des centres d'appels</span>
                     </div>
                     <div className="Header-Button-Section">
-                     
+
                     </div>
                   </div>
                   <div className="Name-Filter-Box1">
@@ -123,8 +145,9 @@ Liste des centres d'appels</span>
                       <input
                         className="kyc-search1"
                         type="text"
-                        placeholder="Taper un mot clé
-                        "
+                        placeholder="Taper un mot clé"
+                        value={searchTerm}
+                        onChange={handleSearchChange}
                       />
                     </div>
                   </div>
@@ -133,25 +156,25 @@ Liste des centres d'appels</span>
                       <thead>
                         <tr>
                           <th>ID
-</th>
+                          </th>
                           <th> Nom et prénom
 
-</th>
+                          </th>
                           <th>Centre d'appel</th>
                           <th>Informations de contact
-</th>
+                          </th>
                           <th>Rue
-</th>
-                          <th>Ajouté le 
-</th>
+                          </th>
+                          <th>Ajouté le
+                          </th>
                           <th>Ville</th>
                           <th>Code postal
-</th>
+                          </th>
                           <th>Actions</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {companies.map((item, index) => (
+                        {companies?.users?.map((item, index) => (
                           <tr key={index}>
                             <td>{index + 1}</td>
                             <td className="Client-Color">{item.userName}</td>
@@ -162,12 +185,12 @@ Liste des centres d'appels</span>
                             <td>{item.city}</td>
                             <td>{item.zip}</td>
                             <td className="Icons-Gapping">
-                        
-                        <MdOutlineDelete
-                          onClick={(e) => handleDelete(e, item._id)}
-                          className="Table-Icons1"
-                        />
-                      </td>
+
+                              <MdOutlineDelete
+                                onClick={(e) => handleDelete(e, item._id)}
+                                className="Table-Icons1"
+                              />
+                            </td>
                           </tr>
                         ))}
                       </tbody>
@@ -175,7 +198,7 @@ Liste des centres d'appels</span>
                   </div>
                   <div className="pagination-container">
                     <span className="pagination-text">
-                   
+
                     </span>
                     <div className="pagination-buttons">
                       <button
@@ -190,9 +213,8 @@ Liste des centres d'appels</span>
                       ).map((pageNumber) => (
                         <button
                           key={pageNumber}
-                          className={`page-button${
-                            currentPage === pageNumber + 1 ? " active" : ""
-                          }`}
+                          className={`page-button${currentPage === pageNumber + 1 ? " active" : ""
+                            }`}
                           onClick={() => setCurrentPage(pageNumber + 1)}
                         >
                           {pageNumber + 1}

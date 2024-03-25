@@ -12,7 +12,7 @@ function DsaListing() {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const [companies, setCompanies] = useState([]);
-
+  const [searchTerm, setSearchTerm] = useState('');
   function formatDate(dateString) {
     // Create a new Date object from the dateString
     const date = new Date(dateString);
@@ -30,6 +30,28 @@ function DsaListing() {
 
     return formattedDate;
   }
+
+
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      getAllCompanies();
+    }, 500);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [searchTerm, currentPage]);
+
+
+  const handleSearchChange = (e) => {
+    const term = e.target.value;
+
+    setSearchTerm(term);
+
+    if (term.trim() === '') {
+      getAllCompanies();
+    }
+  };
+
+
   const userData = JSON.parse(localStorage.getItem("user"));
   useEffect(() => {
     getAllCompanies(currentPage);
@@ -44,6 +66,7 @@ function DsaListing() {
     try {
       const response = await API.getAllCompanies({
         page: currentPage,
+        searchTerm,
       });
       const responseData = response.data;
 
@@ -83,12 +106,12 @@ function DsaListing() {
               <div className="Sidebar-Header-Content">
                 <div className="Sidebar-Header-Section">
                   <div className="Sidebar-Search-Box-Section">
-                 
+
                   </div>
                   <div className="Bell-Main-Section">
 
                     <div className="Avatar-Main-Section">
-                    <IoPersonSharp className="Manager-Avatar"  />
+                      <IoPersonSharp className="Manager-Avatar" />
                       <div className="Avatar-Text-Section">
                         <span className="Avatar-Title">
                           {" "}
@@ -115,8 +138,8 @@ function DsaListing() {
                         className="Header-Button"
                         onClick={() => navigate("/company-details")}
                       >
-                       
-+ Attribuer
+
+                        + Attribuer
                       </button>
                     </div>
                   </div>
@@ -135,8 +158,9 @@ function DsaListing() {
                       <input
                         className="kyc-search1"
                         type="text"
-                        placeholder="Taper un mot clé
-                        "
+                        placeholder="Taper un mot clé"
+                        value={searchTerm}
+                        onChange={handleSearchChange}
                       />
                     </div>
                   </div>
@@ -145,15 +169,15 @@ function DsaListing() {
                       <thead>
                         <tr>
                           <th>ID
-</th>
+                          </th>
                           <th>Code postal
-</th>
+                          </th>
                           <th>Nom et prénom
-</th>
+                          </th>
                           <th>Téléphone 1
-</th>
+                          </th>
                           <th>Rue
-</th>
+                          </th>
                           <th>Industrie</th>
                           <th>Ajouté le </th>
                           <th>Actions</th>
@@ -171,9 +195,9 @@ function DsaListing() {
                             <td>{item.role}</td>
                             <td>{formatDate(item.createdAt)}</td>
                             <td className="Icons-Gapping">
-                        
+
                               <MdOutlineDelete
-                               onClick={(e) => handleDelete(e, item._id)}
+                                onClick={(e) => handleDelete(e, item._id)}
                                 className="Table-Icons1"
                               />
                             </td>
@@ -183,12 +207,12 @@ function DsaListing() {
                     </table>
                   </div>
                   <div className="pagination-container">
-                  <div>
-    <span className="pagination-text">
+                    <div>
+                      <span className="pagination-text">
 
-    </span>
-   
-  </div>
+                      </span>
+
+                    </div>
 
                     <div className="pagination-buttons">
                       <button

@@ -23,8 +23,9 @@ function Leadlist() {
   const [companies, setCompanies] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [leadId, setLeadId] = useState("");
-    const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
   const [companyId, setcompanyId] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   // Define options here
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -52,9 +53,9 @@ function Leadlist() {
     if (!leadId) {
       return toast.error("lead not found");
     }
-console.log(leadId, companyId)
+    console.log(leadId, companyId)
     await API.assignLead({
-      
+
       leadId: leadId,
       companyId: companyId,
     })
@@ -89,8 +90,8 @@ console.log(leadId, companyId)
             ))}
           </select>
           <button className="Add-Button" onClick={(e) => handleAssign(e)}>
-          
-Attribuer
+
+            Attribuer
           </button>
         </div>
       </div>
@@ -114,23 +115,44 @@ Attribuer
     return formattedDate;
   }
   useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      getAllLeads();
+    }, 500);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [searchTerm, currentPage]);
+
+
+  const handleSearchChange = (e) => {
+    const term = e.target.value;
+
+    setSearchTerm(term);
+
+    if (term.trim() === '') {
+      getAllLeads();
+    }
+  };
+
+  useEffect(() => {
     getStats();
     getAllCompanies();
     getAllLeads();
   }, []);
 
   const getAllLeads = async () => {
+
     try {
-     
+
       const response = await API.getAllLeadsForAdmin({
-        page: currentPage, 
+        page: currentPage,
+        searchTerm,
       });
-  
+
       const responseData = response.data;
-  
+
       if (responseData && responseData.success) {
         setLeads(responseData.data.leads);
-        toast.success(responseData.message);
+        // toast.success(responseData.message);
       } else {
         toast.error("Failed to fetch employees");
       }
@@ -138,7 +160,7 @@ Attribuer
       toast.error("Error fetching employees: " + error.message);
     }
   };
-   
+
   const getStats = async () => {
     // console.log("api check");
     await API.getStats()
@@ -190,12 +212,12 @@ Attribuer
               <div className="Sidebar-Header-Content">
                 <div className="Sidebar-Header-Section">
                   <div className="Sidebar-Search-Box-Section">
-                
+
                   </div>
                   <div className="Bell-Main-Section">
-                  
+
                     <div className="Avatar-Main-Section">
-                    <IoPersonSharp className="Manager-Avatar"  />
+                      <IoPersonSharp className="Manager-Avatar" />
                       <div className="Avatar-Text-Section">
                         <span className="Avatar-Title">
                           {" "}
@@ -209,14 +231,14 @@ Attribuer
                 <div className="Call-Center-Title">
                   <span className="call-center">Liste des leads
 
-</span>
+                  </span>
                 </div>
               </div>
               <div className="dashboard">
                 <div className="dashboard-container">
                   <div className="dashboard-item">
                     <div className="label">Totale leads
-</div>
+                    </div>
                     <div className="value">{stats.totalLeads}</div>
                   </div>
                   <div className="dashboard-item">
@@ -243,14 +265,14 @@ Attribuer
                     <div className="Header-Text">
                       <span>Liste des leads
 
-</span>
+                      </span>
                     </div>
                     <div className="Header-Button-Section">
-                     
-                    <button className="Header-Button" onClick={exportToExcel}>
-                    <AiOutlineUpload className="Upload-button" /> Exporter vers excel
 
-                  </button>
+                      <button className="Header-Button" onClick={exportToExcel}>
+                        <AiOutlineUpload className="Upload-button" /> Exporter vers excel
+
+                      </button>
                     </div>
                   </div>
                   <div className="Name-Filter-Box1">
@@ -259,8 +281,9 @@ Attribuer
                       <input
                         className="kyc-search1"
                         type="text"
-                        placeholder="Taper un mot clé
-                        "
+                        placeholder="Taper un mot clé"
+                        value={searchTerm}
+                        onChange={handleSearchChange}
                       />
                     </div>
                   </div>
@@ -269,24 +292,23 @@ Attribuer
                       <thead>
                         <tr className="Tr-Font-Color">
                           <th>ID
-</th>
+                          </th>
                           <th>Code postal
-</th>
+                          </th>
                           <th>Call Center</th>
                           <th>Nom et prénom
-</th>
+                          </th>
                           <th>Téléphone 1
-</th>
+                          </th>
                           <th>Ville
-</th>
-                          <th>
-Mode de chauffage</th>
+                          </th>
+
                           <th>statut</th>
-                          <th>Ajouté le 
-</th>
+                          <th>Ajouté le
+                          </th>
                           <th>Action</th>
                           <th>Attribuer des sociétés
-</th>
+                          </th>
                         </tr>
                       </thead>
                       <tbody>
@@ -300,7 +322,7 @@ Mode de chauffage</th>
                             <td>{item.customerName}</td>
                             <td>{item.mobileNumber1}</td>
                             <td>{item.city}</td>
-                            <td>{item.bankName}</td>
+
                             <td className="Status-Color1">{item.status}</td>
                             <td>{formatDate(item.createdAt)}</td>
 
@@ -313,9 +335,9 @@ Mode de chauffage</th>
                                 key={index}
                               />
 
-                              <VscEye className="Table-Icons"    onClick={() =>
-                                  navigate(`/customer/${item._id}`)
-                                } />
+                              <VscEye className="Table-Icons" onClick={() =>
+                                navigate(`/customer/${item._id}`)
+                              } />
                               <MdOutlineDelete
                                 onClick={(e) => handleDelete(e, item._id)}
                                 className="Table-Icons1"
@@ -326,7 +348,7 @@ Mode de chauffage</th>
                                 className="Assign-Button"
                                 onClick={() => toggleModal(item._id)}
                               >
-                              Attribuer une entreprise
+                                Attribuer une entreprise
                               </button>
                               <Modal
                                 isOpen={isModalOpen}
@@ -344,41 +366,40 @@ Mode de chauffage</th>
                     />
                   </div>
                   <div className="pagination-container">
-  <span className="pagination-text">
-  
-  </span>
-  <div className="pagination-buttons">
-    <button
-      className="page-button"
-      onClick={() => setCurrentPage(currentPage - 1)}
-      disabled={currentPage === 1}
-    >
-      Previous
-    </button>
-    {Array.from(
-      Array(leads?.pagination?.totalPages).keys()
-    ).map((pageNumber) => (
-      <button
-        key={pageNumber}
-        className={`page-button${
-          currentPage === pageNumber + 1 ? " active" : ""
-        }`}
-        onClick={() => setCurrentPage(pageNumber + 1)}
-      >
-        {pageNumber + 1}
-      </button>
-    ))}
-    <button
-      className="page-button"
-      onClick={() => setCurrentPage(currentPage + 1)}
-      disabled={
-        currentPage === leads?.pagination?.totalPages
-      }
-    >
-      Next
-    </button>
-  </div>
-</div>
+                    <span className="pagination-text">
+
+                    </span>
+                    <div className="pagination-buttons">
+                      <button
+                        className="page-button"
+                        onClick={() => setCurrentPage(currentPage - 1)}
+                        disabled={currentPage === 1}
+                      >
+                        Previous
+                      </button>
+                      {Array.from(
+                        Array(leads?.pagination?.totalPages).keys()
+                      ).map((pageNumber) => (
+                        <button
+                          key={pageNumber}
+                          className={`page-button${currentPage === pageNumber + 1 ? " active" : ""
+                            }`}
+                          onClick={() => setCurrentPage(pageNumber + 1)}
+                        >
+                          {pageNumber + 1}
+                        </button>
+                      ))}
+                      <button
+                        className="page-button"
+                        onClick={() => setCurrentPage(currentPage + 1)}
+                        disabled={
+                          currentPage === leads?.pagination?.totalPages
+                        }
+                      >
+                        Next
+                      </button>
+                    </div>
+                  </div>
 
                 </div>
               </div>

@@ -11,7 +11,8 @@ import { toast } from "react-toastify";
 function Partner() {
   const navigate = useNavigate();
   const [leads, setLeads] = useState([]);
-
+  const [currentPage, setCurrentPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState('');
   function formatDate(dateString) {
     // Create a new Date object from the dateString
     const date = new Date(dateString);
@@ -33,20 +34,47 @@ function Partner() {
   const userData = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      getAllLeads();
+    }, 500);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [searchTerm, currentPage]);
+
+
+  const handleSearchChange = (e) => {
+    const term = e.target.value;
+
+    setSearchTerm(term);
+
+    if (term.trim() === '') {
+      getAllLeads();
+    }
+  };
+  useEffect(() => {
     getAllLeads();
   }, []);
+
   const getAllLeads = async () => {
-    // console.log("api check");
-    await API.getAllLeads()
-      .then((resp) => {
-        // console.log(resp);
-        if (resp.status == 200) {
-          setLeads(resp.data.data.leads);
-          toast.success(resp.data.message);
-          // console.log(resp.data.data);
-        }
-      })
-      .catch((e) => toast.error(e.response.data.message));
+
+    try {
+
+      const response = await API.getAllLeads({
+        page: currentPage,
+        searchTerm,
+      });
+
+      const responseData = response.data;
+
+      if (responseData && responseData.success) {
+        setLeads(responseData.data.leads);
+        // toast.success(responseData.message);
+      } else {
+        toast.error("Failed to fetch employees");
+      }
+    } catch (error) {
+      toast.error("Error fetching employees: " + error.message);
+    }
   };
 
   return (
@@ -58,14 +86,14 @@ function Partner() {
               <div className="Sidebar-Header-Content">
                 <div className="Sidebar-Header-Section">
                   <div className="Sidebar-Search-Box-Section">
-              
+
                   </div>
                   <div className="Bell-Main-Section">
                     <div className="Bell-Section">
-                     
+
                     </div>
                     <div className="Avatar-Main-Section">
-                    <IoPersonSharp className="Manager-Avatar"  />
+                      <IoPersonSharp className="Manager-Avatar" />
                       <div className="Avatar-Text-Section">
                         <span className="Avatar-Title">
                           {userData.userName}
@@ -86,15 +114,15 @@ function Partner() {
                   <div className="Partner-Form-Header">
                     <div className="Header-Text">
                       <span>Totale leads
-</span>
+                      </span>
                     </div>
                     <div className="Header-Button-Section">
-                 
+
                       <button
                         className="Header-Button"
                         onClick={() => navigate("/admin-form")}
                       >
-               + Ajouter un nouveau prospect
+                        + Ajouter un nouveau prospect
                       </button>
                     </div>
                   </div>
@@ -104,8 +132,9 @@ function Partner() {
                       <input
                         className="kyc-search1"
                         type="text"
-                        placeholder="Taper un mot clé
-                        "
+                        placeholder="Taper un mot clé"
+                        value={searchTerm}
+                        onChange={handleSearchChange}
                       />
                     </div>
                   </div>
@@ -114,20 +143,20 @@ function Partner() {
                       <thead>
                         <tr>
                           <th> ID
-</th>
+                          </th>
                           <th>Code postal
-</th>
+                          </th>
                           <th>Nom et prénom
-</th>
+                          </th>
                           <th>Téléphone 1
-</th>
+                          </th>
                           <th>Ville
-</th>
+                          </th>
                           <th>Genre</th>
                           <th>Revenue annuel
-</th>
-                          <th>Ajouté le 
-</th>
+                          </th>
+                          <th>Ajouté le
+                          </th>
                           <th>Statut</th>
                         </tr>
                       </thead>
@@ -136,7 +165,7 @@ function Partner() {
                           <tr key={index}>
                             <td>{index + 1}</td>
                             <td>{item.zip}</td>
-                      
+
                             <td className="Client-Color">
                               {item.customerName}
                             </td>
@@ -147,7 +176,7 @@ function Partner() {
                             <td>{formatDate(item.createdAt)}</td>
 
                             <td className="Status-Color">{item.status}</td>
-                            
+
                           </tr>
                         ))}
                       </tbody>
@@ -155,15 +184,37 @@ function Partner() {
                   </div>
                   <div className="pagination-container">
                     <span className="pagination-text">
-                    
+
                     </span>
                     <div className="pagination-buttons">
-                      <button className="page-button">Previous</button>
-
-                      <button className="page-button1">1</button>
-                      <button className="page-button2">2</button>
-
-                      <button className="page-button3">Next</button>
+                      <button
+                        className="page-button"
+                        onClick={() => setCurrentPage(currentPage - 1)}
+                        disabled={currentPage === 1}
+                      >
+                        Previous
+                      </button>
+                      {Array.from(
+                        Array(leads?.pagination?.totalPages).keys()
+                      ).map((pageNumber) => (
+                        <button
+                          key={pageNumber}
+                          className={`page-button${currentPage === pageNumber + 1 ? " active" : ""
+                            }`}
+                          onClick={() => setCurrentPage(pageNumber + 1)}
+                        >
+                          {pageNumber + 1}
+                        </button>
+                      ))}
+                      <button
+                        className="page-button"
+                        onClick={() => setCurrentPage(currentPage + 1)}
+                        disabled={
+                          currentPage === leads?.pagination?.totalPages
+                        }
+                      >
+                        Next
+                      </button>
                     </div>
                   </div>
                 </div>
