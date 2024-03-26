@@ -19,12 +19,12 @@ const routes = [
 
   {
     path: "/partner",
-    name: "partenaire",
+    name: "Société",
     icon: <RiParentFill />,
     subRoutes: [
       {
         path: "/dsa-company-list",
-        name: "DSA ",
+        name: "Lead attribué aux sociétés",
         icon: "-",
       },
     ],
@@ -32,24 +32,24 @@ const routes = [
 
   {
     path: "/businessloan",
-    name: "Application",
+    name: "Liste centre d'appel",
     icon: <RiFileList3Fill />,
     subRoutes: [
       {
         path: "/businessloan",
-        name: "Business Loan",
+        name: "Call center",
         icon: "-",
       },
     ],
   },
   {
     path: "/setting",
-    name: "Parametre",
+    name: "Change Admin pwd",
     icon: <IoMdSettings />,
   },
   {
     path: "/user",
-    name: "User",
+    name: "Ajouter un utilisateur",
     icon: <IoMdPerson />,
   },
   {

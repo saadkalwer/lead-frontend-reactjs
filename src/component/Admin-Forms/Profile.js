@@ -304,11 +304,15 @@ function Profile() {
                           onChange={handleMaritalChange}
                         >
                           <option value="">
-                            État civil</option>
-                          <option>Single</option>
-                          <option>Married</option>
-                          <option>divorced</option>
-                          <option>cohabitation</option>
+                            Veuf
+                          </option>
+                          <option>Célibataire
+                          </option>
+                          <option>Marié
+                          </option>
+                          <option> Divorcé
+                          </option>
+                          <option>Concubinage</option>
                         </select>
                       </div>
                     </div>
@@ -339,8 +343,9 @@ function Profile() {
                           onChange={handleHousingTypeChange}
                         >
                           <option value="">Entrez le type de logement</option>
-                          <option>House</option>
-                          <option>Flat</option>
+                          <option>Maison
+                          </option>
+                          <option>Appartement</option>
                         </select>
                       </div>
                     </div>
@@ -363,7 +368,8 @@ function Profile() {
                   </div>
                   <div className="City-Form">
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Hébergement</span>
+                      <span className="Form-Box-Title">Hébergé
+                      </span>
                       <div className="FormBox-Bottom">
                         <select
                           className="NameBox-Select"
@@ -371,8 +377,9 @@ function Profile() {
                           onChange={handleAccommodationChange}
                         >
                           <option value="">Hébergement</option>
-                          <option>Owner</option>
-                          <option>Tenant</option>
+                          <option>Propriétaire
+                          </option>
+                          <option> Locataire</option>
                         </select>
                       </div>
                     </div>
@@ -448,16 +455,21 @@ function Profile() {
                         >
                           <option value="">
                             Sélectionnez votre mode de chauffage</option>
-                          <option>Gas</option>
-                          <option>Fuel oil</option>
-                          <option>Electric</option>
-                          <option>Heat pump
+                          <option>Gaz
+                          </option>
+                          <option>Fioul
+                          </option>
+                          <option>Électrique
+                          </option>
+                          <option>Pompe à chaleur
+
                           </option>
                           <option>Drink
                           </option>
-                          <option>Reversible air conditioning
+                          <option> Clim réversible
+
                           </option>
-                          <option>Other
+                          <option>Autre
                           </option>
                         </select>
                       </div>

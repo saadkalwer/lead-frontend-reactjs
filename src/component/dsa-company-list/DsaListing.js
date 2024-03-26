@@ -130,7 +130,8 @@ function DsaListing() {
                 <div className="Partner-Container">
                   <div className="Partner-Form-Header">
                     <div className="Header-Text">
-                      <span>DSA List</span>
+                      <span>Liste des leads attribués aux sociétés,
+                      </span>
                     </div>
                     <div className="Header-Button-Section">
 
@@ -150,7 +151,7 @@ function DsaListing() {
                     >
                       Client
                     </div>
-                    <div className="Company-Tag">Company</div>
+                    <div className="Company-Tag">Société</div>
                   </div>
                   <div className="Name-Filter-Box1">
                     <div className="kyc-search-box1">
@@ -170,16 +171,16 @@ function DsaListing() {
                         <tr>
                           <th>ID
                           </th>
-                          <th>Code postal
-                          </th>
                           <th>Nom et prénom
+                          </th>   <th>Rue</th>
+                          <th>Ville
+                          </th>
+                          <th>Code postal
                           </th>
                           <th>Téléphone 1
                           </th>
-                          <th>Rue
-                          </th>
-                          <th>Industrie</th>
                           <th>Ajouté le </th>
+
                           <th>Actions</th>
                         </tr>
                       </thead>
@@ -187,13 +188,12 @@ function DsaListing() {
                         {companies.map((item, index) => (
                           <tr key={index}>
                             <td>{index + 1}</td>
+                            <td>{item.firstName}</td><td>{item.street}</td>
+                            <td>{item.city}</td>
                             <td className="Client-Color">{item.zip}</td>
-                            <td>{item.firstName}</td>
-
                             <td>{item.mobileNo1}</td>
-                            <td>{item.street}</td>
-                            <td>{item.role}</td>
                             <td>{formatDate(item.createdAt)}</td>
+
                             <td className="Icons-Gapping">
 
                               <MdOutlineDelete

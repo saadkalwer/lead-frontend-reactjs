@@ -293,21 +293,21 @@ function Leadlist() {
                         <tr className="Tr-Font-Color">
                           <th>ID
                           </th>
-                          <th>Code postal
-                          </th>
-                          <th>Call Center</th>
                           <th>Nom et prénom
-                          </th>
-                          <th>Téléphone 1
                           </th>
                           <th>Ville
                           </th>
-
+                          <th>Code postal
+                          </th>
+                          <th>Téléphone 1
+                          </th>
                           <th>statut</th>
+                          <th>Call Center</th>
+
                           <th>Ajouté le
                           </th>
                           <th>Action</th>
-                          <th>Attribuer des sociétés
+                          <th>Attribuer aux sociétés
                           </th>
                         </tr>
                       </thead>
@@ -315,11 +315,12 @@ function Leadlist() {
                         {leads.map((item, index) => (
                           <tr key={index}>
                             <td>{index + 1}</td>
+
+                            <td>{item?.customerName}</td>
+                            <td>{item.city}</td>
                             <td className="Client-Color">
-                              {item.fiscalNumber}
+                              {item.zip}
                             </td>
-                            <td>{item?.userId?.userName}</td>
-                            <td>{item.customerName}</td>
                             <td>{item.mobileNumber1}</td>
                             <td>{item.city}</td>
 
@@ -348,7 +349,7 @@ function Leadlist() {
                                 className="Assign-Button"
                                 onClick={() => toggleModal(item._id)}
                               >
-                                Attribuer une entreprise
+                                Attribuer à une société
                               </button>
                               <Modal
                                 isOpen={isModalOpen}

@@ -24,7 +24,7 @@ function Update() {
   const [dob, setDob] = useState("");
   const [street, setStreet] = useState("");
   const [zip, setZip] = useState("");
-const [status, setStatus] = useState("");
+  const [status, setStatus] = useState("");
   const [fiscalNumber, setFiscal] = useState("");
   const [refTaxNotice, setRefTaxNotice] = useState("");
   const [annualIncome, setAnnualIncome] = useState("");
@@ -81,10 +81,10 @@ const [status, setStatus] = useState("");
     setLead(updatedLead);
   };
 
-const handleStatusChange = (e) => {
-  const updatedLead = { ...lead, status: e.target.value };
-  setLead(updatedLead);
-};
+  const handleStatusChange = (e) => {
+    const updatedLead = { ...lead, status: e.target.value };
+    setLead(updatedLead);
+  };
   const handleAnnualIncomeChange = (e) => {
     const updatedLead = { ...lead, annualIncome: e.target.value };
     setLead(updatedLead);
@@ -159,14 +159,14 @@ const handleStatusChange = (e) => {
             <div className="Sidebar-Header-Content">
               <div className="Sidebar-Header-Section">
                 <div className="Sidebar-Search-Box-Section">
-          
+
                 </div>
                 <div className="Bell-Main-Section">
                   <div className="Bell-Section">
                     <FiBell className="Bell-Icon" />
                   </div>
                   <div className="Avatar-Main-Section">
-                  <IoPersonSharp className="Manager-Avatar"  />
+                    <IoPersonSharp className="Manager-Avatar" />
                     <div className="Avatar-Text-Section">
                       <span className="Avatar-Title">Anna Adame</span>
                       <span className="Avatar-Text">Founder</span>
@@ -186,7 +186,7 @@ const handleStatusChange = (e) => {
                     <div className="Form-Box-Text">
                       <span className="Form-Box-Title">
 
-Nom du client</span>
+                        Nom du client</span>
                       <div className="FormBox-Top">
                         <input
                           className="NameBox-Top"
@@ -203,7 +203,7 @@ Nom du client</span>
                   <div className="Names-Form">
                     <div className="Form-Box-Text-Bottom">
                       <span className="Form-Box-Title">Téléphone 1
-</span>
+                      </span>
                       <div className="FormBox">
                         <input
                           className="NameBox"
@@ -216,7 +216,7 @@ Nom du client</span>
                     </div>
                     <div className="Form-Box-Text-Bottom">
                       <span className="Form-Box-Title">Telephone 2
-</span>
+                      </span>
                       <div className="FormBox">
                         <input
                           className="NameBox"
@@ -282,11 +282,15 @@ Nom du client</span>
                           value={lead.martialStatus ? lead.martialStatus : ""}
                           onChange={handleMaritalChange}
                         >
-                          <option value="">État civil</option>
-                          <option>Single</option>
-                          <option>Married</option>
-                          <option>divorced</option>
-                          <option>cohabitation</option>
+                          <option value="">Veuf
+                          </option>
+                          <option>Célibataire
+                          </option>
+                          <option>Marié
+                          </option>
+                          <option>Divorcé
+                          </option>
+                          <option>Concubinage</option>
                         </select>
                       </div>
                     </div>
@@ -314,8 +318,9 @@ Nom du client</span>
                           onChange={handleHousingTypeChange}
                         >
                           <option value="">Entrez le type de logement</option>
-                          <option>House</option>
-                          <option>Flat</option>
+                          <option>Maison
+                          </option>
+                          <option>Appartement</option>
                         </select>
                       </div>
                     </div>
@@ -341,9 +346,11 @@ Nom du client</span>
                           value={lead.accommodation ? lead.accommodation : ""}
                           onChange={handleAccommodationChange}
                         >
-                          <option value="">Hébergement</option>
-                          <option>Owner</option>
-                          <option>Tenant</option>
+                          <option value="">Hébergé
+                          </option>
+                          <option>Propriétaire
+                          </option>
+                          <option>Locataire</option>
                         </select>
                       </div>
                     </div>
@@ -351,13 +358,13 @@ Nom du client</span>
                       <span className="Form-Box-Title">Ville</span>
                       <div className="FormBox-Bottom">
                         <input
-                           type="City"
-                           placeholder="Entrez votre ville"
+                          type="City"
+                          placeholder="Entrez votre ville"
                           className="NameBox-Select"
                           value={lead.city ? lead.city : ""}
                           onChange={handleCityChange}
                         />
-                   
+
                       </div>
                     </div>
                   </div>
@@ -405,91 +412,102 @@ Nom du client</span>
                     <div className="Form-Box-Text-Bottom">
                       <span className="Form-Box-Title">Mode de chauffage</span>
                       <div className="FormBox-Bottom">
-                  
-                             <select
+
+                        <select
                           className="NameBox-Select"
                           value={lead.bankName ? lead.bankName : ""}
                           onChange={handleBankNameChange}
                         >
                           <option value="">
-Sélectionnez votre mode de chauffage</option>
-                          <option>Gas</option>
-                          <option>Fuel oil</option>
-                          <option>Electric</option>
-                          <option>Heat pump
-</option>
-                          <option>Drink
-</option>
-                          <option>Reversible air conditioning
-</option>
-<option>Other
-</option>
+                            Sélectionnez votre mode de chauffage</option>
+                          <option>Gaz
+                          </option>
+                          <option>Fioul
+                          </option>
+                          <option>Électrique
+                          </option>
+                          <option> Pompe à chaleur
+
+                          </option>
+
+                          <option>Clim réversible
+
+                          </option>
+                          <option> Autre
+                          </option>
                         </select>
                       </div>
                     </div>
                   </div>
                   <div className="Names-Form-Comment">
-                  <div className="Form-Box-Text-Bottom">
+                    <div className="Form-Box-Text-Bottom">
                       <span className="Form-Box-Title">
-Commentaire</span>
+                        Commentaire</span>
                       <div className="FormBox-Comment">
-                    
-                    <textarea
-    className="NameBox-Comment"
-    placeholder="
+
+                        <textarea
+                          className="NameBox-Comment"
+                          placeholder="
     Ajouter un commentaire"
- 
-    value={lead.callCenterComment ? lead.callCenterComment : ""}
-    onChange={handleCallCenterCommentChange}
-    rows={5} 
-></textarea>
-                        
+
+                          value={lead.callCenterComment ? lead.callCenterComment : ""}
+                          onChange={handleCallCenterCommentChange}
+                          rows={5}
+                        ></textarea>
+
                       </div>
                     </div>
-                  <div className="Form-Box-Text-Status">
+                    <div className="Form-Box-Text-Status">
                       <span className="Form-Box-Title">
-Statut</span>
+                        Statut</span>
                       <div className="FormBox-Bottom">
                         <select
                           className="NameBox-Select"
                           value={lead.status ? lead.status : ""}
                           onChange={handleStatusChange}
                         >
-                          
-                          <option value="" >New lead</option>
-                          <option>Being processed</option>
-                          <option>Appointment</option>
-                          <option>File Processed</option>
-                          <option>Facility</option>
-                          <option>Installed</option>
-                          <option>Paid</option>
+
+                          <option value="" >Nouveau lead
+                          </option>
+                          <option>En cours de traitement
+                          </option>
+                          <option>Rendez-vous
+                          </option>
+
+                          <option>Visité
+                          </option>
+                          <option>Annuler
+                          </option>
+                          <option>Installé
+                          </option>
+                          <option>Payé</option>
                         </select>
                       </div>
                     </div>
-                    </div>
-                    <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">
+                  </div>
+                  <div className="Form-Box-Text-Bottom">
+                    <span className="Form-Box-Title">
 
-Commentaire de l'administrateur</span>
-                      <div className="FormBox-Comment">
-                    
-                    <textarea
-    className="NameBox-Comment"
-    placeholder="Add a Comment"
- 
-     value={lead.adminComment ? lead.adminComment : ""}
-    onChange={handleAdminCommentChange}
-    rows={5} 
-></textarea>
-                        
-                      </div>
+                      Commentaire de l'administrateur</span>
+                    <div className="FormBox-Comment">
+
+                      <textarea
+                        className="NameBox-Comment"
+                        placeholder="Add a Comment"
+
+                        value={lead.adminComment ? lead.adminComment : ""}
+                        onChange={handleAdminCommentChange}
+                        rows={5}
+                      ></textarea>
+
                     </div>
+                  </div>
                   <div className="Form-Add-Button">
                     <button onClick={() => updateLead()} className="Add-Button">
-                    Modifier le formulaire
+                      Modifier le formulaire
                     </button>
-                    <button className="Cancel-Button"     onClick={() => navigate("/list-lead")}>
-Annuler</button>
+                    <button className="Cancel-Button" onClick={() => navigate("/list-lead")}>
+                      Annuler</button>
                   </div>
                 </div>
               </div>
