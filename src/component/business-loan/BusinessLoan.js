@@ -7,6 +7,9 @@ import { IoMdSearch } from "react-icons/io";
 import { API } from "../../api/api";
 import { toast } from "react-toastify";
 import { MdOutlineDelete } from "react-icons/md";
+import { TbEdit } from "react-icons/tb";
+import { VscEye } from "react-icons/vsc";
+
 function BusinessLoan() {
   const navigate = useNavigate();
   const [companies, setCompanies] = useState([]);
@@ -185,7 +188,19 @@ function BusinessLoan() {
                             <td>{item.city}</td>
                             <td>{item.zip}</td>
                             <td className="Icons-Gapping">
+                              <TbEdit
+                                className="Table-Icons"
+                                // onClick={() =>
+                                //   navigate(`/update-form/${item._id}`)
+                                // }
+                                key={index}
+                              />
 
+                              <VscEye className="Table-Icons"
+                              //  onClick={() =>
+                              //   navigate(`/customer/${item._id}`)
+                              // }
+                              />
                               <MdOutlineDelete
                                 onClick={(e) => handleDelete(e, item._id)}
                                 className="Table-Icons1"

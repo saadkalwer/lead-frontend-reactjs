@@ -302,7 +302,7 @@ function Leadlist() {
                           <th>Téléphone 1
                           </th>
                           <th>statut</th>
-                          <th>Call Center</th>
+                          <th>Centre d'appel</th>
 
                           <th>Ajouté le
                           </th>

@@ -19,12 +19,9 @@ function Customer() {
     // Format the date as per your requirements, forcing UTC timezone
     const formattedDate = date.toLocaleDateString("en-US", {
       year: "numeric",
-      month: "short",
+      month: "numeric",
       day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-      hour12: true, // If you want 12-hour format
+
       timeZone: "UTC" // Force UTC timezone
     });
 
@@ -32,23 +29,10 @@ function Customer() {
   }
 
   useEffect(() => {
-    getId();
+
     getLeadsByCompanyId();
   }, []);
-  const getId = async () => {
-    await API.getId({
-      id: id,
-    })
-      .then((resp) => {
-        if (resp.status == 200) {
-          setId(resp.data.data);
-          toast.success(resp.data.message);
 
-          setUser(resp.data.data);
-        }
-      })
-      .catch((e) => toast.error(e.response.data.message));
-  };
   const getLeadsByCompanyId = async () => {
     await API.getLeadById({
       id: id,
@@ -195,7 +179,7 @@ function Customer() {
                         </div>
                         <div className="Name-Box-Section">
                           <span className="Name-Title">Date de naissance</span>
-                          <span className="Name-Text">{user.dob}</span>
+                          <span className="Name-Text" > {formatDate(user.dob)}</span>
                         </div>
                         <div className="Name-Box-Section">
                           <span className="Name-Title"> Situation maritale</span>

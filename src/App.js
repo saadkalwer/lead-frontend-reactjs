@@ -21,6 +21,7 @@ import { SuperAdminRoute } from "./SuperAdminRoute";
 import { CallCenterRoute } from "./CallCenterRoute";
 import { CompanyRoute } from "./CompanyRoute";
 import User from "./component/User/User";
+import CompanyViewDetails from "./component/Company-View-Details/CompanyViewDetails";
 
 function App() {
   return (
@@ -49,9 +50,17 @@ function App() {
         <Route
           path="/customer/:id"
           element={
-       
-                <Customer />
-       
+
+            <Customer />
+
+          }
+        />
+        <Route
+          path="/company-view-detais/:id"
+          element={
+
+            <CompanyViewDetails />
+
           }
         />
         <Route
@@ -128,7 +137,7 @@ function App() {
         <Route path="/forget" element={<Forget />} />
         <Route
           path="/admin-form"
-          element={ <Profile /> }
+          element={<Profile />}
         />
         <Route
           path="/update-form/:id"
@@ -148,7 +157,7 @@ function App() {
             </ProtectedRoute>
           }
         />
-          <Route
+        <Route
           path="/user"
           element={
             <ProtectedRoute>

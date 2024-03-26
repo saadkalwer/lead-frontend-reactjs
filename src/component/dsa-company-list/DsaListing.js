@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from "../Sidebar/SideBar";
 import { Partnerstyled } from "./style";
-import { FiFilter } from "react-icons/fi";
+import { TbEdit } from "react-icons/tb";
+import { VscEye } from "react-icons/vsc";
 import { IoMdSearch } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { IoPersonSharp } from "react-icons/io5";
@@ -195,7 +196,20 @@ function DsaListing() {
                             <td>{formatDate(item.createdAt)}</td>
 
                             <td className="Icons-Gapping">
+                              <TbEdit
+                                className="Table-Icons"
+                                // onClick={() =>
+                                //   navigate(`/update-form/${item._id}`)
+                                // }
+                                key={index}
+                              />
 
+                              <VscEye className="Table-Icons"
+                                onClick={() =>
+                                  navigate(`/company-view-detais/${item._id}`)
+                                }
+
+                              />
                               <MdOutlineDelete
                                 onClick={(e) => handleDelete(e, item._id)}
                                 className="Table-Icons1"

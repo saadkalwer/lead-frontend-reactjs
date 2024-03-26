@@ -1,7 +1,7 @@
 import { request } from "./apiHandler";
 
-export const base_url = "https://api-back-end.groupe-nexus-seniors.com/api/";
-// export const base_url = "http://localhost:8000/api/";
+// export const base_url = "https://api-back-end.groupe-nexus-seniors.com/api/";
+export const base_url = "http://localhost:8000/api/";
 
 export const API = {
   signup: (registerdata) =>
@@ -23,12 +23,13 @@ export const API = {
   createEmployee: (createEmployeeData) =>
     request.post(base_url + "employees/create-employee", createEmployeeData),
   getAllEmployee: () => request.get(base_url + "employees/get-all-employees"),
-  getId: (id) => request.post(base_url + "employees/get-employee-by-id", id),
+  // getId: (id) => request.post(base_url + "employees/get-employee-by-id", id),
   getStats: () => request.get(base_url + "users/get-stats"),
   deleteLead: (data) => request.post(base_url + "leads/delete-lead", data),
   deleteCompany: (data) => request.post(base_url + "users/delete-user", data),
   deleteCompany: (data) => request.post(base_url + "users/delete-user", data),
   getLeadById: (data) => request.post(base_url + "leads/get-lead-by-id", data),
+  getUser: (data) => request.post(base_url + "users/get-user", data),
   updateLead: (data) => request.post(base_url + "leads/update-lead", data),
   assignLead: (data) => request.post(base_url + "leads/assign-lead", data),
   getAllLeadsForAdmin: (data) =>
