@@ -197,9 +197,10 @@ function BusinessLoan() {
                               />
 
                               <VscEye className="Table-Icons"
-                              //  onClick={() =>
-                              //   navigate(`/customer/${item._id}`)
-                              // }
+                                onClick={() =>
+                                  navigate(`/call-center-details/${item._id}`)
+                                }
+
                               />
                               <MdOutlineDelete
                                 onClick={(e) => handleDelete(e, item._id)}

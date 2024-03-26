@@ -22,6 +22,7 @@ import { CallCenterRoute } from "./CallCenterRoute";
 import { CompanyRoute } from "./CompanyRoute";
 import User from "./component/User/User";
 import CompanyViewDetails from "./component/Company-View-Details/CompanyViewDetails";
+import CallCenterDetails from "./component/Call-Center-Details/CallCenterDetails";
 
 function App() {
   return (
@@ -56,10 +57,18 @@ function App() {
           }
         />
         <Route
-          path="/company-view-detais/:id"
+          path="/company-view-details/:id"
           element={
 
             <CompanyViewDetails />
+
+          }
+        />
+        <Route
+          path="/call-center-details/:id"
+          element={
+
+            <CallCenterDetails />
 
           }
         />

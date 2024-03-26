@@ -206,7 +206,7 @@ function DsaListing() {
 
                               <VscEye className="Table-Icons"
                                 onClick={() =>
-                                  navigate(`/company-view-detais/${item._id}`)
+                                  navigate(`/company-view-details/${item._id}`)
                                 }
 
                               />

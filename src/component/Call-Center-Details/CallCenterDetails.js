@@ -5,7 +5,8 @@ import Sidebar from "../Sidebar/SideBar";
 import { Customerstyled } from "./style";
 import { IoPersonSharp } from "react-icons/io5";
 import { useParams } from "react-router-dom";
-function CompanyViewDetails() {
+
+function CallCenterDetails() {
     const userData = JSON.parse(localStorage.getItem("user"));
     const [user, setUser] = useState({});
     const [lead, setlead] = useState([]);
@@ -72,7 +73,7 @@ function CompanyViewDetails() {
                                         </div>
                                     </div>
                                     <div className="Call-Center-Title">
-                                        <span className="call-center">Société
+                                        <span className="call-center">Centre d'appel
                                         </span>
                                     </div>
                                 </div>
@@ -166,4 +167,5 @@ function CompanyViewDetails() {
         </>
     );
 }
-export default CompanyViewDetails
+
+export default CallCenterDetails
