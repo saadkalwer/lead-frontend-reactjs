@@ -190,9 +190,9 @@ function BusinessLoan() {
                             <td className="Icons-Gapping">
                               <TbEdit
                                 className="Table-Icons"
-                                // onClick={() =>
-                                //   navigate(`/update-form/${item._id}`)
-                                // }
+                                onClick={() =>
+                                  navigate(`/update-call-center/${item._id}`)
+                                }
                                 key={index}
                               />
 

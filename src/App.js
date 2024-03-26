@@ -24,6 +24,7 @@ import User from "./component/User/User";
 import CompanyViewDetails from "./component/Company-View-Details/CompanyViewDetails";
 import CallCenterDetails from "./component/Call-Center-Details/CallCenterDetails";
 import UpdateCompany from "./component/Update-Company/UpdateCompany";
+import UpdateCallCenter from "./component/Update-Call-Center/UpdateCallCenter";
 
 function App() {
   return (
@@ -165,6 +166,16 @@ function App() {
             <ProtectedRoute>
               <SuperAdminRoute>
                 <UpdateCompany />
+              </SuperAdminRoute>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/update-call-center/:id"
+          element={
+            <ProtectedRoute>
+              <SuperAdminRoute>
+                <UpdateCallCenter />
               </SuperAdminRoute>
             </ProtectedRoute>
           }
