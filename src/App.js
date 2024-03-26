@@ -23,6 +23,7 @@ import { CompanyRoute } from "./CompanyRoute";
 import User from "./component/User/User";
 import CompanyViewDetails from "./component/Company-View-Details/CompanyViewDetails";
 import CallCenterDetails from "./component/Call-Center-Details/CallCenterDetails";
+import UpdateCompany from "./component/Update-Company/UpdateCompany";
 
 function App() {
   return (
@@ -158,6 +159,17 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/update-company/:id"
+          element={
+            <ProtectedRoute>
+              <SuperAdminRoute>
+                <UpdateCompany />
+              </SuperAdminRoute>
+            </ProtectedRoute>
+          }
+        />
+
         <Route
           path="/setting"
           element={

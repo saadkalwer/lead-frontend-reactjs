@@ -198,9 +198,9 @@ function DsaListing() {
                             <td className="Icons-Gapping">
                               <TbEdit
                                 className="Table-Icons"
-                                // onClick={() =>
-                                //   navigate(`/update-form/${item._id}`)
-                                // }
+                                onClick={() =>
+                                  navigate(`/update-company/${item._id}`)
+                                }
                                 key={index}
                               />
 

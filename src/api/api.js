@@ -27,10 +27,11 @@ export const API = {
   getStats: () => request.get(base_url + "users/get-stats"),
   deleteLead: (data) => request.post(base_url + "leads/delete-lead", data),
   deleteCompany: (data) => request.post(base_url + "users/delete-user", data),
-  deleteCompany: (data) => request.post(base_url + "users/delete-user", data),
+
   getLeadById: (data) => request.post(base_url + "leads/get-lead-by-id", data),
   getUser: (data) => request.post(base_url + "users/get-user", data),
   updateLead: (data) => request.post(base_url + "leads/update-lead", data),
+  updateCompany: (data) => request.post(base_url + "users/update-user", data),
   assignLead: (data) => request.post(base_url + "leads/assign-lead", data),
   getAllLeadsForAdmin: (data) =>
     request.post(base_url + "leads/get-all-leads-for-admin", data),
