@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar/SideBar";
 import { Partnerstyled } from "./style";
 import { IoPersonSharp } from "react-icons/io5";
-import { IoMdSearch } from "react-icons/io";
+import { IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5';
 import { useNavigate } from "react-router-dom";
 import { API } from "../../api/api";
 import { toast } from "react-toastify";
@@ -11,7 +11,8 @@ function Setting() {
   const userData = JSON.parse(localStorage.getItem("user"));
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
-
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isNewPasswordVisible, setIsNewPasswordVisible] = useState(false);
   const navigate = useNavigate();
 
   const handleOldPasswordChange = (e) => {
@@ -43,6 +44,14 @@ function Setting() {
       })
       .catch((e) => toast.error(e.response.data.message));
   };
+
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
+  const toggleNewPasswordVisibility = () => {
+    setIsNewPasswordVisible(!isNewPasswordVisible);
+  };
+
 
   return (
     <>
@@ -81,13 +90,16 @@ function Setting() {
                       <div className="FormBox">
                         <input
                           className="NameBox"
-                          type="Password"
+                          type={isPasswordVisible ? "text" : "password"}
                           value={oldPassword}
                           onChange={handleOldPasswordChange}
                           placeholder="Entrer le mot de passe actuel"
-
                         />
-
+                        {isPasswordVisible ? (
+                          <IoEyeOffOutline className="FormIcon" onClick={togglePasswordVisibility} />
+                        ) : (
+                          <IoEyeOutline className="FormIcon" onClick={togglePasswordVisibility} />
+                        )}
                       </div>
                     </div>
                     <div className="Form-Box-Text">
@@ -95,11 +107,16 @@ function Setting() {
                       <div className="FormBox">
                         <input
                           className="NameBox"
-                          type="Password"
+                          type={isNewPasswordVisible ? "text" : "password"}
                           value={newPassword}
                           placeholder="Entrez un nouveau mot de passe"
                           onChange={handleNewPasswordChange}
                         />
+                        {isNewPasswordVisible ? (
+                          <IoEyeOffOutline className="FormIcon" onClick={toggleNewPasswordVisibility} />
+                        ) : (
+                          <IoEyeOutline className="FormIcon" onClick={toggleNewPasswordVisibility} />
+                        )}
                       </div>
                     </div>
                   </form>
