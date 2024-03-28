@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Adminstyled } from "./style";
 import Loginwallpaper from "../login-wallpaper/Loginwallpaper";
 import { Await, useNavigate } from "react-router-dom";
-import { IoEyeOutline } from "react-icons/io5";
+import { IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5';
 import { API } from "../../api/api";
 import { toast } from "react-toastify";
 
@@ -11,6 +11,8 @@ function Adminlogin() {
   const [userName, setuserName] = useState("");
   const [password, setPassword] = useState("");
   const [isChecked, setIsChecked] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
 
   const handleCheckboxChange = (event) => {
     setIsChecked(event.target.checked);
@@ -23,6 +25,9 @@ function Adminlogin() {
     setPassword(e.target.value);
   };
 
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
   const onLogin = async (e) => {
     e.preventDefault();
 
@@ -72,8 +77,8 @@ function Adminlogin() {
               <div className="Admin-Welcome-Text">
                 <span className="Welcome-Title">Content de te revoir !</span>
                 <span className="Welcome-Text">
-             
-Connectez-vous pour continuer sur le portail.
+
+                  Connectez-vous pour continuer sur le portail.
                 </span>
               </div>
 
@@ -81,7 +86,7 @@ Connectez-vous pour continuer sur le portail.
                 <form className="Sign-Form">
                   <div className="Form-Box-Text">
                     <span className="Form-Box-Title">
-Nom d'utilisateur</span>
+                      Nom d'utilisateur</span>
                     <div className="FormBox">
                       <input
                         className="NameBox"
@@ -95,26 +100,30 @@ Nom d'utilisateur</span>
                   <div className="Form-Box-Text">
                     <div className="Password-Text-Section">
                       <span className="Password-Text">
-Mot de passe</span>
+                        Mot de passe</span>
                       <span
                         className="Forget-Text"
                         onClick={() => navigate("/forget")}
                       >
-                      
-Mot de passe oublié?
+
+                        Mot de passe oublié?
                       </span>
                     </div>
 
                     <div className="FormBox">
                       <input
                         className="NameBox"
-                        type="Password"
+                        type={isPasswordVisible ? "text" : "password"}
                         value={password}
                         onChange={handlePasswordChange}
                         placeholder="
                         Entrer le mot de passe"
                       />
-                      <IoEyeOutline className="FormIcon" />
+                      {isPasswordVisible ? (
+                        <IoEyeOffOutline className="FormIcon" onClick={togglePasswordVisibility} />
+                      ) : (
+                        <IoEyeOutline className="FormIcon" onClick={togglePasswordVisibility} />
+                      )}
                     </div>
                   </div>
                   <div className="Forget-Text-Section">
@@ -124,15 +133,15 @@ Mot de passe oublié?
                       onChange={handleCheckboxChange}
                     />
                     <span className="Character-Text">
-Souviens-toi de moi</span>
+                      Souviens-toi de moi</span>
                   </div>
                   <div className="Sign-in-Button-Section">
                     <button
                       onClick={(e) => onLogin(e)}
                       className="Sign-In-Button"
                     >
-                      
-Se connecter
+
+                      Se connecter
                     </button>
                   </div>
                 </form>

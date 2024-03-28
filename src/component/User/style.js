@@ -411,6 +411,8 @@ export const Partnerstyled = styled.div`
     border-radius: 9px;
     cursor: pointer;
     width: 500px;
+    display: flex;
+    align-items: center;
   }
   .NameBox {
     width: 490px;

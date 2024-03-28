@@ -51,14 +51,14 @@ function Setting() {
           <div className="Sidebar-Header-Content">
             <div className="Sidebar-Header-Section">
               <div className="Sidebar-Search-Box-Section">
-           
+
               </div>
               <div className="Bell-Main-Section">
                 <div className="Bell-Section">
-                 
+
                 </div>
                 <div className="Avatar-Main-Section">
-                <IoPersonSharp className="Manager-Avatar"  />
+                  <IoPersonSharp className="Manager-Avatar" />
                   <div className="Avatar-Text-Section">
                     <span className="Avatar-Title"> {userData.userName}</span>
                     <span className="Avatar-Text">Founder</span>
@@ -77,7 +77,7 @@ function Setting() {
                   <form className="Sign-Form">
                     <div className="Form-Box-Text">
                       <span className="Form-Box-Title">
-Mot de passe actuel</span>
+                        Mot de passe actuel</span>
                       <div className="FormBox">
                         <input
                           className="NameBox"
@@ -85,7 +85,9 @@ Mot de passe actuel</span>
                           value={oldPassword}
                           onChange={handleOldPasswordChange}
                           placeholder="Entrer le mot de passe actuel"
+
                         />
+
                       </div>
                     </div>
                     <div className="Form-Box-Text">
@@ -106,8 +108,8 @@ Mot de passe actuel</span>
                   className="Header-Button"
                   onClick={() => getNewPasword()}
                 >
-                  
-Changer le mot de passe{" "}
+
+                  Changer le mot de passe{" "}
                 </button>
               </div>
             </div>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Adminstyled } from "./style";
 import Loginwallpaper from "../login-wallpaper/Loginwallpaper";
 import { useNavigate } from "react-router-dom";
-import { IoEyeOutline } from "react-icons/io5";
+import { IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5';
 import { API } from "../../api/api";
 import { toast } from "react-toastify";
 
@@ -10,6 +10,7 @@ function NewPassword() {
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [newpassword, setNewPassword] = useState("");
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
@@ -45,6 +46,10 @@ function NewPassword() {
       })
       .catch((e) => toast.error(e.response.data.message));
   };
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
+
   return (
     <>
       <Loginwallpaper>
@@ -65,12 +70,16 @@ function NewPassword() {
                     <div className="FormBox">
                       <input
                         className="NameBox"
-                        type="password"
+                        type={isPasswordVisible ? "text" : "password"}
                         placeholder="New Password "
                         value={password}
                         onChange={handlePasswordChange}
                       />
-                      <IoEyeOutline className="FormIcon" />
+                      {isPasswordVisible ? (
+                        <IoEyeOffOutline className="FormIcon" onClick={togglePasswordVisibility} />
+                      ) : (
+                        <IoEyeOutline className="FormIcon" onClick={togglePasswordVisibility} />
+                      )}
                     </div>
                   </div>
                   <div className="Form-Box-Text">
@@ -81,12 +90,16 @@ function NewPassword() {
                     <div className="FormBox">
                       <input
                         className="NameBox"
-                        type="Password"
+                        type={isPasswordVisible ? "text" : "password"}
                         placeholder="Confirm Password"
                         value={newpassword}
                         onChange={handleNewPasswordChange}
                       />
-                      <IoEyeOutline className="FormIcon" />
+                      {isPasswordVisible ? (
+                        <IoEyeOffOutline className="FormIcon" onClick={togglePasswordVisibility} />
+                      ) : (
+                        <IoEyeOutline className="FormIcon" onClick={togglePasswordVisibility} />
+                      )}
                     </div>
                   </div>
                 </form>
