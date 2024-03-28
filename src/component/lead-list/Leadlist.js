@@ -37,11 +37,52 @@ function Leadlist() {
     { label: "Option 3" },
   ];
   const exportToExcel = () => {
+    // Translation map for column headers
+    const headersTranslation = {
+      _id: "ID",
+      userId: "ID Utilisateur",
+      customerName: "Nom du Client",
+      email: "E-mail",
+      mobileNumber1: "Numéro de Mobile 1",
+      mobileNumber2: "Numéro de Mobile 2",
+      gender: "Sexe",
+      dob: "Date de Naissance",
+      martialStatus: "Statut Martial",
+      street: "Rue",
+      housingType: "Type de Logement",
+      zip: "Code Postal",
+      accommodation: "Type de Logement",
+      city: "Ville",
+      fiscalNumber: "Numéro Fiscal",
+      refTaxNotice: "Avis d'Imposition",
+      annualIncome: "Revenu Annuel",
+      heatingMode: "Mode de chauffage",
+      status: "Statut",
+      callCenterComment: "Commentaire du Centre d'Appel",
+      createdAt: "Créé le",
+      updatedAt: "Mis à jour le",
+      __v: "Version",
+      assignedCompany: "Entreprise Attribuée",
+      adminComment: "Commentaire Admin"
+    };
+
+    // Map over the leads and replace the keys with their French translations
+    const translatedLeads = leads.map(lead => {
+      return Object.keys(lead).reduce((acc, key) => {
+        // Replace each English key with the French key using the translation map
+        const translatedKey = headersTranslation[key] || key; // Default to the original key if no translation is found
+        acc[translatedKey] = lead[key];
+        return acc;
+      }, {});
+    });
+
+    // Export to Excel with the translated keys
     const wb = XLSX.utils.book_new();
-    const ws = XLSX.utils.json_to_sheet(leads);
+    const ws = XLSX.utils.json_to_sheet(translatedLeads);
     XLSX.utils.book_append_sheet(wb, ws, "Leads");
-    XLSX.writeFile(wb, "leads.xlsx");
+    XLSX.writeFile(wb, "leads_en_francais.xlsx");
   };
+
   const toggleModal = (_id) => {
     setIsModalOpen(!isModalOpen);
     setLeadId(_id);
@@ -322,9 +363,8 @@ function Leadlist() {
                               {item.zip}
                             </td>
                             <td>{item.mobileNumber1}</td>
-                            <td>{item.city}</td>
-
                             <td className="Status-Color1">{item.status}</td>
+                            <td>{item.userId.role}</td>
                             <td>{formatDate(item.createdAt)}</td>
 
                             <td className="Icons-Gapping">

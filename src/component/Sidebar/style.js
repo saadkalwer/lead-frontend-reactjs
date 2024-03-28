@@ -71,12 +71,12 @@ export const Sidebarstyled = styled.div`
   }
   .link:hover {
     background: #8ADFFF;
-    color: #394D82;
+    color: #424344;
     height: 40px;
   }
   .active {
     background: #8ADFFF;
-    color: #394D82;
+    color: #424344;
     height: 40px;
   }
   .link_text {
@@ -100,7 +100,7 @@ export const Sidebarstyled = styled.div`
   }
   .menu:hover {
     background: #8ADFFF;
-    color: #394D82;
+    color: #424344;
     height: 40px;
   }
   .menu_container {

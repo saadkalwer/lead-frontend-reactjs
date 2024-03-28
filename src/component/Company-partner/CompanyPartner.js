@@ -128,7 +128,7 @@ function CompanyPartner() {
                             key={index}
                           >
                             <td>{index + 1}</td>
-                            <td>{item.fiscalNumber}</td>
+                            <td>{item.zip}</td>
                             <td className="Client-Color">
                               {item.customerName}
                             </td>

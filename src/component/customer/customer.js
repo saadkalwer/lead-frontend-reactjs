@@ -187,7 +187,7 @@ function Customer() {
                         </div>
                         <div className="Name-Box-Section">
                           <span className="Name-Title">Mode de chauffage</span>
-                          <span className="Name-Text">{user.bankName}</span>
+                          <span className="Name-Text">{user.heatingMode}</span>
                         </div>
 
                       </div>
