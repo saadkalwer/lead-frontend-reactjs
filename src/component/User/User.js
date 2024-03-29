@@ -102,9 +102,10 @@ function User() {
                           onChange={handlePasswordChange}
                         />
                         {isPasswordVisible ? (
-                          <IoEyeOffOutline className="FormIcon" onClick={togglePasswordVisibility} />
-                        ) : (
                           <IoEyeOutline className="FormIcon" onClick={togglePasswordVisibility} />
+                        ) : (
+
+                          <IoEyeOffOutline className="FormIcon" onClick={togglePasswordVisibility} />
                         )}
                       </div>
                     </div>

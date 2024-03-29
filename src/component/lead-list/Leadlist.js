@@ -66,11 +66,11 @@ function Leadlist() {
       adminComment: "Commentaire Admin"
     };
 
-    // Map over the leads and replace the keys with their French translations
+
     const translatedLeads = leads.map(lead => {
       return Object.keys(lead).reduce((acc, key) => {
-        // Replace each English key with the French key using the translation map
-        const translatedKey = headersTranslation[key] || key; // Default to the original key if no translation is found
+
+        const translatedKey = headersTranslation[key] || key;
         acc[translatedKey] = lead[key];
         return acc;
       }, {});
@@ -124,7 +124,7 @@ function Leadlist() {
             className="Selecting-Box"
             onChange={(e) => setcompanyId(e.target.value)}
           >
-            {companies.map((item) => (
+            {companies?.map((item) => (
               <option key={item._id} value={item.userName}>
                 {item.userName}
               </option>
@@ -353,19 +353,19 @@ function Leadlist() {
                         </tr>
                       </thead>
                       <tbody>
-                        {leads.map((item, index) => (
+                        {leads?.map((item, index) => (
                           <tr key={index}>
                             <td>{index + 1}</td>
 
                             <td>{item?.customerName}</td>
-                            <td>{item.city}</td>
+                            <td>{item?.city}</td>
                             <td className="Client-Color">
-                              {item.zip}
+                              {item?.zip}
                             </td>
-                            <td>{item.mobileNumber1}</td>
-                            <td className="Status-Color1">{item.status}</td>
-                            <td>{item.userId.role}</td>
-                            <td>{formatDate(item.createdAt)}</td>
+                            <td>{item?.mobileNumber1}</td>
+                            <td className="Status-Color1">{item?.status}</td>
+                            <td>{item?.userId?.role}</td>
+                            <td>{formatDate(item?.createdAt)}</td>
 
                             <td className="Icons-Gapping">
                               <TbEdit

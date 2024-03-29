@@ -120,9 +120,10 @@ function Adminlogin() {
                         Entrer le mot de passe"
                       />
                       {isPasswordVisible ? (
-                        <IoEyeOffOutline className="FormIcon" onClick={togglePasswordVisibility} />
-                      ) : (
                         <IoEyeOutline className="FormIcon" onClick={togglePasswordVisibility} />
+                      ) : (
+
+                        <IoEyeOffOutline className="FormIcon" onClick={togglePasswordVisibility} />
                       )}
                     </div>
                   </div>

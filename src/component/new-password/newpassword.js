@@ -59,7 +59,7 @@ function NewPassword() {
               <div className="Admin-Welcome-Text">
                 <span className="Welcome-Title">Welcome Back !</span>
                 <span className="Welcome-Text">
-                  Sign in to continue to Portal.
+                  Change Your Password To Continue To Portal.
                 </span>
               </div>
 

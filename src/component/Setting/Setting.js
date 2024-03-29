@@ -96,9 +96,10 @@ function Setting() {
                           placeholder="Entrer le mot de passe actuel"
                         />
                         {isPasswordVisible ? (
-                          <IoEyeOffOutline className="FormIcon" onClick={togglePasswordVisibility} />
-                        ) : (
                           <IoEyeOutline className="FormIcon" onClick={togglePasswordVisibility} />
+                        ) : (
+
+                          <IoEyeOffOutline className="FormIcon" onClick={togglePasswordVisibility} />
                         )}
                       </div>
                     </div>
@@ -113,9 +114,11 @@ function Setting() {
                           onChange={handleNewPasswordChange}
                         />
                         {isNewPasswordVisible ? (
-                          <IoEyeOffOutline className="FormIcon" onClick={toggleNewPasswordVisibility} />
+                          <IoEyeOutline className="FormIcon" onClick={toggleNewPasswordVisibility}
+                          />
                         ) : (
-                          <IoEyeOutline className="FormIcon" onClick={toggleNewPasswordVisibility} />
+
+                          <IoEyeOffOutline className="FormIcon" onClick={toggleNewPasswordVisibility} />
                         )}
                       </div>
                     </div>

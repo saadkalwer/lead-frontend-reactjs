@@ -8,7 +8,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import SidebarMenu from "./SidebarMenu";
 import { Sidebarstyled } from "./style";
-import Sidebarlogo from "../../image/logo1.png";
+import Sidebarlogo from "../../image/image 2.png";
 import { RiParentFill } from "react-icons/ri";
 const routes = [
   {
@@ -24,7 +24,7 @@ const routes = [
     subRoutes: [
       {
         path: "/dsa-company-list",
-        name: "Lead attribué aux sociétés",
+        name: "Ajouter une société",
         icon: "-",
       },
     ],
@@ -49,7 +49,7 @@ const routes = [
   },
   {
     path: "/user",
-    name: "Ajouter un utilisateur",
+    name: " Modifier un utilisateur",
     icon: <IoMdPerson />,
   },
   {

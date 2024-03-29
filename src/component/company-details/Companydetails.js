@@ -154,11 +154,11 @@ function Companydetails() {
           <div className="Business-Container">
             <div className="Sidebar-Header-Content">
               <div className="Sidebar-Header-Section">
-           <div></div>
+                <div></div>
                 <div className="Bell-Main-Section">
-               
+
                   <div className="Avatar-Main-Section">
-                    <IoPersonSharp className="Manager-Avatar"  />
+                    <IoPersonSharp className="Manager-Avatar" />
                     <div className="Avatar-Text-Section">
                       <span className="Avatar-Title">{userData.userName}</span>
                       <span className="Avatar-Text">Founder</span>
@@ -192,7 +192,7 @@ function Companydetails() {
                   <div className="Names-Form">
                     <div className="Form-Box-Text-Bottom">
                       <span className="Form-Box-Title">
-Prénom</span>
+                        Prénom</span>
                       <div className="FormBox">
                         <input
                           className="NameBox"
@@ -207,7 +207,7 @@ Prénom</span>
                     <div className="Form-Box-Text-Bottom">
                       <span className="Form-Box-Title">
 
-Nom de famille</span>
+                        Nom de famille</span>
                       <div className="FormBox">
                         <input
                           className="NameBox"
@@ -223,7 +223,7 @@ Nom de famille</span>
                   <div className="Names-Form">
                     <div className="Form-Box-Text-Bottom">
                       <span className="Form-Box-Title">Téléphone 1
-</span>
+                      </span>
                       <div className="FormBox">
                         <input
                           className="NameBox"
@@ -251,7 +251,7 @@ Nom de famille</span>
                   <form className="Sign-Form">
                     <div className="Form-Box-Text-Bottom">
                       <span className="Form-Box-Title">Telephone 2
-</span>
+                      </span>
                       <div className="FormBox">
                         <input
                           className="NameBox"
@@ -264,12 +264,12 @@ Nom de famille</span>
                     </div>
                   </form>
                   <span className="Contact-Title1">
-Détails de l'adresse</span>
+                    Détails de l'adresse</span>
                   <div className="Names-Form">
                     <div className="Form-Box-Text-Bottom">
                       <span className="Form-Box-Title">
 
-Rue</span>
+                        Rue</span>
                       <div className="FormBox">
                         <input
                           className="NameBox"
@@ -284,7 +284,7 @@ Rue</span>
                     </div>
                     <div className="Form-Box-Text-Bottom">
                       <span className="Form-Box-Title">Code postal
-</span>
+                      </span>
                       <div className="FormBox">
                         <input
                           className="NameBox"
@@ -299,7 +299,7 @@ Rue</span>
                   </div>
                   <div className="Form-Box-Text-Bottom">
                     <span className="Form-Box-Title">Ville
-</span>
+                    </span>
                     <div className="FormBox">
                       <input
                         className="NameBox"
@@ -322,9 +322,9 @@ Rue</span>
                           onChange={handleRoleChange}
                         >
                           <option value="">Sélectionnez un rôle</option>
-                          <option>Company</option>
+                          <option>Société</option>
                           <option>Super Admin</option>
-                          <option>Call Center</option>
+                          <option>Centre d'appel</option>
                         </select>
                       </div>
                     </div>
@@ -351,16 +351,16 @@ Rue</span>
                       className="Add-Button"
                       onClick={(e) => oncreateCompany(e)}
                     >
-                  
 
-Ajouter
+
+                      Ajouter
                     </button>
                     <button
                       className="Cancel-Button"
                       onClick={() => navigate("/dsa-company-list")}
                     >
-                   
-Annuler
+
+                      Annuler
                     </button>
                   </div>
                 </div>
