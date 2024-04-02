@@ -195,10 +195,10 @@ function Leadlist() {
         setLeads(responseData.data.leads);
         // toast.success(responseData.message);
       } else {
-        toast.error("Failed to fetch employees");
+        // toast.error("Failed to fetch employees");
       }
     } catch (error) {
-      toast.error("Error fetching employees: " + error.message);
+      // toast.error("Error fetching employees: " + error.message);
     }
   };
 
@@ -213,7 +213,7 @@ function Leadlist() {
           // console.log(resp.data.data);
         }
       })
-      .catch((e) => toast.error(e.response.data.message));
+    // .catch((e) => toast.error(e.response.data.message));
   };
 
   const handleDelete = async (e, id) => {
@@ -241,7 +241,7 @@ function Leadlist() {
           // toast.success(resp.data.message);
         }
       })
-      .catch((e) => toast.error(e.response.data.message));
+    // .catch((e) => toast.error(e.response.data.message));
   };
   const userData = JSON.parse(localStorage.getItem("user"));
   return (

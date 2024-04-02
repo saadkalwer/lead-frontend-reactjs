@@ -69,10 +69,10 @@ function Partner() {
         setLeads(responseData.data.leads);
         // toast.success(responseData.message);
       } else {
-        toast.error("Failed to fetch employees");
+        // toast.error("Failed to fetch employees");
       }
     } catch (error) {
-      toast.error("Error fetching employees: " + error.message);
+      // toast.error("Error fetching employees: " + error.message);
     }
   };
 
