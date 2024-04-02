@@ -109,7 +109,7 @@ function App() {
           element={
             <ProtectedRoute>
               <SuperAdminRoute>
-                <Companydetails />{" "}
+                <Companydetails />
               </SuperAdminRoute>
             </ProtectedRoute>
           }

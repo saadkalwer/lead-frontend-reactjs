@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 
 function Adminlogin() {
   const navigate = useNavigate();
-  const [userName, setuserName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -17,8 +17,8 @@ function Adminlogin() {
   const handleCheckboxChange = (event) => {
     setIsChecked(event.target.checked);
   };
-  const handleuserNameChange = (e) => {
-    setuserName(e.target.value);
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
@@ -31,8 +31,8 @@ function Adminlogin() {
   const onLogin = async (e) => {
     e.preventDefault();
 
-    if (!userName) {
-      return toast.error("Please enter your username");
+    if (!email) {
+      return toast.error("Please enter your email");
     }
 
     if (!password) {
@@ -40,7 +40,8 @@ function Adminlogin() {
     }
 
     const loginData = {
-      userName,
+      // userName,
+      email,
       password,
     };
 
@@ -92,8 +93,8 @@ function Adminlogin() {
                         className="NameBox"
                         type="Email"
                         placeholder="Saisissez votre nom d'utilisateur"
-                        value={userName}
-                        onChange={handleuserNameChange}
+                        value={email}
+                        onChange={handleEmailChange}
                       />
                     </div>
                   </div>

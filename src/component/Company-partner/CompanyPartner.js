@@ -1,13 +1,11 @@
-import Sidebar from "../Sidebar/SideBar";
+import CompanySidebar from "../Sidebar-3/SideBar3"
 import React, { useState, useEffect } from "react";
 import { Partnerstyled } from "./style";
-import { FiFilter } from "react-icons/fi";
-import { IoMdSearch } from "react-icons/io";
 import { IoPersonSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { API } from "../../api/api";
 import { toast } from "react-toastify";
-import { FiBell } from "react-icons/fi";
+
 
 function CompanyPartner() {
   const navigate = useNavigate();
@@ -59,7 +57,7 @@ function CompanyPartner() {
   };
   return (
     <>
-      <Sidebar>
+      <CompanySidebar>
         <Partnerstyled>
           <div className="Business-Main-Section">
             <div className="Business-Container">
@@ -182,7 +180,7 @@ function CompanyPartner() {
             </div>
           </div>
         </Partnerstyled>
-      </Sidebar>
+      </CompanySidebar>
     </>
   );
 }

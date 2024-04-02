@@ -1,57 +1,20 @@
 import { NavLink } from "react-router-dom";
 import { IoSpeedometerSharp } from "react-icons/io5";
-import { RiFileList3Fill } from "react-icons/ri";
-import { IoMdSettings } from "react-icons/io";
-import { IoMdPerson } from "react-icons/io";
+
 import { MdLogout } from "react-icons/md";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import SidebarMenu from "./SidebarMenu";
 import { Sidebarstyled } from "./style";
 import Sidebarlogo from "../../image/logo1.png"
-import { RiParentFill } from "react-icons/ri";
+
 const routes = [
   {
-    path: "/list-lead",
+    path: "/partner",
     name: "Tableau de bord",
     icon: <IoSpeedometerSharp />,
   },
 
-  {
-    path: "/partner",
-    name: "Société",
-    icon: <RiParentFill />,
-    subRoutes: [
-      {
-        path: "/dsa-company-list",
-        name: "Ajouter une société",
-        icon: "-",
-      },
-    ],
-  },
-
-  {
-    path: "/businessloan",
-    name: "Liste centre d'appel",
-    icon: <RiFileList3Fill />,
-    subRoutes: [
-      {
-        path: "/businessloan",
-        name: "Call center",
-        icon: "-",
-      },
-    ],
-  },
-  {
-    path: "/setting",
-    name: "Change Admin pwd",
-    icon: <IoMdSettings />,
-  },
-  {
-    path: "/user",
-    name: " Modifier un utilisateur",
-    icon: <IoMdPerson />,
-  },
   {
     path: "/",
     name: "Deconnexion",

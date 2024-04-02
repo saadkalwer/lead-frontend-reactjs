@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../Sidebar/SideBar";
+import Sidebars from "../Sidebar-2/SideBar";
 import { Partnerstyled } from "./style";
-import { FiFilter } from "react-icons/fi";
 import { IoMdSearch } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { IoPersonSharp } from "react-icons/io5";
@@ -79,7 +78,7 @@ function Partner() {
 
   return (
     <>
-      <Sidebar>
+      <Sidebars>
         <Partnerstyled>
           <div className="Business-Main-Section">
             <div className="Business-Container">
@@ -222,7 +221,7 @@ function Partner() {
             </div>
           </div>
         </Partnerstyled>
-      </Sidebar>
+      </Sidebars>
     </>
   );
 }

@@ -322,9 +322,9 @@ function Companydetails() {
                           onChange={handleRoleChange}
                         >
                           <option value="">Sélectionnez un rôle</option>
-                          <option>Société</option>
+                          <option>Company</option>
                           <option>Super Admin</option>
-                          <option>Centre d'appel</option>
+                          <option>Call Center</option>
                         </select>
                       </div>
                     </div>
