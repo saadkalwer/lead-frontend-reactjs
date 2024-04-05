@@ -122,7 +122,7 @@ function CompanyPartner() {
                       <tbody>
                         {allEmployees.map((item, index) => (
                           <tr
-                            onClick={() => navigate(`/customer/${item._id}`)}
+                            onClick={() => navigate(`/company-view/${item._id}`)}
                             key={index}
                           >
                             <td>{index + 1}</td>

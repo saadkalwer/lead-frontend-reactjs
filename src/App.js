@@ -25,6 +25,7 @@ import CompanyViewDetails from "./component/Company-View-Details/CompanyViewDeta
 import CallCenterDetails from "./component/Call-Center-Details/CallCenterDetails";
 import UpdateCompany from "./component/Update-Company/UpdateCompany";
 import UpdateCallCenter from "./component/Update-Call-Center/UpdateCallCenter";
+import CompanyView from "./component/Company-view/customer"
 
 function App() {
   return (
@@ -63,6 +64,14 @@ function App() {
           element={
 
             <CompanyViewDetails />
+
+          }
+        />
+        <Route
+          path="/company-view/:id"
+          element={
+
+            <CompanyView />
 
           }
         />
