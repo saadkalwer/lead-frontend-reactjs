@@ -147,34 +147,34 @@ function Partner() {
                           </th>
                           <th>Nom et prénom
                           </th>
-                          <th>Téléphone 1
-                          </th>
                           <th>Ville
                           </th>
+                          <th>Téléphone 1
+                          </th>
+                          <th>Statut</th>
                           <th>Genre</th>
                           <th>Revenue annuel
                           </th>
                           <th>Ajouté le
                           </th>
-                          <th>Statut</th>
                         </tr>
                       </thead>
                       <tbody>
                         {leads.map((item, index) => (
                           <tr key={index}>
                             <td>{index + 1}</td>
-                            <td>{item.zip}</td>
 
                             <td className="Client-Color">
                               {item.customerName}
                             </td>
-                            <td>{item.mobileNumber1}</td>
                             <td>{item.city}</td>
+                            <td>{item.zip}</td>
+                            <td>{item.mobileNumber1}</td>
+
+                            <td className="Status-Color">{item.status}</td>
                             <td>{item.gender}</td>
                             <td>{item.annualIncome}</td>
                             <td>{formatDate(item.createdAt)}</td>
-
-                            <td className="Status-Color">{item.status}</td>
 
                           </tr>
                         ))}
