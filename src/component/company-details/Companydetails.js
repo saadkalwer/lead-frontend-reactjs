@@ -42,7 +42,7 @@ function Companydetails() {
           // toast.success(resp.data.message);
         }
       })
-      .catch((e) => toast.error(e.response.data.message));
+    // .catch((e) => toast.error(e.response.data.message));
   };
   const Modal = () => {
     return (

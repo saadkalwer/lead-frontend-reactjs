@@ -76,10 +76,10 @@ function BusinessLoan() {
         // Handle pagination details if available in response
         // toast.success(responseData.message);
       } else {
-        toast.error("Failed to fetch companies");
+        // toast.error("Failed to fetch companies");
       }
     } catch (error) {
-      toast.error("Error fetching companies: " + error.message);
+      // toast.error("Error fetching companies: " + error.message);
     }
   };
 

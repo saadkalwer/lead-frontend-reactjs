@@ -339,7 +339,7 @@ function Update() {
                   </div>
                   <div className="City-Form">
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Hébergement</span>
+                      <span className="Form-Box-Title">Statut de l'occupant</span>
                       <div className="FormBox-Bottom">
                         <select
                           className="NameBox-Select"
@@ -429,7 +429,9 @@ function Update() {
                           <option> Pompe à chaleur
 
                           </option>
+                          <option> Bois
 
+                          </option>
                           <option>Clim réversible
 
                           </option>

@@ -368,7 +368,7 @@ function Profile() {
                   </div>
                   <div className="City-Form">
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Hébergé
+                      <span className="Form-Box-Title">Statut de l'occupant
                       </span>
                       <div className="FormBox-Bottom">
                         <select
@@ -376,7 +376,7 @@ function Profile() {
                           value={accommodation}
                           onChange={handleAccommodationChange}
                         >
-                          <option value="">Hébergement</option>
+                          <option value="">Hébergé</option>
                           <option>Propriétaire
                           </option>
                           <option> Locataire</option>
@@ -464,7 +464,7 @@ function Profile() {
                           <option>Pompe à chaleur
 
                           </option>
-                          <option>Drink
+                          <option> Bois
                           </option>
                           <option> Clim réversible
 

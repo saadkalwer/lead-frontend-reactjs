@@ -66,7 +66,7 @@ function DsaClient() {
 
       if (responseData && responseData.success) {
         setAllEmployees(responseData.data.leads);
-        toast.success(responseData.message);
+        // toast.success(responseData.message);
       } else {
         // toast.error("Failed to fetch employees");
       }
