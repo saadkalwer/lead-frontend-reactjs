@@ -114,9 +114,9 @@ function CompanyPartner() {
                           <th>Téléphone 1
                           </th>
                           <th>Statut</th>
+                          <th>Ajouté le</th>
                           <th>Revenue annuel
                           </th>
-                          <th>Ajouté le</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -133,8 +133,8 @@ function CompanyPartner() {
                             <td>{item.zip}</td>
                             <td>{item.mobileNumber1}</td>
                             <td className="Status-Color">{item.status}</td>
-                            <td>{item.annualIncome}</td>
                             <td>{formatDate(item.createdAt)}</td>
+                            <td>{item.annualIncome}</td>
                           </tr>
                         ))}
                       </tbody>

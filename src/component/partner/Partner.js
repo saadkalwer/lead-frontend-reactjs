@@ -143,19 +143,19 @@ function Partner() {
                         <tr>
                           <th> ID
                           </th>
-                          <th>Code postal
-                          </th>
                           <th>Nom et prénom
                           </th>
                           <th>Ville
                           </th>
+                          <th>Code postal
+                          </th>
                           <th>Téléphone 1
+                          </th>
+                          <th>Ajouté le
                           </th>
                           <th>Statut</th>
                           <th>Genre</th>
                           <th>Revenue annuel
-                          </th>
-                          <th>Ajouté le
                           </th>
                         </tr>
                       </thead>
@@ -172,9 +172,9 @@ function Partner() {
                             <td>{item.mobileNumber1}</td>
 
                             <td className="Status-Color">{item.status}</td>
+                            <td>{formatDate(item.createdAt)}</td>
                             <td>{item.gender}</td>
                             <td>{item.annualIncome}</td>
-                            <td>{formatDate(item.createdAt)}</td>
 
                           </tr>
                         ))}

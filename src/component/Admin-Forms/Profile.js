@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Detailstyled } from "./style";
-import Sidebar from "../Sidebar/SideBar";
+import Sidebar from "../Sidebar-2/SideBar";
 import { useNavigate } from "react-router-dom";
 import { IoPersonSharp } from "react-icons/io5";
 import { FiBell } from "react-icons/fi";
