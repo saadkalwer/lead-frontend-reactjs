@@ -1,5 +1,4 @@
 import { request } from "./apiHandler";
-
 export const base_url = "https://api-back-end.groupe-nexus-seniors.com/api/";
 // export const base_url = "https://api-back-end.groupes-nexus-energie.com/api/";
 // export const base_url = "http://localhost:8000/api/";

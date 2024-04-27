@@ -137,6 +137,7 @@ export const Partnerstyled = styled.div`
   td {
     padding: 12px 15px;
     border: 1px solid #ddd;
+    white-space: nowrap;
   }
 
   tbody tr:nth-child(even) {
@@ -236,6 +237,61 @@ export const Partnerstyled = styled.div`
     font-size: 15px;
     background-color: white;
     border: 1px solid #ced4da;
+  }
+   .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-content {
+    background: #f3f3f9;
+    padding: 20px;
+    width: 500px;
+    height: 350px;
+    border-radius: 5px;
+    position: relative;
+  }
+
+  .close {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 40px;
+  }
+  .Title {
+    font-size: 25px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+    .DeleteButtons{
+ display: flex;
+ align-items: center;
+ gap: 10px;
+ width: 100%;
+ justify-content: center;
+ margin-top: 90px;
+  }
+  .del-Button{
+        width: 120px;
+    height: 33px;
+  color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #34437A;
+
+    border: 1px solid #34437a;
+    border-radius: 4px;
+    font-size: 14px;
   }
   .Header-Button2 {
     width: 64px;

@@ -155,7 +155,7 @@ function Partner() {
                           </th>
                           <th>Statut</th>
                           <th>Genre</th>
-                          <th>Revenue annuel
+                          <th>Call Center Comment
                           </th>
                         </tr>
                       </thead>
@@ -174,7 +174,7 @@ function Partner() {
                             <td className="Status-Color">{item.status}</td>
                             <td>{formatDate(item.createdAt)}</td>
                             <td>{item.gender}</td>
-                            <td>{item.annualIncome}</td>
+                            <td>{item.callCenterComment}</td>
 
                           </tr>
                         ))}

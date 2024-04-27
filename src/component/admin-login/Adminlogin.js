@@ -87,12 +87,12 @@ function Adminlogin() {
                 <form className="Sign-Form">
                   <div className="Form-Box-Text">
                     <span className="Form-Box-Title">
-                      Nom d'utilisateur</span>
+                      Email</span>
                     <div className="FormBox">
                       <input
                         className="NameBox"
                         type="Email"
-                        placeholder="Saisissez votre nom d'utilisateur"
+                        placeholder="Entrer votre Email"
                         value={email}
                         onChange={handleEmailChange}
                       />

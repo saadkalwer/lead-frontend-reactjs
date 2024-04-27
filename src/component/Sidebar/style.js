@@ -31,7 +31,7 @@ export const Sidebarstyled = styled.div`
 
   /* Sidebar */
   .sidebar {
-    background: #FFE2BF;
+    background: #DAF2FF;
     color: white;
     height: 100vh;
 
@@ -70,12 +70,12 @@ export const Sidebarstyled = styled.div`
     text-decoration: none;
   }
   .link:hover {
-    background: #FDC98B;
+    background: #8ADFFF;
     color: #34437A;
     height: 40px;
   }
   .active {
-    background: #FDC98B;
+    background: #8ADFFF;
     color: #34437A;
     height: 40px;
   }
@@ -99,7 +99,7 @@ export const Sidebarstyled = styled.div`
     align-items: center;
   }
   .menu:hover {
-    background: #FDC98B;
+    background: #8ADFFF;
     color: #34437A;
     height: 40px;
   }

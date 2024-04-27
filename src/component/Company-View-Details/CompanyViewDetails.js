@@ -39,10 +39,10 @@ function CompanyViewDetails() {
             .then((resp) => {
                 if (resp.status == 200) {
                     setUser(resp.data.data);
-                    toast.success(resp.data.message);
+                    // toast.success(resp.data.message);
                 }
             })
-            .catch((e) => toast.error(e.response.data.message));
+        // .catch((e) => toast.error(e.response.data.message));
     };
     return (
         <>

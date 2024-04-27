@@ -22,6 +22,8 @@ function Leadlist() {
   const [stats, setStats] = useState({});
   const [companies, setCompanies] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [DeleteId, setDeleteId] = useState("");
   const [leadId, setLeadId] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [companyId, setcompanyId] = useState("");
@@ -87,28 +89,13 @@ function Leadlist() {
     setIsModalOpen(!isModalOpen);
     setLeadId(_id);
   };
-  const handleAssign = async () => {
-    if (!companyId) {
-      return toast.error("Select Company First");
-    }
-    if (!leadId) {
-      return toast.error("lead not found");
-    }
-    console.log(leadId, companyId)
-    await API.assignLead({
+  const toggleDeleteModal = (e, _id) => {
+    setIsDeleteModalOpen(!isDeleteModalOpen);
 
-      leadId: leadId,
-      companyId: companyId,
-    })
-      .then((resp) => {
-        if (resp.status == 200) {
-          toast.success(resp.data.message);
-
-          getAllLeads();
-        }
-      })
-      .catch((e) => toast.error(e.response.data.message));
+    setDeleteId(_id);
   };
+
+
 
   // Modal component
   const Modal = ({ isOpen, closeModal }) => {
@@ -134,6 +121,27 @@ function Leadlist() {
 
             Attribuer
           </button>
+        </div>
+      </div>
+    );
+  };
+  const DeleteModal = ({ isOpen, closeModal, id }) => {
+
+    if (!isOpen) return null;
+    return (
+      <div className="modal-overlay" onClick={closeModal}>
+        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+          <span className="close" onClick={closeModal}>
+            &times;
+          </span>
+          <p className="Title">Are You Sure</p>
+
+          <div className="DeleteButtons">
+            <button className="del-Button" onClick={closeModal}>Annuler</button>
+            <button className="del-Button" onClick={(e) => handleDelete(e, id)}>
+
+              Continuer
+            </button></div>
         </div>
       </div>
     );
@@ -215,21 +223,45 @@ function Leadlist() {
       })
     // .catch((e) => toast.error(e.response.data.message));
   };
+  const handleAssign = async () => {
+    if (!companyId) {
+      return toast.error("Select Company First");
+    }
+    if (!leadId) {
+      return toast.error("lead not found");
+    }
+    console.log(leadId, companyId)
+    await API.assignLead({
 
+      leadId: leadId,
+      companyId: companyId,
+    })
+      .then((resp) => {
+        if (resp.status == 200) {
+          toast.success(resp.data.message);
+
+          getAllLeads();
+        }
+      })
+      .catch((e) => toast.error(e.response.data.message));
+  };
   const handleDelete = async (e, id) => {
     e.preventDefault();
+    console.log(id)
     await API.deleteLead({
       id: id,
     })
       .then((resp) => {
         // console.log(resp);
         if (resp.status == 200) {
-          toast.success(resp.data.message);
+          // toast.success(resp.data.message);
           // console.log(resp.data.data);
           getAllLeads();
+          toggleDeleteModal();
+          // navigate("/list-lead")
         }
       })
-      .catch((e) => toast.error(e.response.data.message));
+    // .catch((e) => toast.error(e.response.data.message));
   };
   const getAllCompanies = async () => {
     // console.log("api check");
@@ -364,7 +396,7 @@ function Leadlist() {
                             </td>
                             <td>{item?.mobileNumber1}</td>
                             <td className="Status-Color1">{item?.status}</td>
-                            <td>{item?.userId?.role}</td>
+                            <td>{item?.userId?.userName}</td>
                             <td>{formatDate(item?.createdAt)}</td>
 
                             <td className="Icons-Gapping">
@@ -380,9 +412,15 @@ function Leadlist() {
                                 navigate(`/customer/${item._id}`)
                               } />
                               <MdOutlineDelete
-                                onClick={(e) => handleDelete(e, item._id)}
+                                onClick={(e) => toggleDeleteModal(e, item._id)}
                                 className="Table-Icons1"
                               />
+                              <DeleteModal
+                                isOpen={isDeleteModalOpen}
+                                closeModal={toggleDeleteModal}
+                                id={item._id}
+                              />
+
                             </td>
                             <td>
                               <button
@@ -400,6 +438,10 @@ function Leadlist() {
                         ))}
                       </tbody>
                     </table>
+                    {/* <DeleteModal
+                      isOpen={isDeleteModalOpen}
+                      closeModal={toggleDeleteModal}
+                    /> */}
                     <Modal
                       isOpen={isModalOpen}
                       closeModal={toggleModal}

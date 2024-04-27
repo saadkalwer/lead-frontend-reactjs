@@ -7,6 +7,7 @@ import { IoMdSearch } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { IoPersonSharp } from "react-icons/io5";
 import { MdOutlineDelete } from "react-icons/md";
+
 import { API } from "../../api/api";
 import { toast } from "react-toastify";
 function DsaListing() {
@@ -14,6 +15,8 @@ function DsaListing() {
   const [currentPage, setCurrentPage] = useState(1);
   const [companies, setCompanies] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [DeleteId, setDeleteId] = useState("");
   function formatDate(dateString) {
     // Create a new Date object from the dateString
     const date = new Date(dateString);
@@ -31,8 +34,33 @@ function DsaListing() {
 
     return formattedDate;
   }
+  const toggleDeleteModal = (e, _id) => {
+    setIsDeleteModalOpen(!isDeleteModalOpen);
 
+    setDeleteId(_id);
+  };
 
+  const DeleteModal = ({ isOpen, closeModal, id }) => {
+
+    if (!isOpen) return null;
+    return (
+      <div className="modal-overlay" onClick={closeModal}>
+        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+          <span className="close" onClick={closeModal}>
+            &times;
+          </span>
+          <p className="Title">Are You Sure</p>
+
+          <div className="DeleteButtons">
+            <button className="del-Button" onClick={closeModal}>Annuler</button>
+            <button className="del-Button" onClick={(e) => handleDelete(e, id)}>
+
+              Continuer
+            </button></div>
+        </div>
+      </div>
+    );
+  };
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       getAllCompanies();
@@ -93,6 +121,7 @@ function DsaListing() {
           toast.success(resp.data.message);
           // console.log(resp.data.data);
           getAllCompanies();
+          toggleDeleteModal();
         }
       })
       .catch((e) => toast.error(e.response.data.message));
@@ -211,8 +240,13 @@ function DsaListing() {
 
                               />
                               <MdOutlineDelete
-                                onClick={(e) => handleDelete(e, item._id)}
+                                onClick={(e) => toggleDeleteModal(e, item._id)}
                                 className="Table-Icons1"
+                              />
+                              <DeleteModal
+                                isOpen={isDeleteModalOpen}
+                                closeModal={toggleDeleteModal}
+                                id={item._id}
                               />
                             </td>
                           </tr>

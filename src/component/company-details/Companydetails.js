@@ -138,12 +138,12 @@ function Companydetails() {
         if (resp.status == 200) {
           setUserEmail(resp.data.data.email);
           setUserPassword(resp.data.data.randomPassword);
-          toast.success(resp.data.message);
+          // toast.success(resp.data.message);
           setIsModalOpen(true);
           // navigate("/businessloan");
         }
       })
-      .catch((e) => toast.error(e.response.data.message));
+    // .catch((e) => toast.error(e.response.data.message));
   };
 
   const userData = JSON.parse(localStorage.getItem("user"));

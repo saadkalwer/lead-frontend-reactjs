@@ -19,6 +19,27 @@ export const Partnerstyled = styled.div`
     height: 100%;
     margin-bottom: 20px;
   }
+  .DeleteButtons{
+ display: flex;
+ align-items: center;
+ gap: 10px;
+ width: 100%;
+ justify-content: center;
+ margin-top: 90px;
+  }
+  .del-Button{
+        width: 120px;
+    height: 33px;
+  color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #34437A;
+
+    border: 1px solid #34437a;
+    border-radius: 4px;
+    font-size: 14px;
+  }
   .Partner-Container {
     display: flex;
 
