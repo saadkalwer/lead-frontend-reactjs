@@ -304,6 +304,9 @@ function Profile() {
                           onChange={handleMaritalChange}
                         >
                           <option value="">
+                            Sélectionnez le statut martial
+                          </option>
+                          <option >
                             Veuf
                           </option>
                           <option>Célibataire
@@ -376,7 +379,9 @@ function Profile() {
                           value={accommodation}
                           onChange={handleAccommodationChange}
                         >
-                          <option value="">Hébergé</option>
+                          <option value="">
+                            Sélectionnez l'hébergement</option>
+                          <option >Hébergé</option>
                           <option>Propriétaire
                           </option>
                           <option> Locataire</option>

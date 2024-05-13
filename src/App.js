@@ -46,7 +46,7 @@ function App() {
           element={
             <ProtectedRoute>
               <CallCenterRoute>
-                <Partner />{" "}
+                <Partner />
               </CallCenterRoute>
             </ProtectedRoute>
           }
