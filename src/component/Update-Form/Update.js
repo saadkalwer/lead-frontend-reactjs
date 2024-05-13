@@ -282,7 +282,10 @@ function Update() {
                           value={lead.martialStatus ? lead.martialStatus : ""}
                           onChange={handleMaritalChange}
                         >
-                          <option value="">Veuf
+                          <option value="">
+                            Sélectionnez le statut martial
+                          </option>
+                          <option >Veuf
                           </option>
                           <option>Célibataire
                           </option>
@@ -346,7 +349,9 @@ function Update() {
                           value={lead.accommodation ? lead.accommodation : ""}
                           onChange={handleAccommodationChange}
                         >
-                          <option value="">Hébergé
+                          <option value="">
+                            Sélectionnez l'hébergement</option>
+                          <option >Hébergé
                           </option>
                           <option>Propriétaire
                           </option>
