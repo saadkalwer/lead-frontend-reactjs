@@ -155,7 +155,7 @@ function Partner() {
                           </th>
                           <th>Statut</th>
                           <th>Genre</th>
-                          <th>administratrice Comment
+                          <th>Commentaire installateur
                           </th>
                         </tr>
                       </thead>

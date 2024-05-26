@@ -101,8 +101,7 @@ function DsaListing() {
 
       if (responseData && responseData.success) {
         setCompanies(responseData.data.users);
-        // Handle pagination details if available in response
-        // toast.success(responseData.message);
+
       } else {
         // toast.error("Failed to fetch companies");
       }
@@ -113,7 +112,7 @@ function DsaListing() {
   const handleDelete = async (e, id) => {
     e.preventDefault();
     await API.deleteCompany({
-      id: id,
+      id: DeleteId,
     })
       .then((resp) => {
         // console.log(resp);
@@ -122,6 +121,7 @@ function DsaListing() {
           // console.log(resp.data.data);
           getAllCompanies();
           toggleDeleteModal();
+          setDeleteId("")
         }
       })
       .catch((e) => toast.error(e.response.data.message));
@@ -215,7 +215,7 @@ function DsaListing() {
                         </tr>
                       </thead>
                       <tbody>
-                        {companies.map((item, index) => (
+                        {companies?.map((item, index) => (
                           <tr key={index}>
                             <td>{index + 1}</td>
                             <td>{item.firstName}</td><td>{item.street}</td>

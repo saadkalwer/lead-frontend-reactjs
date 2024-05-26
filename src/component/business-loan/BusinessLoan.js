@@ -114,7 +114,7 @@ function BusinessLoan() {
   const handleDelete = async (e, id) => {
     e.preventDefault();
     await API.deleteCompany({
-      id: id,
+      id: DeleteId,
     })
       .then((resp) => {
         // console.log(resp);
@@ -123,6 +123,7 @@ function BusinessLoan() {
           // console.log(resp.data.data);
           getAllCompanies();
           toggleDeleteModal();
+          setDeleteId("")
         }
       })
       .catch((e) => toast.error(e.response.data.message));
@@ -183,68 +184,70 @@ function BusinessLoan() {
                       />
                     </div>
                   </div>
-                  <div className="Table-Section">
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>ID
-                          </th>
-                          <th> Nom et prénom
+                  <div className="Table-Scrolling">
+                    <div className="Table-Section">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>ID
+                            </th>
+                            <th> Nom et prénom
 
-                          </th>
-                          <th>Centre d'appel</th>
-                          <th>Informations de contact
-                          </th>
-                          <th>Rue
-                          </th>
-                          <th>Ajouté le
-                          </th>
-                          <th>Ville</th>
-                          <th>Code postal
-                          </th>
-                          <th>Actions</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {companies?.users?.map((item, index) => (
-                          <tr key={index}>
-                            <td>{index + 1}</td>
-                            <td className="Client-Color">{item.userName}</td>
-                            <td>{item.role}</td>
-                            <td>{item.mobileNo1}</td>
-                            <td>{item.street}</td>
-                            <td>{formatDate(item.createdAt)}</td>
-                            <td>{item.city}</td>
-                            <td>{item.zip}</td>
-                            <td className="Icons-Gapping">
-                              <TbEdit
-                                className="Table-Icons"
-                                onClick={() =>
-                                  navigate(`/update-call-center/${item._id}`)
-                                }
-                                key={index}
-                              />
-
-                              <VscEye className="Table-Icons"
-                                onClick={() =>
-                                  navigate(`/call-center-details/${item._id}`)
-                                }
-
-                              />
-                              <MdOutlineDelete
-                                onClick={(e) => toggleDeleteModal(e, item._id)}
-                                className="Table-Icons1"
-                              />
-                              <DeleteModal
-                                isOpen={isDeleteModalOpen}
-                                closeModal={toggleDeleteModal}
-                                id={item._id}
-                              />
-                            </td>
+                            </th>
+                            <th>Centre d'appel</th>
+                            <th>Informations de contact
+                            </th>
+                            <th>Rue
+                            </th>
+                            <th>Ajouté le
+                            </th>
+                            <th>Ville</th>
+                            <th>Code postal
+                            </th>
+                            <th>Actions</th>
                           </tr>
-                        ))}
-                      </tbody>
-                    </table>
+                        </thead>
+                        <tbody>
+                          {companies?.users?.map((item, index) => (
+                            <tr key={index}>
+                              <td>{index + 1}</td>
+                              <td className="Client-Color">{item.userName}</td>
+                              <td>{item.role}</td>
+                              <td>{item.mobileNo1}</td>
+                              <td>{item.street}</td>
+                              <td>{formatDate(item.createdAt)}</td>
+                              <td>{item.city}</td>
+                              <td>{item.zip}</td>
+                              <td className="Icons-Gapping">
+                                <TbEdit
+                                  className="Table-Icons"
+                                  onClick={() =>
+                                    navigate(`/update-call-center/${item._id}`)
+                                  }
+                                  key={index}
+                                />
+
+                                <VscEye className="Table-Icons"
+                                  onClick={() =>
+                                    navigate(`/call-center-details/${item._id}`)
+                                  }
+
+                                />
+                                <MdOutlineDelete
+                                  onClick={(e) => toggleDeleteModal(e, item._id)}
+                                  className="Table-Icons1"
+                                />
+                                <DeleteModal
+                                  isOpen={isDeleteModalOpen}
+                                  closeModal={toggleDeleteModal}
+                                  id={item._id}
+                                />
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                   <div className="pagination-container">
                     <span className="pagination-text">

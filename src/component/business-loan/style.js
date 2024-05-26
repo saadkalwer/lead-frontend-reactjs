@@ -120,7 +120,11 @@ export const Partnerstyled = styled.div`
     overflow-x: auto;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
-
+  .Table-Scrolling{
+    width: 1125px;
+    white-space: nowrap;
+    overflow: auto;
+  }
   table {
     width: 100%;
     border-collapse: collapse;

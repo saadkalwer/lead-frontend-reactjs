@@ -126,7 +126,7 @@ function Leadlist() {
     );
   };
   const DeleteModal = ({ isOpen, closeModal, id }) => {
-
+    console.log(id)
     if (!isOpen) return null;
     return (
       <div className="modal-overlay" onClick={closeModal}>
@@ -249,7 +249,7 @@ function Leadlist() {
     e.preventDefault();
     console.log(id)
     await API.deleteLead({
-      id: id,
+      id: DeleteId,
     })
       .then((resp) => {
         // console.log(resp);
@@ -259,6 +259,7 @@ function Leadlist() {
           getAllLeads();
           toggleDeleteModal();
           // navigate("/list-lead")
+          setDeleteId("")
         }
       })
     // .catch((e) => toast.error(e.response.data.message));
@@ -379,6 +380,7 @@ function Leadlist() {
 
                           <th>Ajouté le
                           </th>
+                          <th>Commentaire de l'administrateur</th>
                           <th>Action</th>
                           <th>Attribuer aux sociétés
                           </th>
@@ -398,6 +400,7 @@ function Leadlist() {
                             <td className="Status-Color1">{item?.status}</td>
                             <td>{item?.userId?.userName}</td>
                             <td>{formatDate(item?.createdAt)}</td>
+                            <td>{item.adminComment}</td>
 
                             <td className="Icons-Gapping">
                               <TbEdit
