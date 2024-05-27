@@ -452,6 +452,31 @@ export const Partnerstyled = styled.div`
 
     gap: 10px;
   }
+ 
+ 
+ 
+ 
+  .new-lead {
+    color: #7b7777;
+  }
+  .in-process {
+    color: rgb(255, 143, 0);
+  }
+  .appointment {
+    color: rgb(171, 0, 255);
+  }
+  .visited {
+    color: rgb(0, 217, 255);
+  }
+  .canceled {
+    color: red;
+  }
+  .installed {
+    color: rgb(39, 181, 84);
+  }
+  .paid {
+    color: rgb(255, 0, 174);
+  }
   .Bell-Icon {
     color: #495057;
     width: 30px;

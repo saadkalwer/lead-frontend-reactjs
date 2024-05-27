@@ -436,4 +436,29 @@ export const Partnerstyled = styled.div`
   .call-center {
     margin-left: 30px;
   }
+ 
+  
+
+  
+  @media (min-width: 1365px) {
+    .Table-Scrolling{
+    width: 945px;
+    white-space: nowrap;
+    overflow: auto;
+    }
+  } 
+   @media (min-width: 1517px) {
+    .Table-Scrolling{
+    width: 1153px;
+    white-space: nowrap;
+    overflow: auto;
+  }
+}
+  @media (min-width: 1617px) {
+    .Table-Scrolling{
+   width: 100%;
+    white-space: nowrap;
+   
+  }
+  }
 `;

@@ -449,7 +449,7 @@ function Update() {
                   <div className="Names-Form-Comment">
                     <div className="Form-Box-Text-Bottom">
                       <span className="Form-Box-Title">
-                        Commentaire</span>
+                        Commentaire centre d'appel</span>
                       <div className="FormBox-Comment">
 
                         <textarea
@@ -481,7 +481,7 @@ function Update() {
                           <option>Rendez-vous
                           </option>
 
-                          <option>Visité
+                          <option>NRP
                           </option>
                           <option>Annuler
                           </option>
