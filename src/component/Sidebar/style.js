@@ -31,7 +31,7 @@ export const Sidebarstyled = styled.div`
 
   /* Sidebar */
   .sidebar {
-    background: #FFE2BF;
+    background: #DAF2FF;
     color: white;
     height: 100vh;
 
@@ -70,13 +70,13 @@ export const Sidebarstyled = styled.div`
     text-decoration: none;
   }
   .link:hover {
-    background: #FDC98B;
-    color: #4D547C;
+    background: #8ADFFF;
+    color: #3F568B;
     height: 40px;
   }
   .active {
-    background: #FDC98B;
-    color: #4D547C;
+    background: #8ADFFF;
+    color: #3F568B;
     height: 40px;
   }
   .link_text {
@@ -99,8 +99,8 @@ export const Sidebarstyled = styled.div`
     align-items: center;
   }
   .menu:hover {
-    background: #FDC98B;
-    color: #4D547C;
+    background: #8ADFFF;
+    color: #3F568B;
     height: 40px;
   }
   .menu_container {
