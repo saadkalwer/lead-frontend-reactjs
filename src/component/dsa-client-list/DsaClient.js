@@ -31,6 +31,27 @@ function DsaClient() {
 
     return formattedDate;
   }
+  const getStatusColor = (status) => {
+    switch (status) {
+      case 'Nouveau lead': // New lead
+        return '#7b7777';
+      case 'En cours de traitement': // In process
+        return 'rgb(255 143 0)';
+      case 'Annuler': // Canceled
+        return 'red';
+      case 'Rendez-vous': // Appointment
+        return 'rgb(171, 0, 255)';
+      case 'NRP': // Visit
+        return 'rgb(0 217 255))';
+      case 'Installé': // Install
+        return 'rgb(39, 181, 84)';
+      case 'Payé': // Paid
+        return 'rgb(255, 0, 174)';
+      default:
+        return 'black'; // Default color if status is unknown
+    }
+  };
+
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       getAllEmployees();
@@ -174,7 +195,11 @@ function DsaClient() {
                             <td>{item.city}</td>
                             <td>{item.annualIncome}</td>
                             <td>{formatDate(item.createdAt)}</td>
-                            <td className="Status-Color">{item.status}</td>
+
+
+                            <td className="Status-Color" style={{ color: getStatusColor(item.status) }}>
+                              {item.status}
+                            </td>
                           </tr>
                         ))}
                       </tbody>

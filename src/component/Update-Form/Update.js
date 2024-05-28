@@ -473,8 +473,9 @@ function Update() {
                           value={lead.status ? lead.status : ""}
                           onChange={handleStatusChange}
                         >
-
-                          <option value="" >Nouveau lead
+                          <option value="" >Sélectionnez le statut
+                          </option>
+                          <option  >Nouveau lead
                           </option>
                           <option>En cours de traitement
                           </option>

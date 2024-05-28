@@ -30,6 +30,27 @@ function Partner() {
     return formattedDate;
   }
 
+  const getStatusColor = (status) => {
+    switch (status) {
+      case 'Nouveau lead': // New lead
+        return '#7b7777';
+      case 'En cours de traitement': // In process
+        return 'rgb(255 143 0)';
+      case 'Annuler': // Canceled
+        return 'red';
+      case 'Rendez-vous': // Appointment
+        return 'rgb(171, 0, 255)';
+      case 'NRP': // Visit
+        return 'rgb(0 217 255))';
+      case 'Installé': // Install
+        return 'rgb(39, 181, 84)';
+      case 'Payé': // Paid
+        return 'rgb(255, 0, 174)';
+      default:
+        return 'black'; // Default color if status is unknown
+    }
+  };
+
   const userData = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
@@ -151,9 +172,9 @@ function Partner() {
                           </th>
                           <th>Téléphone 1
                           </th>
+                          <th>Statut</th>
                           <th>Ajouté le
                           </th>
-                          <th>Statut</th>
                           <th>Genre</th>
                           <th>Commentaire installateur
                           </th>
@@ -171,7 +192,9 @@ function Partner() {
                             <td>{item.zip}</td>
                             <td>{item.mobileNumber1}</td>
 
-                            <td className="Status-Color">{item.status}</td>
+                            <td className="Status-Color" style={{ color: getStatusColor(item.status) }}>
+                              {item.status}
+                            </td>
                             <td>{formatDate(item.createdAt)}</td>
                             <td>{item.gender}</td>
                             <td>{item.callCenterComment}</td>

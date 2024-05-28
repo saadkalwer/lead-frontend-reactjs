@@ -95,7 +95,26 @@ function Leadlist() {
     setDeleteId(_id);
   };
 
-
+  const getStatusColor = (status) => {
+    switch (status) {
+      case 'Nouveau lead': // New lead
+        return '#7b7777';
+      case 'En cours de traitement': // In process
+        return 'rgb(255 143 0)';
+      case 'Annuler': // Canceled
+        return 'red';
+      case 'Rendez-vous': // Appointment
+        return 'rgb(171, 0, 255)';
+      case 'NRP': // Visit
+        return 'rgb(0 217 255))';
+      case 'Installé': // Install
+        return 'rgb(39, 181, 84)';
+      case 'Payé': // Paid
+        return 'rgb(255, 0, 174)';
+      default:
+        return 'black'; // Default color if status is unknown
+    }
+  };
 
   // Modal component
   const Modal = ({ isOpen, closeModal }) => {
@@ -361,96 +380,101 @@ function Leadlist() {
                       />
                     </div>
                   </div>
-                  <div className="Table-Section">
-                    <table>
-                      <thead>
-                        <tr className="Tr-Font-Color">
-                          <th>ID
-                          </th>
-                          <th>Nom et prénom
-                          </th>
-                          <th>Ville
-                          </th>
-                          <th>Code postal
-                          </th>
-                          <th>Téléphone 1
-                          </th>
-                          <th>statut</th>
-                          <th>Centre d'appel</th>
+                  <div className="Table-Scrolling">
+                    <div className="Table-Section">
+                      <table>
+                        <thead>
+                          <tr className="Tr-Font-Color">
+                            <th>ID
+                            </th>
+                            <th>Nom et prénom
+                            </th>
+                            <th>Ville
+                            </th>
+                            <th>Code postal
+                            </th>
+                            <th>Téléphone 1
+                            </th>
+                            <th>statut</th>
+                            <th>Centre d'appel</th>
 
-                          <th>Ajouté le
-                          </th>
-                          <th>Commentaire de l'administrateur</th>
-                          <th>Commentaire du Centre d'Appel</th>
-                          <th>Action</th>
-                          <th>Attribuer aux sociétés
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {leads?.map((item, index) => (
-                          <tr key={index}>
-                            <td>{index + 1}</td>
-
-                            <td>{item?.customerName}</td>
-                            <td>{item?.city}</td>
-                            <td className="Client-Color">
-                              {item?.zip}
-                            </td>
-                            <td>{item?.mobileNumber1}</td>
-                            <td className="Status-Color1">{item?.status}</td>
-                            <td>{item?.userId?.userName}</td>
-                            <td>{formatDate(item?.createdAt)}</td>
-                            <td>{item.adminComment}</td>
-                            <td>{item.callCenterComment}</td>
-                            <td className="Icons-Gapping">
-                              <TbEdit
-                                className="Table-Icons"
-                                onClick={() =>
-                                  navigate(`/update-form/${item._id}`)
-                                }
-                                key={index}
-                              />
-
-                              <VscEye className="Table-Icons" onClick={() =>
-                                navigate(`/customer/${item._id}`)
-                              } />
-                              <MdOutlineDelete
-                                onClick={(e) => toggleDeleteModal(e, item._id)}
-                                className="Table-Icons1"
-                              />
-                              <DeleteModal
-                                isOpen={isDeleteModalOpen}
-                                closeModal={toggleDeleteModal}
-                                id={item._id}
-                              />
-
-                            </td>
-                            <td>
-                              <button
-                                className="Assign-Button"
-                                onClick={() => toggleModal(item._id)}
-                              >
-                                Attribuer à une société
-                              </button>
-                              <Modal
-                                isOpen={isModalOpen}
-                                closeModal={toggleModal}
-                              />
-                            </td>
+                            <th>Ajouté le
+                            </th>
+                            <th>Commentaire de l'administrateur</th>
+                            <th>Commentaire du Centre d'Appel</th>
+                            <th>Action</th>
+                            <th>Attribuer aux sociétés
+                            </th>
                           </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                    {/* <DeleteModal
+                        </thead>
+                        <tbody>
+                          {leads?.map((item, index) => (
+                            <tr key={index}>
+                              <td>{index + 1}</td>
+
+                              <td>{item?.customerName}</td>
+                              <td>{item?.city}</td>
+                              <td className="Client-Color">
+                                {item?.zip}
+                              </td>
+                              <td>{item?.mobileNumber1}</td>
+
+                              <td className="Status-Color" style={{ color: getStatusColor(item?.status) }}>
+                                {item?.status}
+                              </td>
+                              <td>{item?.userId?.userName}</td>
+                              <td>{formatDate(item?.createdAt)}</td>
+                              <td>{item.adminComment}</td>
+                              <td>{item.callCenterComment}</td>
+                              <td className="Icons-Gapping">
+                                <TbEdit
+                                  className="Table-Icons"
+                                  onClick={() =>
+                                    navigate(`/update-form/${item._id}`)
+                                  }
+                                  key={index}
+                                />
+
+                                <VscEye className="Table-Icons" onClick={() =>
+                                  navigate(`/customer/${item._id}`)
+                                } />
+                                <MdOutlineDelete
+                                  onClick={(e) => toggleDeleteModal(e, item._id)}
+                                  className="Table-Icons1"
+                                />
+                                <DeleteModal
+                                  isOpen={isDeleteModalOpen}
+                                  closeModal={toggleDeleteModal}
+                                  id={item._id}
+                                />
+
+                              </td>
+                              <td>
+                                <button
+                                  className="Assign-Button"
+                                  onClick={() => toggleModal(item._id)}
+                                >
+                                  Attribuer à une société
+                                </button>
+                                <Modal
+                                  isOpen={isModalOpen}
+                                  closeModal={toggleModal}
+                                />
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                      {/* <DeleteModal
                       isOpen={isDeleteModalOpen}
                       closeModal={toggleDeleteModal}
                     /> */}
-                    <Modal
-                      isOpen={isModalOpen}
-                      closeModal={toggleModal}
-                      options={options}
-                    />
+                      <Modal
+                        isOpen={isModalOpen}
+                        closeModal={toggleModal}
+                        options={options}
+                      />
+                    </div>
                   </div>
                   <div className="pagination-container">
                     <span className="pagination-text">

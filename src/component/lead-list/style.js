@@ -552,7 +552,40 @@ export const Partnerstyled = styled.div`
     gap: 5px;
     color: white;
   }
- 
+  .Table-Scrolling{
+    width: 1125px;
+    white-space: nowrap;
+    overflow: auto;
+  }
+  @media (min-width: 1365px) {
+    .Table-Scrolling{
+    width: 945px;
+    white-space: nowrap;
+    overflow: auto;
+    }
+  } 
+   @media (min-width: 1517px) {
+    .Table-Scrolling{
+    width: 1153px;
+    white-space: nowrap;
+    overflow: auto;
+  }
+}
+  @media (min-width: 1617px) {
+    .Table-Scrolling{
+   width: 1313px;
+    white-space: nowrap;
+   
+  }
+  }
+  @media (min-width: 2000px) {
+    .Table-Scrolling{
+   width: 1634px;
+    white-space: nowrap;
+   
+  }
+  }
+/*  
   @media all and (max-width: 1400px) {
     .dashboard-container {
       display: flex;
@@ -568,5 +601,5 @@ export const Partnerstyled = styled.div`
       justify-content: center;
       flex-wrap: wrap;
     }
-  }
+  } */
 `;
