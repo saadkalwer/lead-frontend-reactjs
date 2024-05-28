@@ -203,6 +203,27 @@ width: 940px;
     gap: 10px;
     margin-bottom: 20px;
   }
+  .new-lead {
+    color: #7b7777;
+  }
+  .in-process {
+    color: rgb(255, 143, 0);
+  }
+  .appointment {
+    color: rgb(171, 0, 255);
+  }
+  .visited {
+    color: rgb(0, 217, 255);
+  }
+  .canceled {
+    color: red;
+  }
+  .installed {
+    color: rgb(39, 181, 84);
+  }
+  .paid {
+    color: rgb(255, 0, 174);
+  }
   .FormBox-Bottom-House {
     border: 2px #e6ebf2 solid;
     padding: 4px;

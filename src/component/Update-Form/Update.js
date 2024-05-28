@@ -475,20 +475,20 @@ function Update() {
                         >
                           <option value="" >Sélectionnez le statut
                           </option>
-                          <option  >Nouveau lead
+                          <option className="new-lead " >Nouveau lead
                           </option>
-                          <option>En cours de traitement
+                          <option className="in-process" >En cours de traitement
                           </option>
-                          <option>Rendez-vous
+                          <option className="appointment" >Rendez-vous
                           </option>
 
-                          <option>NRP
+                          <option className="visited" >NRP
                           </option>
-                          <option>Annuler
+                          <option className="canceled" >Annuler
                           </option>
-                          <option>Installé
+                          <option className="installed" >Installé
                           </option>
-                          <option>Payé</option>
+                          <option className="paid" >Payé</option>
                         </select>
                       </div>
                     </div>
