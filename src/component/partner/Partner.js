@@ -176,6 +176,7 @@ function Partner() {
                           <th>Ajouté le
                           </th>
                           <th>Genre</th>
+                          <th>Commentaire call center</th>
                           <th>Commentaire installateur
                           </th>
                         </tr>
@@ -198,7 +199,7 @@ function Partner() {
                             <td>{formatDate(item.createdAt)}</td>
                             <td>{item.gender}</td>
                             <td>{item.callCenterComment}</td>
-
+                            <td>{item.adminComment}</td>
                           </tr>
                         ))}
                       </tbody>

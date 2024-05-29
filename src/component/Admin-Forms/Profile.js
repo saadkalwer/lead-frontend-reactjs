@@ -186,10 +186,10 @@ function Profile() {
                     <FiBell className="Bell-Icon" />
                   </div>
                   <div className="Avatar-Main-Section">
-                    <IoPersonSharp className="Manager-Avatar" />
+                    {/* <IoPersonSharp className="Manager-Avatar" /> */}
                     <div className="Avatar-Text-Section">
-                      <span className="Avatar-Title">Anna Adame</span>
-                      <span className="Avatar-Text">Founder</span>
+                      {/* <span className="Avatar-Title">Anna Adame</span>
+                      <span className="Avatar-Text">Founder</span> */}
                     </div>
                   </div>
                 </div>
@@ -496,6 +496,7 @@ function Profile() {
 
                     </div>
                   </div>
+
                   {/* {showAttechment && (
                     <div className="File-Div">
                       <input type="file" />
