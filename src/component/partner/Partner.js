@@ -158,6 +158,7 @@ function Partner() {
                       />
                     </div>
                   </div>
+
                   <div className="Table-Section">
                     <table>
                       <thead>
@@ -198,13 +199,18 @@ function Partner() {
                             </td>
                             <td>{formatDate(item.createdAt)}</td>
                             <td>{item.gender}</td>
-                            <td>{item.callCenterComment}</td>
-                            <td>{item.adminComment}</td>
+                            <td>
+                              <span className="Comment-Sizing"> {item.callCenterComment}</span>
+                            </td>
+                            <td>
+                              <span className="Comment-Sizing">{item.adminComment}</span>
+                            </td>
                           </tr>
                         ))}
                       </tbody>
                     </table>
                   </div>
+
                   <div className="pagination-container">
                     <span className="pagination-text">
 

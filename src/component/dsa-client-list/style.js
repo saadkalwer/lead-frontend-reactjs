@@ -120,7 +120,7 @@ export const Partnerstyled = styled.div`
   }
 
   th {
-    position: sticky;
+
     top: 0;
   }
 

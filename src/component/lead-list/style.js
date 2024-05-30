@@ -10,12 +10,12 @@ export const Partnerstyled = styled.div`
   align-items: center;
   .Parter-Main-Section {
     background-color: white;
-    width: 98%;
+    width: 100%;
     font-size: 17px;
     display: flex;
     margin-top: 60px;
 
-    justify-content: center;
+   padding-left: 5px;
     height: 100%;
     margin-bottom: 20px;
   }
@@ -44,12 +44,12 @@ export const Partnerstyled = styled.div`
     display: flex;
 
     flex-direction: column;
-    width: 95%;
+    width: 100%;
   }
   .Partner-Form-Header {
     display: flex;
     justify-content: space-between;
-    width: 95%;
+    width: 99%;
     margin-top: 30px;
     padding-bottom: 20px;
     border-bottom: 1px solid #efefef;
@@ -57,6 +57,7 @@ export const Partnerstyled = styled.div`
   .Header-Text {
     font-size: 20px;
     font-weight: 500;
+    padding-left: 16px;
   }
   .Header-Button-Section {
     display: flex;
@@ -93,12 +94,14 @@ export const Partnerstyled = styled.div`
     outline: none;
     color: black;
     background-color: white;
+    
   }
   .kyc-search-box1 {
     display: flex;
     align-items: center;
     background-color: white;
     border: 1px solid #ced4da;
+    margin-left: 16px;
     padding: 4px;
     border-radius: 4px;
     cursor: pointer;
@@ -125,17 +128,17 @@ export const Partnerstyled = styled.div`
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
-    font-size: 16px;
+    font-size: 13px;
   }
 
   thead {
     background-color: #f4f4f4;
-    font-size: 15px;
+    font-size: 13px;
   }
 
   th,
   td {
-    padding: 10px 12px;
+    padding: 7px 6px;
     border: 1px solid #ddd;
   }
 
@@ -147,7 +150,7 @@ export const Partnerstyled = styled.div`
   }
 
   th {
-    position: sticky;
+    
     top: 0;
   }
 
@@ -537,6 +540,12 @@ export const Partnerstyled = styled.div`
     margin-top: 40px;
     height: 33px;
   }
+.Comment-Sizing {
+    width: 165px;
+   
+    word-break: break-all;
+    display: flex;
+}
   .Add-Button {
     width: 450px;
     margin-top: 90px;
@@ -553,34 +562,33 @@ export const Partnerstyled = styled.div`
     color: white;
   }
   .Table-Scrolling{
-    width: 1125px;
+    width: 100%;
   
-    overflow: auto;
+  
   }
   @media (min-width: 1365px) {
     .Table-Scrolling{
-    width: 945px;
+    width: 100%;
 
-    overflow: auto;
+
     }
   } 
    @media (min-width: 1517px) {
     .Table-Scrolling{
-    width: 1153px;
+    width: 100%;
 
-    overflow: auto;
   }
 }
   @media (min-width: 1617px) {
     .Table-Scrolling{
-   width: 1313px;
+   width:   100%;
 
    
   }
   }
   @media (min-width: 2000px) {
     .Table-Scrolling{
-   width: 1634px;
+      width:   100%;
 
    
   }

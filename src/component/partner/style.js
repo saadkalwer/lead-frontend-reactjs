@@ -8,7 +8,7 @@ export const Partnerstyled = styled.div`
   justify-content: center;
   .Parter-Main-Section {
     background-color: white;
-    width: 98%;
+    width: 100%;
     font-size: 17px;
     display: flex;
     margin-top: 60px;
@@ -20,12 +20,12 @@ export const Partnerstyled = styled.div`
     display: flex;
 
     flex-direction: column;
-    width: 95%;
+    width: 99%;
   }
   .Partner-Form-Header {
     display: flex;
     justify-content: space-between;
-    width: 95%;
+    width: 99%;
     margin-top: 10px;
     padding: 10px;
     border-bottom: 1px solid #34437a;
@@ -112,7 +112,7 @@ export const Partnerstyled = styled.div`
 
   th,
   td {
-    padding: 12px 15px;
+    padding: 7px 8px;
     border: 1px solid #ddd;
   }
 
@@ -124,7 +124,7 @@ export const Partnerstyled = styled.div`
   }
 
   th {
-    position: sticky;
+  
     top: 0;
   }
 
@@ -206,6 +206,12 @@ export const Partnerstyled = styled.div`
     background-color: white;
     border: 1px solid #ced4da;
   }
+  .Comment-Sizing {
+    width: 165px;
+   
+    word-break: break-all;
+    display: flex;
+}
   .page-button3 {
     width: 58px;
     height: 32px;
@@ -340,5 +346,37 @@ export const Partnerstyled = styled.div`
     background-color: #ffffff;
     padding-left: 20px;
     padding-top: 10px;
+  }
+  .Table-Scrolling{
+    width: 97%;
+  
+  
+  }
+  @media (min-width: 1365px) {
+    .Table-Scrolling{
+    width: 100%;
+
+
+    }
+  } 
+   @media (min-width: 1517px) {
+    .Table-Scrolling{
+    width: 100%;
+
+  }
+}
+  @media (min-width: 1617px) {
+    .Table-Scrolling{
+   width:   100%;
+
+   
+  }
+  }
+  @media (min-width: 2000px) {
+    .Table-Scrolling{
+      width:   100%;
+
+   
+  }
   }
 `;

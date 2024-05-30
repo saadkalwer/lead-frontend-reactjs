@@ -403,8 +403,8 @@ function Leadlist() {
                             <th>Commentaire de l'administrateur</th>
                             <th>Commentaire du Centre d'Appel</th>
                             <th>Action</th>
-                            <th>Attribuer aux sociétés
-                            </th>
+                            {/* <th>Attribuer aux sociétés
+                            </th> */}
                           </tr>
                         </thead>
                         <tbody>
@@ -424,8 +424,13 @@ function Leadlist() {
                               </td>
                               <td>{item?.userId?.userName}</td>
                               <td>{formatDate(item?.createdAt)}</td>
-                              <td>{item.adminComment}</td>
-                              <td>{item.callCenterComment}</td>
+                              <td>
+                                <span className="Comment-Sizing"> {item.adminComment}</span>
+                              </td>
+                              <td>
+                                <span className="Comment-Sizing">  {item.callCenterComment}</span>
+
+                              </td>
                               <td className="Icons-Gapping">
                                 <TbEdit
                                   className="Table-Icons"
@@ -449,7 +454,7 @@ function Leadlist() {
                                 />
 
                               </td>
-                              <td>
+                              {/* <td>
                                 <button
                                   className="Assign-Button"
                                   onClick={() => toggleModal(item._id)}
@@ -460,7 +465,7 @@ function Leadlist() {
                                   isOpen={isModalOpen}
                                   closeModal={toggleModal}
                                 />
-                              </td>
+                              </td> */}
                             </tr>
                           ))}
                         </tbody>

@@ -306,7 +306,7 @@ width: 940px;
   .Avatar-Main-Section {
     display: flex;
     background-color: #f3f3f9;
-    width: 165px;
+    width: 0px;
     height: 64px;
     margin-right: 30px;
     justify-content: center;
