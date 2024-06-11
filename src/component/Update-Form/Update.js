@@ -482,7 +482,7 @@ function Update() {
                           <option className="appointment" >Rendez-vous
                           </option>
 
-                          <option className="visited" >NRP
+                          <option className="visited" >Visite
                           </option>
                           <option className="canceled" >Annuler
                           </option>

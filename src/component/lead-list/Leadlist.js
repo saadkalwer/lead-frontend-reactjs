@@ -360,8 +360,36 @@ function Leadlist() {
 
                       </span>
                     </div>
-                    <div className="Header-Button-Section">
 
+                    <div className="Header-Button-Section">
+                      <div className="Name-Filter-Box1">
+                        <div className="kyc-search-box1">
+
+                          <select
+                            className="kyc-search1"
+                            value={searchTerm}
+                            onChange={handleSearchChange}
+                          >
+                            <option >
+                            </option>
+                            <option className="new-lead " >Nouveau lead
+                            </option>
+                            <option className="in-process" >En cours de traitement
+                            </option>
+                            <option className="appointment" >Rendez-vous
+                            </option>
+
+                            <option className="visited" >Visite
+                            </option>
+                            <option className="canceled" >Annuler
+                            </option>
+                            <option className="installed" >Installé
+                            </option>
+                            <option className="paid" >Payé</option>
+                          </select>
+                        </div>
+
+                      </div>
                       <button className="Header-Button" onClick={exportToExcel}>
                         <AiOutlineUpload className="Upload-button" /> Exporter vers excel
 

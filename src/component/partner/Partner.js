@@ -174,11 +174,11 @@ function Partner() {
                           <th>Téléphone 1
                           </th>
                           <th>Statut</th>
-                          <th>Ajouté le
-                          </th>
-                          <th>Genre</th>
+
                           <th>Commentaire call center</th>
                           <th>Commentaire installateur
+                          </th>
+                          <th>Ajouté le
                           </th>
                         </tr>
                       </thead>
@@ -197,14 +197,15 @@ function Partner() {
                             <td className="Status-Color" style={{ color: getStatusColor(item.status) }}>
                               {item.status}
                             </td>
-                            <td>{formatDate(item.createdAt)}</td>
-                            <td>{item.gender}</td>
+
+
                             <td>
                               <span className="Comment-Sizing"> {item.callCenterComment}</span>
                             </td>
                             <td>
                               <span className="Comment-Sizing">{item.adminComment}</span>
                             </td>
+                            <td>{formatDate(item.createdAt)}</td>
                           </tr>
                         ))}
                       </tbody>

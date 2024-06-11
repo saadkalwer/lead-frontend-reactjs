@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Detailstyled } from "./style";
 import Sidebar from "../Sidebar-2/SideBar";
 import { useNavigate } from "react-router-dom";
-import { IoPersonSharp } from "react-icons/io5";
+
 import { FiBell } from "react-icons/fi";
-import { IoMdSearch } from "react-icons/io";
+
 import { API } from "../../api/api";
 import { toast } from "react-toastify";
 
@@ -13,7 +13,7 @@ function Profile() {
   const [martialStatus, setMarital] = useState("");
   const [city, setCity] = useState("");
   const [housingType, setHousingType] = useState("");
-  const [accommodation, setAccommodation] = useState("");
+  const [buildingMoreThenTwoOld, setBuildingMoreThenTwoOld] = useState("");
   const [customerName, setCustomerName] = useState("");
   const [mobileNumber1, setNumber1] = useState("");
   const [mobileNumber2, setNumber2] = useState("");
@@ -22,13 +22,13 @@ function Profile() {
   const [dob, setDob] = useState("");
   const [street, setStreet] = useState("");
   const [zip, setZip] = useState("");
-  const [showAttechment, setShowAttechment] = useState(false);
-  const [fiscalNumber, setFiscal] = useState("");
-  const [refTaxNotice, setRefTaxNotice] = useState("");
-  const [annualIncome, setAnnualIncome] = useState("");
+  const [accommodation, setAccommodation] = useState("");
+  const [typeOfRadiators, setTypeOfRadiators] = useState("");
+  const [numberOfTowelDryers, setNumberOfTowelDryers] = useState("");
+  const [numberOfM2OfHouse, setNumberOfM2OfHouse] = useState("");
   const [bankName, setBankName] = useState("");
   const [callCenterComment, setCallCenterComment] = useState("");
-
+  const [numberOfRadiators, setNumberOfRadiators] = useState("");
   const handleCustomerNameChange = (e) => {
     setCustomerName(e.target.value);
   };
@@ -46,46 +46,45 @@ function Profile() {
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
-  const handleGenderChange = (selectedGender) => {
-    setGender(selectedGender);
-  };
 
-  const handleDobChange = (e) => {
-    setDob(e.target.value);
-  };
+
+
   const handleStreetChange = (e) => {
     setStreet(e.target.value);
   };
   const handleZipChange = (e) => {
     setZip(e.target.value);
   };
-  const handleFiscalChange = (e) => {
-    setFiscal(e.target.value);
+  const handleTypeOfRadiatorsChange = (e) => {
+    setTypeOfRadiators(e.target.value);
   };
 
-  const handleAnnualIncomeChange = (e) => {
-    setAnnualIncome(e.target.value);
+  const handleNumberOfM2OfHouseChange = (e) => {
+    setNumberOfM2OfHouse(e.target.value);
   };
-  const handleRefTaxNoticeChange = (e) => {
-    setRefTaxNotice(e.target.value);
+  const handleNumberOfTowelDryersChange = (e) => {
+    setNumberOfTowelDryers(e.target.value);
   };
 
   const handleBankNameChange = (e) => {
     setBankName(e.target.value);
   };
-  const handleMaritalChange = (event) => {
-    setMarital(event.target.value);
-  };
+
   const handleHousingTypeChange = (event) => {
     setHousingType(event.target.value);
   };
-  const handleAccommodationChange = (event) => {
-    setAccommodation(event.target.value);
+  const handleBuildingMoreThenTwoOldChange = (event) => {
+    setBuildingMoreThenTwoOld(event.target.value);
   };
   const handleCityChange = (event) => {
     setCity(event.target.value);
   };
-
+  const handleAccommodationChange = (event) => {
+    setAccommodation(event.target.value);
+  };
+  const handleNumberOfRadiatorsChange = (event) => {
+    setNumberOfRadiators(event.target.value);
+  };
   const oncreateLead = async (e) => {
     e.preventDefault();
 
@@ -101,61 +100,58 @@ function Profile() {
       return toast.error("Please Enter Your Email");
     }
 
-    if (!gender) {
-      return toast.error("Please Select Your Gender");
-    }
 
-    if (!dob) {
-      return toast.error("Please Enter Your Date of Birth");
-    }
+
     if (!street) {
       return toast.error("Please Enter Your Street Address");
     }
-    if (!fiscalNumber) {
-      return toast.error("Please Enter Your Fiscal Number");
+    if (!typeOfRadiators) {
+      return toast.error("Select type of Radiators");
     }
 
-    if (fiscalNumber.length > 13) {
-      return toast.error("Fiscal number cannot be more than 13 digits");
-    }
-    if (!refTaxNotice) {
-      return toast.error("Please Enter Your RefTaxNotice");
-    }
 
-    if (refTaxNotice.length > 13) {
-      return toast.error("Tax Notice number cannot be more than 13 digits");
+
+
+
+    if (!numberOfM2OfHouse) {
+      return toast.error("Please Enter Your number of m2 of house");
     }
-    if (!annualIncome) {
-      return toast.error("Please Enter Your Annual Income");
-    }
-    if (!accommodation) {
-      return toast.error("Please Enter Your Accommodation");
+    if (!buildingMoreThenTwoOld) {
+      return toast.error("Please Enter Your building more then two old");
     }
     if (!city) {
       return toast.error("Please Enter Your City");
     }
+    if (!accommodation) {
+      return toast.error("Please Enter Your Accommodatio");
+    }
     if (!housingType) {
       return toast.error("Please Enter Your Housing Type");
     }
-    if (!martialStatus) {
-      return toast.error("Please Enter Your Martial Status");
+    if (!numberOfRadiators) {
+      return toast.error("Please Enter Your Housing Type");
+    }
+
+    if (!numberOfTowelDryers) {
+      return toast.error("Please Select Number Of Towel Dryers");
     }
 
     const createLeadData = {
       customerName,
       email,
       mobileNumber1,
-      gender,
+      accommodation,
       dob,
-      martialStatus,
+
       street,
       housingType,
       zip,
-      accommodation,
+      buildingMoreThenTwoOld,
       city,
-      fiscalNumber,
-      refTaxNotice,
-      annualIncome,
+      numberOfRadiators,
+      numberOfM2OfHouse,
+      typeOfRadiators,
+      numberOfTowelDryers,
       bankName,
       callCenterComment,
     };
@@ -219,6 +215,7 @@ function Profile() {
                       </div>
                     </div>
                   </form>
+
                   <div className="Names-Form">
                     <div className="Form-Box-Text-Bottom">
                       <span className="Form-Box-Title">Téléphone 1
@@ -260,66 +257,8 @@ function Profile() {
                       </div>
                     </div>
                   </div>
-                  <span className="Form-Box-Title-Main">Genre</span>
-                  <div className="Check-Box-Section">
-                    <label>
-                      <input
-                        type="checkbox"
-                        checked={gender === "male"}
-                        onChange={() => handleGenderChange("male")}
-                      />
-                      {" Male"}
-                    </label>
-                    <label>
-                      <input
-                        type="checkbox"
-                        checked={gender === "female"}
-                        onChange={() => handleGenderChange("female")}
-                      />
-                      {" Female"}
-                    </label>
-                  </div>
-                  <div className="Names-Form-Bottom-Section">
-                    <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Date de naissance</span>
-                      <div className="FormBox-Bottom">
-                        <input
-                          className="NameBox-Center"
-                          type="date"
-                          id="birthday"
-                          name="birthday"
-                          placeholder="Entrer date de naissance"
-                          value={dob}
-                          onChange={handleDobChange}
-                        />
-                      </div>
-                    </div>
-                    <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">
-                        État civil</span>
-                      <div className="FormBox-Bottom">
-                        <select
-                          className="NameBox-Select"
-                          value={martialStatus}
-                          onChange={handleMaritalChange}
-                        >
-                          <option value="">
-                            Sélectionnez le statut martial
-                          </option>
-                          <option >
-                            Veuf
-                          </option>
-                          <option>Célibataire
-                          </option>
-                          <option>Marié
-                          </option>
-                          <option> Divorcé
-                          </option>
-                          <option>Concubinage</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
+
+
                   <span className="Form-Box-Title-Main">
                     Détails de l'adresse</span>
                   <div className="Names-Form">
@@ -337,19 +276,18 @@ function Profile() {
                       </div>
                     </div>
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">
-                        Type de logement</span>
+                      <span className="Form-Box-Title">Ville
+                      </span>
                       <div className="FormBox-Bottom-House">
-                        <select
+                        <input
                           className="NameBox-Select-House"
-                          value={housingType}
-                          onChange={handleHousingTypeChange}
-                        >
-                          <option value="">Entrez le type de logement</option>
-                          <option>Maison
-                          </option>
-                          <option>Appartement</option>
-                        </select>
+                          type="city"
+                          placeholder="Entrez votre ville"
+                          value={city}
+                          onChange={handleCityChange}
+                        />
+
+
                       </div>
                     </div>
                     <div className="Form-Box-Text-Bottom">
@@ -389,46 +327,114 @@ function Profile() {
                       </div>
                     </div>
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Ville
-                      </span>
+                      <span className="Form-Box-Title">
+                        Type de logement</span>
+                      <div className="FormBox-Bottom">
+                        <select
+                          className="NameBox-Select"
+                          value={housingType}
+                          onChange={handleHousingTypeChange}
+                        >
+                          <option value="">Entrez le type de logement</option>
+                          <option>Maison
+                          </option>
+                          <option>Appartement</option>
+                        </select>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div className="Names-Form-Bottom-Section">
+
+                    <div className="Form-Box-Text-Bottom">
+                      <span className="Form-Box-Title">
+                        Nombre de m2 de la maison</span>
                       <div className="FormBox-Bottom">
                         <input
                           className="NameBox-Select"
-                          type="city"
-                          placeholder="Entrez votre ville"
-                          value={city}
-                          onChange={handleCityChange}
+                          type="Name"
+                          placeholder="
+                      Entrez Nombre de m2 de la maison"
+                          value={numberOfM2OfHouse}
+                          onChange={handleNumberOfM2OfHouseChange}
                         />
+                      </div>
+                    </div>
 
+                    <div className="Form-Box-Text-Bottom">
+                      <span className="Form-Box-Title">Batiment plus de 2 ans
+                      </span>
+                      <div className="FormBox-Bottom">
+                        <select
+                          className="NameBox-Select"
+                          value={buildingMoreThenTwoOld}
+                          onChange={handleBuildingMoreThenTwoOldChange}
+                        >
+                          <option value="">
+                            Sélectionnez Batiment plus de 2 ans</option>
+                          <option >oui</option>
+                          <option>non
+                          </option>
 
+                        </select>
                       </div>
                     </div>
                   </div>
                   <span className="Form-Box-Title-Main">Statut Client</span>
-                  <div className="Names-Form">
+                  <div className="City-Form">
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Numéro fiscal</span>
+                      <span className="Form-Box-Title">Type de radiateurs
+                      </span>
                       <div className="FormBox-Bottom">
-                        <input
+                        <select
                           className="NameBox-Select"
-                          type="Number"
-                          placeholder="1"
-                          value={fiscalNumber}
-                          onChange={handleFiscalChange}
-                        />
+                          value={typeOfRadiators}
+                          onChange={handleTypeOfRadiatorsChange}
+                        >
+                          <option value="">
+                            Sélectionnez Type de radiateurs</option>
+                          <option >Hydraulique</option>
+                          <option>Electrique
+                          </option>
+                          <option>Mixte
+                          </option>
+                        </select>
                       </div>
                     </div>
                     <div className="Form-Box-Text-Bottom">
                       <span className="Form-Box-Title">
-                        Réf. Avis d'impôt</span>
+                        Nombre de Radiateur</span>
                       <div className="FormBox-Bottom">
-                        <input
+                        <select
                           className="NameBox-Select"
-                          type="Number"
-                          placeholder="124"
-                          value={refTaxNotice}
-                          onChange={handleRefTaxNoticeChange}
-                        />
+                          value={numberOfRadiators}
+                          onChange={handleNumberOfRadiatorsChange}
+                        >
+                          <option value="">
+                            Sélectionnez Nombre de Radiateur
+                          </option>
+                          <option >
+                            1
+                          </option>
+                          <option>2
+                          </option>
+                          <option>3
+                          </option>
+                          <option>4
+                          </option>
+                          <option>5</option>
+                          <option>6</option>
+                          <option>7</option>
+                          <option>8</option>
+                          <option>9</option>
+                          <option>10</option>
+                          <option>11</option>
+                          <option>12</option>
+                          <option>13</option>
+                          <option>14</option>
+                          <option>15</option>
+
+                        </select>
                       </div>
                     </div>
                   </div>
@@ -436,16 +442,37 @@ function Profile() {
                   <div className="Names-Form">
                     <div className="Form-Box-Text-Bottom">
                       <span className="Form-Box-Title">
-                        Revenu annuel</span>
+                        Nombre de sèche serviette</span>
                       <div className="FormBox-Bottom">
-                        <input
+                        <select
                           className="NameBox-Select"
-                          type="Number"
-                          placeholder="
-                          Entrez le revenu annuel"
-                          value={annualIncome}
-                          onChange={handleAnnualIncomeChange}
-                        />
+                          value={numberOfTowelDryers}
+                          onChange={handleNumberOfTowelDryersChange}
+                        >
+                          <option value="">
+                            Sélectionnez Nombre de sèche serviette
+                          </option>
+                          <option >
+                            0
+                          </option>
+                          <option >
+                            1
+                          </option>
+                          <option>2
+                          </option>
+                          <option>3
+                          </option>
+                          <option>4
+                          </option>
+                          <option>5</option>
+                          <option>6</option>
+                          <option>7</option>
+                          <option>8</option>
+                          <option>9</option>
+                          <option>10</option>
+
+
+                        </select>
                       </div>
                     </div>
                     <div className="Form-Box-Text-Bottom">
