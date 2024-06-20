@@ -39,25 +39,24 @@ function Leadlist() {
     { label: "Option 3" },
   ];
   const exportToExcel = () => {
-    // Translation map for column headers
+
     const headersTranslation = {
       _id: "ID",
-      userId: "ID Utilisateur",
       customerName: "Nom du Client",
-      email: "E-mail",
       mobileNumber1: "Numéro de Mobile 1",
       mobileNumber2: "Numéro de Mobile 2",
-      gender: "Sexe",
-      dob: "Date de Naissance",
-      martialStatus: "Statut Martial",
       street: "Rue",
-      housingType: "Type de Logement",
-      zip: "Code Postal",
-      Statutdeloccupant: "Sélectionnez l'hébergement",
       city: "Ville",
-      fiscalNumber: "Numéro Fiscal",
-      refTaxNotice: "Avis d'Imposition",
-      annualIncome: "Revenu Annuel",
+      email: "E-mail",
+      zip: "Code Postal",
+      martialStatus: "Statut Martial",
+      housingType: "Type de Logement",
+      Statutdeloccupant: "Sélectionnez l'hébergement",
+      typeOfRadiators: " Type de radiateurs",
+      numberOfRadiators: " Nombre de Radiateur",
+      numberOfTowelDryers: " Nombre de sèche serviette",
+      numberOfM2OfHouse: " Batiment plus de 2 ans",
+      buildingMoreThenTwoOld: " Nombre de m2 de la maison",
       heatingMode: "Mode de chauffage",
       status: "Statut",
       callCenterComment: "Commentaire du Centre d'Appel",
@@ -362,7 +361,7 @@ function Leadlist() {
                     </div>
 
                     <div className="Header-Button-Section">
-                      <div className="Name-Filter-Box1">
+                      {/* <div className="Name-Filter-Box1">
                         <div className="kyc-search-box1">
 
                           <select
@@ -379,7 +378,7 @@ function Leadlist() {
                             <option className="appointment" >Rendez-vous
                             </option>
 
-                            <option className="visited" >Visite
+                            <option className="visited" >NRP
                             </option>
                             <option className="canceled" >Annuler
                             </option>
@@ -389,7 +388,7 @@ function Leadlist() {
                           </select>
                         </div>
 
-                      </div>
+                      </div> */}
                       <button className="Header-Button" onClick={exportToExcel}>
                         <AiOutlineUpload className="Upload-button" /> Exporter vers excel
 

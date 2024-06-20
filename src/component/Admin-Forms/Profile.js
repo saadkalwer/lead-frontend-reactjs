@@ -26,7 +26,7 @@ function Profile() {
   const [typeOfRadiators, setTypeOfRadiators] = useState("");
   const [numberOfTowelDryers, setNumberOfTowelDryers] = useState("");
   const [numberOfM2OfHouse, setNumberOfM2OfHouse] = useState("");
-  const [bankName, setBankName] = useState("");
+  const [heatingMode, setHeatingMode] = useState("");
   const [callCenterComment, setCallCenterComment] = useState("");
   const [numberOfRadiators, setNumberOfRadiators] = useState("");
   const handleCustomerNameChange = (e) => {
@@ -66,8 +66,8 @@ function Profile() {
     setNumberOfTowelDryers(e.target.value);
   };
 
-  const handleBankNameChange = (e) => {
-    setBankName(e.target.value);
+  const handleHeatingModeChange = (e) => {
+    setHeatingMode(e.target.value);
   };
 
   const handleHousingTypeChange = (event) => {
@@ -141,7 +141,7 @@ function Profile() {
       email,
       mobileNumber1,
       accommodation,
-      dob,
+
 
       street,
       housingType,
@@ -152,7 +152,7 @@ function Profile() {
       numberOfM2OfHouse,
       typeOfRadiators,
       numberOfTowelDryers,
-      bankName,
+      heatingMode,
       callCenterComment,
     };
 
@@ -224,7 +224,7 @@ function Profile() {
                         <input
                           className="NameBox"
                           type="Number"
-                          placeholder="+91|90000 00000"
+                          placeholder="+33"
                           value={mobileNumber1}
                           onChange={handleNumber1Change}
                         />
@@ -237,7 +237,7 @@ function Profile() {
                         <input
                           className="NameBox"
                           type="Number"
-                          placeholder="+91|9000000000"
+                          placeholder="+33"
                           value={mobileNumber2}
                           onChange={handleNumber2Change}
                         />
@@ -296,11 +296,8 @@ function Profile() {
                       <div className="FormBox">
                         <input
                           className="NameBox"
-                          type="code"
-                          placeholder="
-
-                          Entrez le code postal
-                          "
+                          type="number"
+                          placeholder="Entrez le code postal "
                           value={zip}
                           onChange={handleZipChange}
                         />
@@ -352,7 +349,7 @@ function Profile() {
                       <div className="FormBox-Bottom">
                         <input
                           className="NameBox-Select"
-                          type="Name"
+                          type="number"
                           placeholder="
                       Entrez Nombre de m2 de la maison"
                           value={numberOfM2OfHouse}
@@ -380,7 +377,7 @@ function Profile() {
                       </div>
                     </div>
                   </div>
-                  <span className="Form-Box-Title-Main">Statut Client</span>
+                  {/* <span className="Form-Box-Title-Main">Statut Client</span> */}
                   <div className="City-Form">
                     <div className="Form-Box-Text-Bottom">
                       <span className="Form-Box-Title">Type de radiateurs
@@ -482,8 +479,8 @@ function Profile() {
 
                         <select
                           className="NameBox-Select"
-                          value={bankName}
-                          onChange={handleBankNameChange}
+                          value={heatingMode}
+                          onChange={handleHeatingModeChange}
                         >
                           <option value="">
                             Sélectionnez votre mode de chauffage</option>

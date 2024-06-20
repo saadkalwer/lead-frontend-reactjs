@@ -29,11 +29,13 @@ function Update() {
   const [refTaxNotice, setRefTaxNotice] = useState("");
   const [annualIncome, setAnnualIncome] = useState("");
   const [bankName, setBankName] = useState("");
+  console.log(bankName)
   const [adminComment, setAdminComment] = useState("");
+
   const [lead, setLead] = useState({});
   let { id } = useParams();
 
-  console.log(id);
+
   const handleCustomerNameChange = (e) => {
     const updatedLead = { ...lead, customerName: e.target.value };
     setLead(updatedLead);
@@ -51,15 +53,7 @@ function Update() {
     const updatedLead = { ...lead, email: e.target.value };
     setLead(updatedLead);
   };
-  const handleGenderChange = (selectedGender) => {
-    const updatedLead = { ...lead, gender: selectedGender };
-    setLead(updatedLead);
-  };
 
-  const handleDobChange = (e) => {
-    const updatedLead = { ...lead, adminComment: e.target.value };
-    setLead(updatedLead);
-  };
   const handleAdminCommentChange = (e) => {
     const updatedLead = { ...lead, adminComment: e.target.value };
     setLead(updatedLead);
@@ -76,30 +70,38 @@ function Update() {
     const updatedLead = { ...lead, zip: e.target.value };
     setLead(updatedLead);
   };
-  const handleFiscalChange = (e) => {
-    const updatedLead = { ...lead, fiscalNumber: e.target.value };
-    setLead(updatedLead);
-  };
 
   const handleStatusChange = (e) => {
     const updatedLead = { ...lead, status: e.target.value };
     setLead(updatedLead);
   };
-  const handleAnnualIncomeChange = (e) => {
-    const updatedLead = { ...lead, annualIncome: e.target.value };
-    setLead(updatedLead);
-  };
-  const handleRefTaxNoticeChange = (e) => {
-    const updatedLead = { ...lead, refTaxNotice: e.target.value };
-    setLead(updatedLead);
-  };
 
   const handleBankNameChange = (event) => {
-    const updatedLead = { ...lead, bankName: event.target.value };
+    const updatedLead = { ...lead, heatingMode: event.target.value };
     setLead(updatedLead);
   };
   const handleMaritalChange = (event) => {
     const updatedLead = { ...lead, martialStatus: event.target.value };
+    setLead(updatedLead);
+  };
+  const handleTypeOfRadiatorsChange = (event) => {
+    const updatedLead = { ...lead, typeOfRadiators: event.target.value };
+    setLead(updatedLead);
+  };
+  const handleNumberOfM2OfHouseChange = (event) => {
+    const updatedLead = { ...lead, numberOfM2OfHouse: event.target.value };
+    setLead(updatedLead);
+  };
+  const handleNumberOfTowelDryersChange = (event) => {
+    const updatedLead = { ...lead, numberOfTowelDryers: event.target.value };
+    setLead(updatedLead);
+  };
+  const handleNumberOfRadiatorsChange = (event) => {
+    const updatedLead = { ...lead, numberOfRadiators: event.target.value };
+    setLead(updatedLead);
+  };
+  const handleBuildingMoreThenTwoOldChange = (event) => {
+    const updatedLead = { ...lead, buildingMoreThenTwoOld: event.target.value };
     setLead(updatedLead);
   };
   const handleHousingTypeChange = (event) => {
@@ -168,8 +170,8 @@ function Update() {
                   <div className="Avatar-Main-Section">
                     <IoPersonSharp className="Manager-Avatar" />
                     <div className="Avatar-Text-Section">
-                      <span className="Avatar-Title">Anna Adame</span>
-                      <span className="Avatar-Text">Founder</span>
+                      {/* <span className="Avatar-Title">Anna Adame</span>
+                      <span className="Avatar-Text">Founder</span> */}
                     </div>
                   </div>
                 </div>
@@ -240,8 +242,8 @@ function Update() {
                       </div>
                     </div>
                   </div>
-                  <span className="Form-Box-Title-Main">Genre</span>
-                  <div className="Check-Box-Section">
+                  {/* <span className="Form-Box-Title-Main">Genre</span> */}
+                  {/* <div className="Check-Box-Section">
                     <label>
                       <input
                         type="radio" // Change to radio for exclusive selection
@@ -258,8 +260,8 @@ function Update() {
                       />
                       {" Female"}
                     </label>
-                  </div>
-                  <div className="Names-Form-Bottom-Section">
+                  </div> */}
+                  {/* <div className="Names-Form-Bottom-Section">
                     <div className="Form-Box-Text-Bottom">
                       <span className="Form-Box-Title">Date de naissance</span>
                       <div className="FormBox-Bottom">
@@ -297,7 +299,7 @@ function Update() {
                         </select>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                   <span className="Form-Box-Title-Main">Détails de l'adresse</span>
                   <div className="Names-Form">
                     <div className="Form-Box-Text-Bottom">
@@ -313,20 +315,19 @@ function Update() {
                       </div>
                     </div>
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Type de logement</span>
-                      <div className="FormBox-Bottom-House">
-                        <select
+                      <span className="Form-Box-Title">Ville</span>
+                      <div className=" FormBox-Bottom-House">
+                        <input
+                          type="City"
+                          placeholder="Entrez votre ville"
                           className="NameBox-Select-House"
-                          value={lead.housingType ? lead.housingType : ""}
-                          onChange={handleHousingTypeChange}
-                        >
-                          <option value="">Entrez le type de logement</option>
-                          <option>Maison
-                          </option>
-                          <option>Appartement</option>
-                        </select>
+                          value={lead.city ? lead.city : ""}
+                          onChange={handleCityChange}
+                        />
+
                       </div>
                     </div>
+
                     <div className="Form-Box-Text-Bottom">
                       <span className="Form-Box-Title">Code postal</span>
                       <div className="FormBox">
@@ -360,58 +361,155 @@ function Update() {
                       </div>
                     </div>
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Ville</span>
+                      <span className="Form-Box-Title">Type de logement</span>
+                      <div className="FormBox-Bottom">
+                        <select
+                          className="NameBox-Select"
+                          value={lead.housingType ? lead.housingType : ""}
+                          onChange={handleHousingTypeChange}
+                        >
+                          <option value="">Entrez le type de logement</option>
+                          <option>Maison
+                          </option>
+                          <option>Appartement</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="Names-Form-Bottom-Section">
+
+                    <div className="Form-Box-Text-Bottom">
+                      <span className="Form-Box-Title">
+                        Nombre de m2 de la maison</span>
                       <div className="FormBox-Bottom">
                         <input
-                          type="City"
-                          placeholder="Entrez votre ville"
                           className="NameBox-Select"
-                          value={lead.city ? lead.city : ""}
-                          onChange={handleCityChange}
+                          type="Name"
+                          placeholder="
+  Entrez Nombre de m2 de la maison"
+                          value={lead.numberOfM2OfHouse ? lead.numberOfM2OfHouse : ""}
+                          onChange={handleNumberOfM2OfHouseChange}
                         />
+                      </div>
+                    </div>
 
+                    <div className="Form-Box-Text-Bottom">
+                      <span className="Form-Box-Title">Batiment plus de 2 ans
+                      </span>
+                      <div className="FormBox-Bottom">
+                        <select
+                          className="NameBox-Select"
+
+                          value={lead.buildingMoreThenTwoOld ? lead.buildingMoreThenTwoOld : ""}
+                          onChange={handleBuildingMoreThenTwoOldChange}
+                        >
+                          <option value="">
+                            Sélectionnez Batiment plus de 2 ans</option>
+                          <option >oui</option>
+                          <option>non
+                          </option>
+
+                        </select>
                       </div>
                     </div>
                   </div>
                   <span className="Form-Box-Title-Main">Statut Client</span>
-                  <div className="Names-Form">
+                  <div className="City-Form">
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Numéro fiscal</span>
+                      <span className="Form-Box-Title">Type de radiateurs
+                      </span>
                       <div className="FormBox-Bottom">
-                        <input
+                        <select
                           className="NameBox-Select"
-                          type="Number"
-                          placeholder="1"
-                          value={lead.fiscalNumber ? lead.fiscalNumber : ""}
-                          onChange={handleFiscalChange}
-                        />
+
+                          value={lead.typeOfRadiators ? lead.typeOfRadiators : ""}
+                          onChange={handleTypeOfRadiatorsChange}
+
+                        >
+                          <option value="">
+                            Sélectionnez Type de radiateurs</option>
+                          <option >Hydraulique</option>
+                          <option>Electrique
+                          </option>
+                          <option>Mixte
+                          </option>
+                        </select>
                       </div>
                     </div>
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Réf. Avis d'impôt</span>
+                      <span className="Form-Box-Title">
+                        Nombre de Radiateur</span>
                       <div className="FormBox-Bottom">
-                        <input
+                        <select
                           className="NameBox-Select"
-                          type="Number"
-                          placeholder="124"
-                          value={lead.refTaxNotice ? lead.refTaxNotice : ""}
-                          onChange={handleRefTaxNoticeChange}
-                        />
+
+                          value={lead.numberOfRadiators ? lead.numberOfRadiators : ""}
+                          onChange={handleNumberOfRadiatorsChange}
+                        >
+                          <option value="">
+                            Sélectionnez Nombre de Radiateur
+                          </option>
+                          <option >
+                            1
+                          </option>
+                          <option>2
+                          </option>
+                          <option>3
+                          </option>
+                          <option>4
+                          </option>
+                          <option>5</option>
+                          <option>6</option>
+                          <option>7</option>
+                          <option>8</option>
+                          <option>9</option>
+                          <option>10</option>
+                          <option>11</option>
+                          <option>12</option>
+                          <option>13</option>
+                          <option>14</option>
+                          <option>15</option>
+
+                        </select>
                       </div>
                     </div>
                   </div>
 
                   <div className="Names-Form">
                     <div className="Form-Box-Text-Bottom">
-                      <span className="Form-Box-Title">Revenu annuel</span>
+                      <span className="Form-Box-Title">
+                        Nombre de sèche serviette</span>
                       <div className="FormBox-Bottom">
-                        <input
+                        <select
                           className="NameBox-Select"
-                          type="Number"
-                          placeholder="Entrez le revenu annuel"
-                          value={lead.annualIncome ? lead.annualIncome : ""}
-                          onChange={handleAnnualIncomeChange}
-                        />
+
+                          value={lead.numberOfTowelDryers ? lead.numberOfTowelDryers : ""}
+                          onChange={handleNumberOfTowelDryersChange}
+                        >
+                          <option value="">
+                            Sélectionnez Nombre de sèche serviette
+                          </option>
+                          <option >
+                            0
+                          </option>
+                          <option >
+                            1
+                          </option>
+                          <option>2
+                          </option>
+                          <option>3
+                          </option>
+                          <option>4
+                          </option>
+                          <option>5</option>
+                          <option>6</option>
+                          <option>7</option>
+                          <option>8</option>
+                          <option>9</option>
+                          <option>10</option>
+
+
+                        </select>
                       </div>
                     </div>
                     <div className="Form-Box-Text-Bottom">
@@ -420,7 +518,7 @@ function Update() {
 
                         <select
                           className="NameBox-Select"
-                          value={lead.bankName ? lead.bankName : ""}
+                          value={lead.heatingMode ? lead.heatingMode : ""}
                           onChange={handleBankNameChange}
                         >
                           <option value="">

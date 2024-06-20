@@ -228,7 +228,7 @@ function Companydetails() {
                         <input
                           className="NameBox"
                           type="Name"
-                          placeholder="+91 | 90000 00000"
+                          placeholder="+33"
                           value={mobileNo1}
                           onChange={handleMobileNo1Change}
                         />
@@ -256,7 +256,7 @@ function Companydetails() {
                         <input
                           className="NameBox"
                           type="Number"
-                          placeholder="+91 | 90000 00000"
+                          placeholder="+33"
                           value={mobileNo2}
                           onChange={handleMobileNo2Change}
                         />
@@ -288,7 +288,7 @@ function Companydetails() {
                       <div className="FormBox">
                         <input
                           className="NameBox"
-                          type="code"
+                          type="number"
                           placeholder="Code postal
                           "
                           value={zip}

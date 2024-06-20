@@ -163,27 +163,27 @@ function Customer() {
                           <span className="Name-Text">{user.accommodation}</span>
                         </div>
                         <div className="Name-Box-Section">
-                          <span className="Name-Title">Numéro fiscal</span>
-                          <span className="Name-Text">{user.fiscalNumber}</span>
+                          <span className="Name-Title">Nombre de m2 de la maison</span>
+                          <span className="Name-Text">{user.numberOfM2OfHouse}</span>
                         </div>
                         <div className="Name-Box-Section">
-                          <span className="Name-Title">Avis de référence</span>
-                          <span className="Name-Text">{user.annualIncome}</span>
+                          <span className="Name-Title">Nombre de seche serviette </span>
+                          <span className="Name-Text">{user.numberOfTowelDryers}</span>
                         </div>
                       </div>
                       <div className="Details-Box-Section">
 
                         <div className="Name-Box-Section">
-                          <span className="Name-Title">Genre </span>
-                          <span className="Name-Text">{user.gender}</span>
+                          <span className="Name-Title">Nombre de radiateurs </span>
+                          <span className="Name-Text">{user.numberOfRadiators}</span>
                         </div>
                         <div className="Name-Box-Section">
-                          <span className="Name-Title">Date de naissance</span>
-                          <span className="Name-Text" > {formatDate(user.dob)}</span>
+                          <span className="Name-Title">Type de radiaterus</span>
+                          <span className="Name-Text" > {user.typeOfRadiators}</span>
                         </div>
                         <div className="Name-Box-Section">
-                          <span className="Name-Title"> Situation maritale</span>
-                          <span className="Name-Text">{user.martialStatus}</span>
+                          <span className="Name-Title"> Batiment plus de 2 ans</span>
+                          <span className="Name-Text">{user.buildingMoreThenTwoOld}</span>
                         </div>
                         <div className="Name-Box-Section">
                           <span className="Name-Title">Mode de chauffage</span>
